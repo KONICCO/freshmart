@@ -3,12 +3,13 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
+import 'kategori.dart';
 
 // void main() {
 //   runApp(new MyApp());
 // }
 
-class MyApp extends StatelessWidget {
+class buah extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

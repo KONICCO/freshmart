@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'buah.dart';
 
-void main() {
-  runApp(new MyApp());
-}
+// void main() {
+//   runApp(new MyApp());
+// }
 
-class MyApp extends StatelessWidget {
+class kategori extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,7 +57,11 @@ class MyApp extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      print('ini inkwell');
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext ctx) {
+                        return buah();
+                      }));
+                      ;
                     },
                     child: Container(
                       child: Column(
