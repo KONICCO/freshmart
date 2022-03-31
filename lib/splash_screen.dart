@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-//import 'login_screen.dart';
+import 'login_screen.dart';
 
 void main() {
   runApp(SplashScreen());
@@ -15,21 +15,21 @@ class SplashScreen extends StatefulWidget {
 
 class StartState extends State<SplashScreen> {
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   startTime();
-  // }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTime();
+  }
 
-  // startTime() async {
-  //   var duration = Duration(seconds: 4);
-  //   return new Timer(duration, route);
-  // }
+  startTime() async {
+    var duration = Duration(seconds: 4);
+    return new Timer(duration, route);
+  }
 
-  // route() {
-  //   Navigator.pushReplacement(
-  //       context, MaterialPageRoute(builder: (context) => LoginScreen()));
-  // }
+  route() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
