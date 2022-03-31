@@ -19,7 +19,9 @@ class MyApp extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.message),
-              onPressed: () {print("");},
+              onPressed: () {
+                print("");
+              },
             ),
           ],
           leading: Container(
@@ -55,7 +57,6 @@ class MyApp extends StatelessWidget {
                     Container(
                       width: 153,
                       height: 153,
-                      
                       margin: EdgeInsets.only(left: 15),
                       decoration: BoxDecoration(
                           // borderRadius: BorderRadius.only(
@@ -71,8 +72,6 @@ class MyApp extends StatelessWidget {
                       color: Colors.lightGreen,
                       width: 153,
                       margin: EdgeInsets.only(left: 15),
-                      
-                      
                       child: Column(children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 8, top: 8),
