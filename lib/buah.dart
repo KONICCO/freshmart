@@ -1,10 +1,12 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'login_screen.dart';
+import 'signup_screen.dart';
 
-void main() {
-  runApp(new MyApp());
-}
+// void main() {
+//   runApp(new MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   @override

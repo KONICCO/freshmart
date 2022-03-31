@@ -1,36 +1,28 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
-import 'signup_screen.dart';
 import 'buah.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => StartState();
+  State<StatefulWidget> createState() => InitState();
 }
 
-class StartState extends State<LoginScreen> {
+class InitState extends State<SignUpScreen> {
   @override
-  Widget build(BuildContext context) {
-    return initWidget();
-  }
+  Widget build(BuildContext context) => initWidget();
 
-  initWidget() {
+  Widget initWidget() {
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(
       children: [
         Container(
-          height: 300,
+          height: 250,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90)),
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: Color.fromARGB(255, 245, 243, 242),
             gradient: LinearGradient(
-              colors: [
-                (Color.fromARGB(255, 255, 255, 255)),
-                Color.fromARGB(255, 255, 255, 255)
-              ],
+              colors: [(Colors.white), Colors.white],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -52,8 +44,8 @@ class StartState extends State<LoginScreen> {
                 margin: EdgeInsets.only(right: 20, top: 20),
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  "Login",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  "Register",
+                  style: TextStyle(fontSize: 20, color: Colors.lightGreen),
                 ),
               )
             ],
@@ -78,10 +70,67 @@ class StartState extends State<LoginScreen> {
             cursorColor: Colors.lightGreen,
             decoration: InputDecoration(
               icon: Icon(
+                Icons.person,
+                color: Colors.lightGreen,
+              ),
+              hintText: "Full Name",
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+          padding: EdgeInsets.only(left: 20, right: 20),
+          height: 54,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Colors.grey[200],
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 10),
+                  blurRadius: 50,
+                  color: Color(0xffEEEEEE)),
+            ],
+          ),
+          child: TextField(
+            cursorColor: Colors.lightGreen,
+            decoration: InputDecoration(
+              icon: Icon(
                 Icons.email,
                 color: Colors.lightGreen,
               ),
-              hintText: "Enter Email",
+              hintText: "Email",
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+          padding: EdgeInsets.only(left: 20, right: 20),
+          height: 54,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Color(0xffEEEEEE),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 20),
+                  blurRadius: 100,
+                  color: Color(0xffEEEEEE)),
+            ],
+          ),
+          child: TextField(
+            cursorColor: Colors.lightGreen,
+            decoration: InputDecoration(
+              focusColor: Colors.lightGreen,
+              icon: Icon(
+                Icons.phone,
+                color: Colors.lightGreen,
+              ),
+              hintText: "Phone Number",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -117,13 +166,32 @@ class StartState extends State<LoginScreen> {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          alignment: Alignment.centerRight,
-          child: GestureDetector(
-            onTap: () {
-              // Write Click Listener Code Here
-            },
-            child: Text("Forget Password?"),
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+          padding: EdgeInsets.only(left: 20, right: 20),
+          height: 54,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Color(0xffEEEEEE),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 20),
+                  blurRadius: 100,
+                  color: Color(0xffEEEEEE)),
+            ],
+          ),
+          child: TextField(
+            cursorColor: Colors.lightGreen,
+            decoration: InputDecoration(
+              focusColor: Colors.lightGreen,
+              icon: Icon(
+                Icons.vpn_key,
+                color: Colors.lightGreen,
+              ),
+              hintText: "Confirm Password",
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+            ),
           ),
         ),
         GestureDetector(
@@ -150,29 +218,25 @@ class StartState extends State<LoginScreen> {
               ],
             ),
             child: Text(
-              "LOGIN",
+              "REGISTER",
               style: TextStyle(color: Colors.white),
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 10),
+          margin: EdgeInsets.only(top: 10, bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Don't Have Any Account?  "),
+              Text("Have Already Member?  "),
               GestureDetector(
                 child: Text(
-                  "Register Now",
+                  "Login Now",
                   style: TextStyle(color: Colors.lightGreen),
                 ),
                 onTap: () {
-                  //Write Tap Code Here.
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpScreen(),
-                      ));
+                  // Write Tap Code Here.
+                  Navigator.pop(context);
                 },
               )
             ],
@@ -181,6 +245,4 @@ class StartState extends State<LoginScreen> {
       ],
     )));
   }
-
-  //SocalIcon({String? iconSrc, Null Function()? press}) {}
 }
