@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 import 'kategori.dart';
-
+import 'pagebuah1.dart';
 // void main() {
 //   runApp(new MyApp());
 // }
@@ -17,24 +17,26 @@ class buah extends StatelessWidget {
         appBar: AppBar(
           actions: [
             IconButton(
-              icon: Icon(Icons.store),
+              icon: Icon(Icons.shopping_cart),
               onPressed: () {},
             ),
             IconButton(
               icon: Icon(Icons.message),
               onPressed: () {
-                print("");
+               
               },
             ),
           ],
-          leading: Container(
-            child: Icon(Icons.arrow_back),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {},
           ),
-          title: Container(
-              width: 200,
+        title: Container(
+              width: 220,
               height: 38,
               child: Center(
                   child: TextField(
+
                       decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.only(bottom: -10.0, left: 10),
@@ -87,8 +89,13 @@ class buah extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                         ),
                         InkWell(
-                          onTap: () {},
-                          //color: Colors.white,
+                          onTap: () {
+                            Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext ctx) {
+                            return pagebuah1();
+                          }));
+                          },
+                          
                           child: Container(
                             color: Colors.white,
                             margin: const EdgeInsets.symmetric(vertical: 8),
@@ -97,6 +104,7 @@ class buah extends StatelessWidget {
                             child: Text(
                               'Beli',
                               style: TextStyle(color: Colors.redAccent),
+                              
                             ),
                           ),
                         )
@@ -335,6 +343,29 @@ class buah extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Beranda',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.assignment),
+              label: 'Pesanan',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications),
+              label: 'Notifisikasi',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Akun',
+            ),
+          ],
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
         ),
       ),
     );
