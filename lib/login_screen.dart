@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'signup_screen.dart';
 import 'buah.dart';
+import 'kategori.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -128,6 +129,11 @@ class StartState extends State<LoginScreen> {
         ),
         GestureDetector(
           onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext ctx) {
+              return kategori();
+              // Write Click Listener Code Here
+            }));
             // Write Click Listener Code Here.
           },
           child: Container(
