@@ -47,7 +47,7 @@ class InitState extends State<SignUpScreen> {
                 margin: EdgeInsets.only(right: 20, top: 20),
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  "Register",
+                  "Daftar",
                   style: TextStyle(fontSize: 20, color: Colors.lightGreen),
                 ),
               )
@@ -76,7 +76,7 @@ class InitState extends State<SignUpScreen> {
                 Icons.person,
                 color: Colors.lightGreen,
               ),
-              hintText: "Full Name",
+              hintText: "Nama Lengkap",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -133,7 +133,7 @@ class InitState extends State<SignUpScreen> {
                 Icons.phone,
                 color: Colors.lightGreen,
               ),
-              hintText: "Phone Number",
+              hintText: "Nomor Telepon",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -162,7 +162,7 @@ class InitState extends State<SignUpScreen> {
                 Icons.vpn_key,
                 color: Colors.lightGreen,
               ),
-              hintText: "Enter Password",
+              hintText: "Masukkan Password",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -191,7 +191,7 @@ class InitState extends State<SignUpScreen> {
                 Icons.vpn_key,
                 color: Colors.lightGreen,
               ),
-              hintText: "Confirm Password",
+              hintText: "Konfirmasi Password",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -225,7 +225,7 @@ class InitState extends State<SignUpScreen> {
               ],
             ),
             child: Text(
-              "REGISTER",
+              "DAFTAR",
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -235,10 +235,10 @@ class InitState extends State<SignUpScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Have Already Member?  "),
+              Text("Sudah Mempunyai Akun?  "),
               GestureDetector(
                 child: Text(
-                  "Login Now",
+                  "Masuk Sekarang",
                   style: TextStyle(color: Colors.lightGreen),
                 ),
                 onTap: () {

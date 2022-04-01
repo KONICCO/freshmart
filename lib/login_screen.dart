@@ -53,7 +53,7 @@ class StartState extends State<LoginScreen> {
                 margin: EdgeInsets.only(right: 20, top: 20),
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  "Login",
+                  "Masuk",
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               )
@@ -82,7 +82,7 @@ class StartState extends State<LoginScreen> {
                 Icons.email,
                 color: Colors.lightGreen,
               ),
-              hintText: "Enter Email",
+              hintText: "Masukkan Email",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -111,7 +111,7 @@ class StartState extends State<LoginScreen> {
                 Icons.vpn_key,
                 color: Colors.lightGreen,
               ),
-              hintText: "Enter Password",
+              hintText: "Masukkan Password",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -124,7 +124,7 @@ class StartState extends State<LoginScreen> {
             onTap: () {
               // Write Click Listener Code Here
             },
-            child: Text("Forget Password?"),
+            child: Text("Lupa Password?"),
           ),
         ),
         GestureDetector(
@@ -156,7 +156,7 @@ class StartState extends State<LoginScreen> {
               ],
             ),
             child: Text(
-              "LOGIN",
+              "MASUK",
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -166,10 +166,10 @@ class StartState extends State<LoginScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Don't Have Any Account?  "),
+              Text("Belum Mempunyai Akun?  "),
               GestureDetector(
                 child: Text(
-                  "Register Now",
+                  "Daftar Sekarang",
                   style: TextStyle(color: Colors.lightGreen),
                 ),
                 onTap: () {
