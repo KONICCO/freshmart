@@ -17,97 +17,117 @@ class pagebuah1 extends StatelessWidget {
         appBar: AppBar(
           actions: [
             IconButton(
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               onPressed: () {},
             ),
-            
           ],
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {Navigator.pop(context);},
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-        title: Container(
+          title: SizedBox(
               width: 260,
               height: 38,
               child: Center(
                   child: TextField(
-
                       decoration: InputDecoration(
                           contentPadding:
-                              EdgeInsets.only(bottom: -10.0, left: 10),
+                              const EdgeInsets.only(bottom: -10.0, left: 10),
                           filled: true,
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           hintText: 'Sayur, Buah dll',
-                          suffixIcon: Icon(Icons.search))))),
+                          suffixIcon: const Icon(Icons.search))))),
           backgroundColor: Colors.lightGreen,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Wrap(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 20,
-              runSpacing: 30,
-              children: [
-                Container(
-                    child: Column(
-                  children: [
-                    Container(
-                      width: 153,
-                      height: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      decoration: BoxDecoration(
-                          // borderRadius: BorderRadius.only(
-                          //   topLeft: Radius.circular(25),
-                          //   topRight: Radius.circular(25),
-                          // ),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5095900/kedaisayur_kedaisayur-buah-naga-buah-buahan--1-kg-_full07.jpg'))),
-                    ),
-                    Container(
-                      color: Colors.lightGreen,
-                      width: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      child: Column(children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 8, top: 8),
-                            child: Text(
-                              'buah naga 1kg',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        Text(
-                          'Rp. 25.000',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          //color: Colors.white,
-                          child: Container(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 3),
-                            child: Text(
-                              'Beli',
-                              style: TextStyle(color: Colors.redAccent),
-                            ),
+        body: Column(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    width: 500,
+                    height: 300,
+                    // margin: const EdgeInsets.only(left: 15),
+                    decoration: const BoxDecoration(
+                        // borderRadius: BorderRadius.only(
+                        //   topLeft: Radius.circular(25),
+                        //   topRight: Radius.circular(25),
+                        // ),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5095900/kedaisayur_kedaisayur-buah-naga-buah-buahan--1-kg-_full07.jpg'))),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    width: 500,
+                    // margin: const EdgeInsets.only(left: 15),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Container(
+                          margin: const EdgeInsets.only(left: 10 ,bottom: 8, top: 8),
+                          child: 
+                          const Text(
+                            'Buah naga 1kg',
+                            style: TextStyle(color: Colors.black, fontSize: 25),
+                            )
+                          
                           ),
-                        )
-                      ]),
+                      
+                      Container(
+                        margin: const EdgeInsets.only(right: 10,left: 10 ,bottom: 8, top: 13),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Rp 25.000',
+                              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            const Text(
+                              'Stock: 10',
+                              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 7,
+                        color: Color.fromARGB(255, 252, 252, 252)
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(right: 10,left: 10 ,bottom: 8, top: 13),
+                        height: 20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                          children: [
+                            const Text(
+                              'Deskripsi Produk',
+                              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            SizedBox(height: 10),
+                            const Text(
+                              'Consectetur labore esse minim enim pariatur occaecat dolor cupidatat labore magna nostrud in elit eu.',
+                              style: TextStyle(color: Colors.black,  fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]
                     ),
-                  ],
-                )),
-                //=====================
-              
-                //=====================
-                
-              ],
+                    
+                  ),
+                ],
+              ),
             ),
-          ),
+            Container(
+              child: Text('data')
+            )
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
