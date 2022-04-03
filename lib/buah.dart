@@ -29,7 +29,10 @@ class buah extends StatelessWidget {
           ],
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext ctx) {
+                            return kategori();
+                          }));},
           ),
         title: Container(
               width: 220,
