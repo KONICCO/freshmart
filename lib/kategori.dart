@@ -74,6 +74,10 @@ class kategori extends StatelessWidget {
                                 height: 115,
                                 margin: EdgeInsets.only(left: 15),
                                 decoration: BoxDecoration(
+                                    borderRadius: new BorderRadius.only(
+                                      topLeft: const Radius.circular(10.0),
+                                      topRight: const Radius.circular(10.0),
+                                    ),
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
@@ -81,9 +85,14 @@ class kategori extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 15.0),
-                                color: Colors.lightGreen,
                                 width: 153,
                                 height: 58,
+                                decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                                 child: Center(
                                   child: Text(
                                     'Buah',
@@ -117,6 +126,10 @@ class kategori extends StatelessWidget {
                                 height: 115,
                                 margin: EdgeInsets.only(left: 15),
                                 decoration: BoxDecoration(
+                                    borderRadius: new BorderRadius.only(
+                                      topLeft: const Radius.circular(10.0),
+                                      topRight: const Radius.circular(10.0),
+                                    ),
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
@@ -124,9 +137,15 @@ class kategori extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 15.0),
-                                color: Colors.lightGreen,
+                                // color: Colors.lightGreen,
                                 width: 153,
                                 height: 58,
+                                decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                                 child: Center(
                                   child: Text(
                                     'Sayur',
@@ -160,6 +179,10 @@ class kategori extends StatelessWidget {
                                 height: 115,
                                 margin: EdgeInsets.only(left: 15),
                                 decoration: BoxDecoration(
+                                    borderRadius: new BorderRadius.only(
+                                      topLeft: const Radius.circular(10.0),
+                                      topRight: const Radius.circular(10.0),
+                                    ),
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
@@ -167,9 +190,15 @@ class kategori extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 15.0),
-                                color: Colors.lightGreen,
+                                // color: Colors.lightGreen,
                                 width: 153,
                                 height: 58,
+                                decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                                 child: Center(
                                   child: Text(
                                     'Daging',
@@ -203,6 +232,10 @@ class kategori extends StatelessWidget {
                                 height: 115,
                                 margin: EdgeInsets.only(left: 15),
                                 decoration: BoxDecoration(
+                                    borderRadius: new BorderRadius.only(
+                                      topLeft: const Radius.circular(10.0),
+                                      topRight: const Radius.circular(10.0),
+                                    ),
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
@@ -210,9 +243,15 @@ class kategori extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 15.0),
-                                color: Colors.lightGreen,
+                                // color: Colors.lightGreen,
                                 width: 153,
                                 height: 58,
+                                decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                                 child: Center(
                                   child: Text(
                                     'Beras',
@@ -246,6 +285,10 @@ class kategori extends StatelessWidget {
                                 height: 115,
                                 margin: EdgeInsets.only(left: 15),
                                 decoration: BoxDecoration(
+                                    borderRadius: new BorderRadius.only(
+                                      topLeft: const Radius.circular(10.0),
+                                      topRight: const Radius.circular(10.0),
+                                    ),
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
@@ -253,9 +296,15 @@ class kategori extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 15.0),
-                                color: Colors.lightGreen,
+                                // color: Colors.lightGreen,
                                 width: 153,
                                 height: 58,
+                                decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                                 child: Center(
                                   child: Text(
                                     'Minyak',
@@ -289,6 +338,10 @@ class kategori extends StatelessWidget {
                                 height: 115,
                                 margin: EdgeInsets.only(left: 15),
                                 decoration: BoxDecoration(
+                                    borderRadius: new BorderRadius.only(
+                                      topLeft: const Radius.circular(10.0),
+                                      topRight: const Radius.circular(10.0),
+                                    ),
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
@@ -296,9 +349,15 @@ class kategori extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(left: 15.0),
-                                color: Colors.lightGreen,
+                                // color: Colors.lightGreen,
                                 width: 153,
                                 height: 58,
+                                decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                                 child: Center(
                                   child: Text(
                                     'Telur',

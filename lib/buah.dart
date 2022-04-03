@@ -29,10 +29,7 @@ class buah extends StatelessWidget {
           ],
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext ctx) {
-                            return kategori();
-                          }));},
+            onPressed: () {Navigator.pop(context);},
           ),
         title: Container(
               width: 220,
@@ -67,19 +64,25 @@ class buah extends StatelessWidget {
                       height: 153,
                       margin: EdgeInsets.only(left: 15),
                       decoration: BoxDecoration(
-                          // borderRadius: BorderRadius.only(
-                          //   topLeft: Radius.circular(25),
-                          //   topRight: Radius.circular(25),
-                          // ),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                   'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5095900/kedaisayur_kedaisayur-buah-naga-buah-buahan--1-kg-_full07.jpg'))),
                     ),
                     Container(
-                      color: Colors.lightGreen,
+                      // color: Colors.lightGreen,
                       width: 153,
                       margin: EdgeInsets.only(left: 15),
+                      decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                       child: Column(children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -123,14 +126,24 @@ class buah extends StatelessWidget {
                       width: 153,
                       height: 153,
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLUCCJb0f_aLATYUaXOCPbUqsQ9n8YcU9C_w&usqp=CAU'))),
                     ),
                     Container(
-                      color: Colors.lightGreen,
+                      // color: Colors.lightGreen,
                       width: 153,
+                      decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                       child: Column(children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -168,15 +181,25 @@ class buah extends StatelessWidget {
                       height: 153,
                       margin: EdgeInsets.only(left: 15),
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                   'https://id.sharp/sites/default/files/uploads/image-artikel/Jenis%20Buah-Buahan%20Ini%20Efektif%20Membantu%20Menurunkan%20Berat%20Badan%201.jpg'))),
                     ),
                     Container(
-                      color: Colors.lightGreen,
+                      // color: Colors.lightGreen,
                       width: 153,
                       margin: EdgeInsets.only(left: 15),
+                      decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                       child: Column(children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -214,14 +237,24 @@ class buah extends StatelessWidget {
                       width: 153,
                       height: 153,
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                   'https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/01/12085334/Apa-Saja-Manfaat-Mengonsumsi-Buah-Manggis_-01.jpg'))),
                     ),
                     Container(
-                      color: Colors.lightGreen,
+                      // color: Colors.lightGreen,
                       width: 153,
+                      decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                       child: Column(children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -260,15 +293,25 @@ class buah extends StatelessWidget {
                       height: 153,
                       margin: EdgeInsets.only(left: 15),
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                   'https://foto.kontan.co.id/pZ6yQDMf6vpr2gfBDh2BVlG_mnM=/smart/2021/04/30/1168859913p.jpg'))),
                     ),
                     Container(
-                      color: Colors.lightGreen,
+                      // color: Colors.lightGreen,
                       width: 153,
                       margin: EdgeInsets.only(left: 15),
+                      decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                       child: Column(children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 8, top: 8),
@@ -306,14 +349,24 @@ class buah extends StatelessWidget {
                       width: 153,
                       height: 153,
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                   'https://asset-a.grid.id/crop/0x40:626x416/700x465/photo/2020/06/03/226902286.jpg'))),
                     ),
                     Container(
-                      color: Colors.lightGreen,
+                      // color: Colors.lightGreen,
                       width: 153,
+                      decoration: new BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: new BorderRadius.only(
+                                      bottomLeft: const Radius.circular(10.0),
+                                      bottomRight: const Radius.circular(10.0),
+                                    )),
                       child: Column(children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 8, top: 8),

@@ -24,7 +24,7 @@ class pagebuah1 extends StatelessWidget {
           ],
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {Navigator.pop(context);},
           ),
         title: Container(
               width: 260,
