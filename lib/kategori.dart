@@ -57,6 +57,9 @@ class _KategoriState extends State<Kategori> {
 
   // This list holds the data for the list view
   List<Map<String, dynamic>> _foundUsers = [];
+
+  int _selectedIndex = 0;
+
   @override
   initState() {
     // at the beginning, all users are shown
@@ -81,6 +84,12 @@ class _KategoriState extends State<Kategori> {
     // Refresh the UI
     setState(() {
       _foundUsers = results;
+    });
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
     });
   }
 
@@ -217,6 +226,32 @@ class _KategoriState extends State<Kategori> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.lightGreen),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Pesanan',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_sharp),
+            label: 'Notifikasi',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+            backgroundColor: Colors.lightGreen,
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        onTap: _onItemTapped,
       ),
     );
   }
