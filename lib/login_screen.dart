@@ -131,7 +131,7 @@ class StartState extends State<LoginScreen> {
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (BuildContext ctx) {
-              return kategori();
+              return Kategori();
               // Write Click Listener Code Here
             }));
             // Write Click Listener Code Here.
