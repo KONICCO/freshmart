@@ -186,7 +186,5 @@ class StartState extends State<LoginScreen> {
         )
       ],
     )));
-  }
-
-  //SocalIcon({String? iconSrc, Null Function()? press}) {}
+  }//SocalIcon({String? iconSrc, Null Function()? press}) {}
 }
