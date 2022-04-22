@@ -155,7 +155,7 @@ class _KategoriState extends State<Kategori> {
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 15.0),
+                            padding: const EdgeInsets.only(top: 0.0),
                             child: Row(
                               children: [
                                 Wrap(

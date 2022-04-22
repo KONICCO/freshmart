@@ -8,8 +8,28 @@ import 'kategori.dart';
 // void main() {
 //   runApp(new MyApp());
 // }
+class pagebuah1 extends StatefulWidget {
+  pagebuah1({Key? key}) : super(key: key);
 
-class pagebuah1 extends StatelessWidget {
+  @override
+  State<pagebuah1> createState() => _pagebuah1State();
+}
+
+class _pagebuah1State extends State<pagebuah1> {
+    int i = 1;
+    void _minus(){
+    if(i > 1){
+    setState(() {
+      i--;
+     
+    });
+    }
+  }
+  void _plus(){
+    setState(() {
+      i++;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,23 +47,11 @@ class pagebuah1 extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: SizedBox(
-              width: 260,
-              height: 38,
-              child: Center(
-                  child: TextField(
-                      decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.only(bottom: -10.0, left: 10),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Sayur, Buah dll',
-                          suffixIcon: const Icon(Icons.search))))),
+          
           backgroundColor: Colors.lightGreen,
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SingleChildScrollView(
               child: Column(
@@ -99,18 +107,17 @@ class pagebuah1 extends StatelessWidget {
                         color: Color.fromARGB(255, 252, 252, 252)
                       ),
                       Container(
-                        margin: const EdgeInsets.only(right: 10,left: 10 ,bottom: 8, top: 13),
-                        height: 20,
+                        margin: EdgeInsets.only(right: 10,left: 10 , top: 13),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
-                            const Text(
+                            Text(
                               'Deskripsi Produk',
                               style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            SizedBox(height: 10),
-                            const Text(
+                            SizedBox(height: 5),
+                            Text(
                               'Consectetur labore esse minim enim pariatur occaecat dolor cupidatat labore magna nostrud in elit eu.',
                               style: TextStyle(color: Colors.black,  fontSize: 20),
                             ),
@@ -124,34 +131,72 @@ class pagebuah1 extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              child: Text('data')
-            )
+            Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.black12),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: _minus,
+                            child: Icon(
+                            Icons.remove,
+                            size: 20,
+                          ),
+                          ),
+                          
+                          SizedBox(width: 20),
+                          Text(
+                            '${i}',
+                            
+                          ),
+                          SizedBox(width: 20),
+                          InkWell(
+                            onTap: _plus,
+                            child: Icon(
+                            Icons.add,
+                            size: 20,
+                          ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                // margin:  EdgeInsets.only(left: 100, bottom: 80),
+                height: 40,
+                width: 200.0,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    onPrimary: Colors.white,
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    // minimumSize: Size(50, 40), //////// HERE
+                  ),
+                  onPressed: () {},
+                  child: Text('+ Keranjang'),
+                ),
+              )
+            ],
+          ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Beranda',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.assignment),
-              label: 'Pesanan',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notifisikasi',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Akun',
-            ),
-          ],
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.grey,
-          showUnselectedLabels: true,
-        ),
+        
       ),
     );
   }
