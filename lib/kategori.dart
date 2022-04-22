@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'profile/profile_screen.dart';
+
 class Kategori extends StatefulWidget {
   const Kategori({Key? key}) : super(key: key);
 
