@@ -1,3 +1,4 @@
+import 'package:bisa/buah.dart';
 import 'package:flutter/material.dart';
 
 import 'splash_screen.dart';
@@ -12,6 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/buah': (BuildContext context) => buah(),
+        
+      },
       home: SplashScreen(),
     );
   }

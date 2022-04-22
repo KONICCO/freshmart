@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'buah.dart';
 import 'profile/profile_screen.dart';
-
+import 'main.dart';
 class Kategori extends StatefulWidget {
   const Kategori({Key? key}) : super(key: key);
 
@@ -18,19 +18,21 @@ class _KategoriState extends State<Kategori> {
       "name": "buah",
       "img":
           'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-      "page": "buah()",
+      "page": '/buah',
     },
     {
       "id": 2,
       "name": "sayur",
       "img":
           'https://oretzz.com/wp-content/uploads/2020/10/sayur-sayuran.jpg',
+      "page": '/buah',
     },
     {
       "id": 3,
       "name": "Daging",
       "img":
           'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
+      "page": '/buah',
     },
     // {
     //   "id": 4,
@@ -98,6 +100,8 @@ class _KategoriState extends State<Kategori> {
 
   @override
   Widget build(BuildContext context) {
+  
+    
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -160,7 +164,8 @@ class _KategoriState extends State<Kategori> {
                                     children: [
                                       Container(
                                         child: InkWell(
-                                          onTap: () {},
+                                          onTap: () {Navigator.pushNamed(context, _foundUsers[index]
+                                                          ['page']);},
                                           child: Container(
                                             // margin: EdgeInsets.only(left: 2.5),
                                             child: Column(
@@ -189,6 +194,7 @@ class _KategoriState extends State<Kategori> {
                                                       left: 15.0),
                                                   width: 153,
                                                   height: 58,
+                                                  
                                                   decoration: new BoxDecoration(
                                                       color: Colors.lightGreen,
                                                       borderRadius:
