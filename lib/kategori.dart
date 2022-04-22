@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'buah.dart';
 import 'profile/profile_screen.dart';
 import 'main.dart';
+import 'profile/profile_screen.dart';
 class Kategori extends StatefulWidget {
   const Kategori({Key? key}) : super(key: key);
 
@@ -23,15 +24,13 @@ class _KategoriState extends State<Kategori> {
     {
       "id": 2,
       "name": "sayur",
-      "img":
-          'https://oretzz.com/wp-content/uploads/2020/10/sayur-sayuran.jpg',
+      "img": 'https://oretzz.com/wp-content/uploads/2020/10/sayur-sayuran.jpg',
       "page": '/buah',
     },
     {
       "id": 3,
       "name": "Daging",
-      "img":
-          'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
+      "img": 'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
       "page": '/buah',
     },
     // {
@@ -100,8 +99,6 @@ class _KategoriState extends State<Kategori> {
 
   @override
   Widget build(BuildContext context) {
-  
-    
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -164,8 +161,10 @@ class _KategoriState extends State<Kategori> {
                                     children: [
                                       Container(
                                         child: InkWell(
-                                          onTap: () {Navigator.pushNamed(context, _foundUsers[index]
-                                                          ['page']);},
+                                          onTap: () {
+                                            Navigator.pushNamed(context,
+                                                _foundUsers[index]['page']);
+                                          },
                                           child: Container(
                                             // margin: EdgeInsets.only(left: 2.5),
                                             child: Column(
@@ -194,7 +193,6 @@ class _KategoriState extends State<Kategori> {
                                                       left: 15.0),
                                                   width: 153,
                                                   height: 58,
-                                                  
                                                   decoration: new BoxDecoration(
                                                       color: Colors.lightGreen,
                                                       borderRadius:
@@ -237,7 +235,7 @@ class _KategoriState extends State<Kategori> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items:<BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
@@ -253,7 +251,13 @@ class _KategoriState extends State<Kategori> {
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () {Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext ctx) {
+                            return ProfileScreen();
+                          }));}
+            ),
             label: 'Profile',
             backgroundColor: Colors.lightGreen,
           ),
