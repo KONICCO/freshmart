@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
           SizedBox(height: 20),
           ProfileMenu(
             text: "Akun saya",
-            icon: "images/icon/User Icon.svg",
+            icon: "images/icon/User_Icon.svg",
             press: () => {},
           ),
           ProfileMenu(
@@ -29,12 +29,12 @@ class Body extends StatelessWidget {
           ),
           ProfileMenu(
             text: "Help Center",
-            icon: "images/icon/Question mark.svg",
+            icon: "images/icon/Question_mark.svg",
             press: () {},
           ),
           ProfileMenu(
             text: "Log Out",
-            icon: "images/icon/Log out.svg",
+            icon: "images/icon/Log_out.svg",
             press: () {},
           ),
         ],
