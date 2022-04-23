@@ -1,428 +1,280 @@
-//import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 import 'kategori.dart';
-import 'pagebuah1.dart';
-// void main() {
-//   runApp(new MyApp());
-// }
 
-class buah extends StatelessWidget {
+class Buah extends StatefulWidget {
+  const Buah({Key? key}) : super(key: key);
+
+  @override
+  _BuahState createState() => _BuahState();
+}
+
+class _BuahState extends State<Buah> {
+  // This holds a list of fiction users
+  // You can use data fetched from a database or a server as well
+  final List<Map<String, dynamic>> _allUsers = [
+    {
+      "id": 1,
+      "name": "buah naga 1Kg ",
+      "harga": "Rp15.000",
+      "img":
+          'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      // "page": '/Buah',
+    },
+    {
+      "id": 2,
+      "name": "buah kiwi 1Kg",
+      "harga": "Rp15.000",
+      "img": 'https://oretzz.com/wp-content/uploads/2020/10/sayur-sayuran.jpg',
+      // "page": '/buah',
+    },
+    {
+      "id": 3,
+      "name": "Daging",
+      "harga": "Rp15.000",
+      "img": 'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
+      // "page": '/buah',
+    },
+    {
+      "id": 4,
+      "name": "Daging",
+      "harga": "Rp15.000",
+      "img": 'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
+    },
+    // {
+    //   "id": 5,
+    //   "name": "Sukuh",
+    //   "img":
+    //       "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    // },
+    // {
+    //   "id": 6,
+    //   "name": "Gedong Songo",
+    //   "img":
+    //       "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    // },
+    // {
+    //   "id": 7,
+    //   "name": "Cetho",
+    //   "img":
+    //       "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    // },
+  ];
+
+  // This list holds the data for the list view
+  List<Map<String, dynamic>> _foundUsers = [];
+
+  int _selectedIndex = 0;
+
+  @override
+  initState() {
+    // at the beginning, all users are shown
+    _foundUsers = _allUsers;
+    super.initState();
+  }
+
+  // This function is called whenever the text field changes
+  void _runFilter(String enteredKeyword) {
+    List<Map<String, dynamic>> results = [];
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = _allUsers;
+    } else {
+      results = _allUsers
+          .where((user) =>
+              user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+
+    // Refresh the UI
+    setState(() {
+      _foundUsers = results;
+    });
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.message),
-              onPressed: () {
-               
-              },
-            ),
-          ],
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {Navigator.pop(context);},
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.shopping_cart),
           ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Icon(Icons.message),
+          ),
+        ],
         title: Container(
-              width: 220,
-              height: 38,
-              child: Center(
-                  child: TextField(
-
-                      decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(bottom: -10.0, left: 10),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Sayur, Buah dll',
-                          suffixIcon: Icon(Icons.search))))),
-          backgroundColor: Colors.lightGreen,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Wrap(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 20,
-              runSpacing: 30,
-              children: [
-                Container(
-                    child: Column(
-                  children: [
-                    Container(
-                      width: 153,
-                      height: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5095900/kedaisayur_kedaisayur-buah-naga-buah-buahan--1-kg-_full07.jpg'))),
-                    ),
-                    Container(
-                      // color: Colors.lightGreen,
-                      width: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      decoration: new BoxDecoration(
-                                    color: Colors.lightGreen,
-                                    borderRadius: new BorderRadius.only(
-                                      bottomLeft: const Radius.circular(10.0),
-                                      bottomRight: const Radius.circular(10.0),
-                                    )),
-                      child: Column(children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 8, top: 8),
-                            child: Text(
-                              'buah naga 1kg',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        Text(
-                          'Rp. 25.000',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext ctx) {
-                            return pagebuah1();
-                          }));
-                          },
-                          
-                          child: Container(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 3),
-                            child: Text(
-                              'Beli',
-                              style: TextStyle(color: Colors.redAccent),
-                              
-                            ),
-                          ),
-                        )
-                      ]),
-                    ),
-                  ],
-                )),
-                //=====================
-                Container(
-                    child: Column(
-                  children: [
-                    Container(
-                      width: 153,
-                      height: 153,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLUCCJb0f_aLATYUaXOCPbUqsQ9n8YcU9C_w&usqp=CAU'))),
-                    ),
-                    Container(
-                      // color: Colors.lightGreen,
-                      width: 153,
-                      decoration: new BoxDecoration(
-                                    color: Colors.lightGreen,
-                                    borderRadius: new BorderRadius.only(
-                                      bottomLeft: const Radius.circular(10.0),
-                                      bottomRight: const Radius.circular(10.0),
-                                    )),
-                      child: Column(children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 8, top: 8),
-                            child: Text(
-                              'kiwi 1kg',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        Text(
-                          'Rp. 15.000',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          //color: Colors.white,
-                          child: Container(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 3),
-                            child: Text(
-                              'Beli',
-                              style: TextStyle(color: Colors.redAccent),
-                            ),
-                          ),
-                        )
-                      ]),
-                    ),
-                  ],
-                )),
-                Container(
-                    child: Column(
-                  children: [
-                    Container(
-                      width: 153,
-                      height: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://id.sharp/sites/default/files/uploads/image-artikel/Jenis%20Buah-Buahan%20Ini%20Efektif%20Membantu%20Menurunkan%20Berat%20Badan%201.jpg'))),
-                    ),
-                    Container(
-                      // color: Colors.lightGreen,
-                      width: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      decoration: new BoxDecoration(
-                                    color: Colors.lightGreen,
-                                    borderRadius: new BorderRadius.only(
-                                      bottomLeft: const Radius.circular(10.0),
-                                      bottomRight: const Radius.circular(10.0),
-                                    )),
-                      child: Column(children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 8, top: 8),
-                            child: Text(
-                              'apel 1kg',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        Text(
-                          'Rp. 8.000',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          //color: Colors.white,
-                          child: Container(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 3),
-                            child: Text(
-                              'Beli',
-                              style: TextStyle(color: Colors.redAccent),
-                            ),
-                          ),
-                        )
-                      ]),
-                    ),
-                  ],
-                )),
-                //=====================
-                Container(
-                    child: Column(
-                  children: [
-                    Container(
-                      width: 153,
-                      height: 153,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/01/12085334/Apa-Saja-Manfaat-Mengonsumsi-Buah-Manggis_-01.jpg'))),
-                    ),
-                    Container(
-                      // color: Colors.lightGreen,
-                      width: 153,
-                      decoration: new BoxDecoration(
-                                    color: Colors.lightGreen,
-                                    borderRadius: new BorderRadius.only(
-                                      bottomLeft: const Radius.circular(10.0),
-                                      bottomRight: const Radius.circular(10.0),
-                                    )),
-                      child: Column(children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 8, top: 8),
-                            child: Text(
-                              'Manggis 1kg',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        Text(
-                          'Rp. 12.000',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          //color: Colors.white,
-                          child: Container(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 3),
-                            child: Text(
-                              'Beli',
-                              style: TextStyle(color: Colors.redAccent),
-                            ),
-                          ),
-                        )
-                      ]),
-                    ),
-                  ],
-                )),
-
-                Container(
-                    child: Column(
-                  children: [
-                    Container(
-                      width: 153,
-                      height: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://foto.kontan.co.id/pZ6yQDMf6vpr2gfBDh2BVlG_mnM=/smart/2021/04/30/1168859913p.jpg'))),
-                    ),
-                    Container(
-                      // color: Colors.lightGreen,
-                      width: 153,
-                      margin: EdgeInsets.only(left: 15),
-                      decoration: new BoxDecoration(
-                                    color: Colors.lightGreen,
-                                    borderRadius: new BorderRadius.only(
-                                      bottomLeft: const Radius.circular(10.0),
-                                      bottomRight: const Radius.circular(10.0),
-                                    )),
-                      child: Column(children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 8, top: 8),
-                            child: Text(
-                              'sirsak 1 buah',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        Text(
-                          'Rp. 10.000',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          //color: Colors.white,
-                          child: Container(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 3),
-                            child: Text(
-                              'Beli',
-                              style: TextStyle(color: Colors.redAccent),
-                            ),
-                          ),
-                        )
-                      ]),
-                    ),
-                  ],
-                )),
-                //=====================
-                Container(
-                    child: Column(
-                  children: [
-                    Container(
-                      width: 153,
-                      height: 153,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://asset-a.grid.id/crop/0x40:626x416/700x465/photo/2020/06/03/226902286.jpg'))),
-                    ),
-                    Container(
-                      // color: Colors.lightGreen,
-                      width: 153,
-                      decoration: new BoxDecoration(
-                                    color: Colors.lightGreen,
-                                    borderRadius: new BorderRadius.only(
-                                      bottomLeft: const Radius.circular(10.0),
-                                      bottomRight: const Radius.circular(10.0),
-                                    )),
-                      child: Column(children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 8, top: 8),
-                            child: Text(
-                              'Pisang 1kg',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                        Text(
-                          'Rp. 10.000',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          //color: Colors.white,
-                          child: Container(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 3),
-                            child: Text(
-                              'Beli',
-                              style: TextStyle(color: Colors.redAccent),
-                            ),
-                          ),
-                        )
-                      ]),
-                    ),
-                  ],
-                )),
-              ],
+          width: 300,
+          height: 37,
+          child: Center(
+            child: TextField(
+              onChanged: (value) => _runFilter(value),
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  contentPadding: EdgeInsets.only(bottom: -10.0, left: 10.0),
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Cari buah, sayur, beras...',
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                  ),
+                  suffixIcon: Icon(Icons.search)),
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Beranda',
+        backgroundColor: Colors.lightGreen,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(5),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.assignment),
-              label: 'Pesanan',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notifisikasi',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Akun',
+            Expanded(
+              child: _foundUsers.isNotEmpty
+                  ? GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 20),
+                      itemCount: _foundUsers.length,
+                      itemBuilder: (context, index) => Container(
+                        child: Row(
+                          children: [
+                            Wrap(spacing: 10.0,
+                                // runSpacing: 20.0,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 2.5),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 153,
+                                          height: 95,
+                                          margin: EdgeInsets.only(left: 15),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  new BorderRadius.only(
+                                                topLeft: Radius.circular(10.0),
+                                                topRight: Radius.circular(10.0),
+                                              ),
+                                              image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: NetworkImage(
+                                                      _foundUsers[index]
+                                                          ['img']))),
+                                        ),
+                                        Container(
+                                            // color: Colors.lightGreen,
+                                            width: 153,
+                                            margin: const EdgeInsets.only(
+                                              left: 15.0,
+                                              bottom: 90.0,
+                                            ),
+                                            decoration: new BoxDecoration(
+                                                color: Colors.lightGreen,
+                                                borderRadius:
+                                                    new BorderRadius.only(
+                                                  bottomLeft:
+                                                      const Radius.circular(
+                                                          10.0),
+                                                  bottomRight:
+                                                      const Radius.circular(
+                                                          10.0),
+                                                )),
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      bottom: 8, top: 8),
+                                                  child: Text(
+                                                    _foundUsers[index]['name'],
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  _foundUsers[index]['harga'],
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {},
+                                                  //color: Colors.white,
+                                                  child: Container(
+                                                    color: Colors.white,
+                                                    margin: const EdgeInsets
+                                                        .symmetric(vertical: 8),
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 25,
+                                                        vertical: 3),
+                                                    child: Text(
+                                                      'Beli',
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.redAccent),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                ])
+                          ],
+                        ),
+                      ),
+                    )
+                  : const Text(
+                      'tidak ditemukan',
+                      style: TextStyle(fontSize: 24),
+                    ),
             ),
           ],
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.grey,
-          showUnselectedLabels: true,
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.lightGreen),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Pesanan',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_sharp),
+            label: 'Notifikasi',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+            backgroundColor: Colors.lightGreen,
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        onTap: _onItemTapped,
       ),
     );
   }

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        '/buah': (BuildContext context) => buah(),
+        '/buah': (BuildContext context) => Buah(),
         
       },
       home: SplashScreen(),
