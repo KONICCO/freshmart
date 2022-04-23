@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 import 'kategori.dart';
-
+import 'pagebuah1.dart';
 class Buah extends StatefulWidget {
   const Buah({Key? key}) : super(key: key);
 
@@ -19,28 +19,28 @@ class _BuahState extends State<Buah> {
       "name": "buah naga 1Kg ",
       "harga": "Rp15.000",
       "img":
-          'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+          'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5095900/kedaisayur_kedaisayur-buah-naga-buah-buahan--1-kg-_full07.jpg',
       // "page": '/Buah',
     },
     {
       "id": 2,
       "name": "buah kiwi 1Kg",
       "harga": "Rp15.000",
-      "img": 'https://oretzz.com/wp-content/uploads/2020/10/sayur-sayuran.jpg',
+      "img": 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLUCCJb0f_aLATYUaXOCPbUqsQ9n8YcU9C_w&usqp=CAU',
       // "page": '/buah',
     },
     {
       "id": 3,
-      "name": "Daging",
+      "name": "Apel 1 KG",
       "harga": "Rp15.000",
-      "img": 'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
+      "img": 'https://id.sharp/sites/default/files/uploads/image-artikel/Jenis%20Buah-Buahan%20Ini%20Efektif%20Membantu%20Menurunkan%20Berat%20Badan%201.jpg',
       // "page": '/buah',
     },
     {
       "id": 4,
-      "name": "Daging",
+      "name": "Manggis",
       "harga": "Rp15.000",
-      "img": 'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
+      "img": 'https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/01/12085334/Apa-Saja-Manfaat-Mengonsumsi-Buah-Manggis_-01.jpg',
     },
     // {
     //   "id": 5,
@@ -214,7 +214,12 @@ class _BuahState extends State<Buah> {
                                                       color: Colors.white),
                                                 ),
                                                 InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext ctx) {
+                            return pagebuah1();
+                          }));
+                                                  },
                                                   //color: Colors.white,
                                                   child: Container(
                                                     color: Colors.white,
