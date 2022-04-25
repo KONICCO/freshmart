@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/buah': (BuildContext context) => Buah(),
       },
+      theme: ThemeData(
+        primaryColor: Color(0xFF01afbd),
+      ),
       home: SplashScreen(),
     );
   }

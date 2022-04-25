@@ -3,6 +3,8 @@ import 'buah.dart';
 import 'profile/profile_screen.dart';
 import 'main.dart';
 import 'profile/profile_screen.dart';
+import 'chat/screens/home_screen.dart';
+
 class Kategori extends StatefulWidget {
   const Kategori({Key? key}) : super(key: key);
 
@@ -110,6 +112,15 @@ class _KategoriState extends State<Kategori> {
             padding: const EdgeInsets.all(10.0),
             child: Icon(Icons.message),
           ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ));
+            },
+          )
         ],
         title: Container(
           width: 300,
@@ -235,7 +246,7 @@ class _KategoriState extends State<Kategori> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items:<BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
@@ -252,12 +263,13 @@ class _KategoriState extends State<Kategori> {
           ),
           BottomNavigationBarItem(
             icon: IconButton(
-              icon: Icon(Icons.person),
-              onPressed: () {Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext ctx) {
-                            return ProfileScreen();
-                          }));}
-            ),
+                icon: Icon(Icons.person),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return ProfileScreen();
+                  }));
+                }),
             label: 'Profile',
             backgroundColor: Colors.lightGreen,
           ),

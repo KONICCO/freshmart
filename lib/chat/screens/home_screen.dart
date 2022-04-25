@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/models/message_model.dart';
-import 'package:flutter_chat_app/screens/chat_screen.dart';
+import 'package:bisa/chat/models/message_model.dart';
+import 'package:bisa/chat/screens/chat_screen.dart';
+import 'package:bisa/kategori.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -8,15 +9,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        brightness: Brightness.dark,
+        backgroundColor: Colors.lightGreen,
+        //brightness: Brightness.dark,
         elevation: 8,
         leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: Icon(Icons.arrow_back),
           color: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Text(
-          'Inbox',
+          'Pesan',
           style: TextStyle(
             color: Colors.white,
           ),

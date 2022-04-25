@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/models/message_model.dart';
-import 'package:flutter_chat_app/models/user_model.dart';
+import 'package:bisa/chat/models/message_model.dart';
+import 'package:bisa/chat/models/user_model.dart';
+import 'package:bisa/kategori.dart';
+import 'package:bisa/chat/screens/home_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   final User user;
 
-  ChatScreen({this.user});
+  ChatScreen({required this.user});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -187,7 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
       appBar: AppBar(
-        brightness: Brightness.dark,
+        backgroundColor: Colors.lightGreen,
         centerTitle: true,
         title: RichText(
           textAlign: TextAlign.center,
@@ -200,27 +202,26 @@ class _ChatScreenState extends State<ChatScreen> {
                     fontWeight: FontWeight.w400,
                   )),
               TextSpan(text: '\n'),
-              widget.user.isOnline ?
-              TextSpan(
-                text: 'Online',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-              :
-              TextSpan(
-                text: 'Offline',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
+              widget.user.isOnline
+                  ? TextSpan(
+                      text: 'Online',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  : TextSpan(
+                      text: 'Offline',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
             ],
           ),
         ),
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back),
             color: Colors.white,
             onPressed: () {
               Navigator.pop(context);
@@ -236,7 +237,7 @@ class _ChatScreenState extends State<ChatScreen> {
               itemBuilder: (BuildContext context, int index) {
                 final Message message = messages[index];
                 final bool isMe = message.sender.id == currentUser.id;
-                final bool isSameUser = prevUserId == message.sender.id;
+                final bool isSameUser = message.sender == message.sender.id;
                 prevUserId = message.sender.id;
                 return _chatBubble(message, isMe, isSameUser);
               },
