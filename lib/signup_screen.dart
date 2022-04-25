@@ -203,7 +203,6 @@ class InitState extends State<SignUpScreen> {
                 MaterialPageRoute(builder: (BuildContext ctx) {
               return LoginScreen();
             }));
-            // Write Click Listener Code Here.
           },
           child: Container(
             alignment: Alignment.center,
@@ -242,7 +241,6 @@ class InitState extends State<SignUpScreen> {
                   style: TextStyle(color: Colors.lightGreen),
                 ),
                 onTap: () {
-                  // Write Tap Code Here.
                   Navigator.pop(context);
                 },
               )

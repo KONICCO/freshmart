@@ -31,7 +31,7 @@ class ProfilePic extends StatelessWidget {
                     side: BorderSide(color: Colors.white),
                   ),
                   primary: Colors.white,
-                  backgroundColor: Colors.lightGreen,
+                  backgroundColor: Color.fromARGB(255, 96, 195, 74),
                 ),
                 onPressed: () {},
                 child: SvgPicture.asset("images/icon/Camera Icon.svg"),

@@ -3,7 +3,7 @@ import 'buah.dart';
 import 'profile/profile_screen.dart';
 import 'main.dart';
 import 'profile/profile_screen.dart';
-import 'chat/screens/home_screen.dart';
+import 'chat/screens/chatscreen.dart';
 
 class Kategori extends StatefulWidget {
   const Kategori({Key? key}) : super(key: key);
@@ -13,8 +13,6 @@ class Kategori extends StatefulWidget {
 }
 
 class _KategoriState extends State<Kategori> {
-  // This holds a list of fiction users
-  // You can use data fetched from a database or a server as well
   final List<Map<String, dynamic>> _allUsers = [
     {
       "id": 1,
@@ -35,59 +33,31 @@ class _KategoriState extends State<Kategori> {
       "img": 'https://data2.1freewallpapers.com/download/meat-herbs-chop.jpg',
       "page": '/buah',
     },
-    // {
-    //   "id": 4,
-    //   "name": "Arca Gupolo",
-    //   "img":
-    //       "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    // },
-    // {
-    //   "id": 5,
-    //   "name": "Sukuh",
-    //   "img":
-    //       "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    // },
-    // {
-    //   "id": 6,
-    //   "name": "Gedong Songo",
-    //   "img":
-    //       "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    // },
-    // {
-    //   "id": 7,
-    //   "name": "Cetho",
-    //   "img":
-    //       "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    // },
   ];
 
-  // This list holds the data for the list view
   List<Map<String, dynamic>> _foundUsers = [];
 
   int _selectedIndex = 0;
 
   @override
   initState() {
-    // at the beginning, all users are shown
     _foundUsers = _allUsers;
     super.initState();
   }
 
-  // This function is called whenever the text field changes
+  // Method pengecekan box pencarian
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> results = [];
     if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
       results = _allUsers;
     } else {
       results = _allUsers
           .where((user) =>
               user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
-      // we use the toLowerCase() method to make it case-insensitive
+      // Mengubah segala inputan menjadi lowercase
     }
 
-    // Refresh the UI
     setState(() {
       _foundUsers = results;
     });
@@ -109,15 +79,15 @@ class _KategoriState extends State<Kategori> {
             child: Icon(Icons.shopping_cart),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Icon(Icons.message),
-            // onPressed: () {
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => HomeScreen()),
-            //     );
-            //   }
-          ),
+              padding: const EdgeInsets.all(10.0),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => chatscreen()),
+                    );
+                  },
+                  icon: Icon(Icons.message))),
         ],
         title: Container(
           width: 300,
