@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/buah': (BuildContext context) => Buah(),
-        
       },
       home: SplashScreen(),
     );
