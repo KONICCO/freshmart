@@ -2,6 +2,7 @@ import 'package:bisa/buah.dart';
 import 'package:flutter/material.dart';
 
 import 'splash_screen.dart';
+import 'kategori.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFF01afbd),
       ),
-      home: SplashScreen(),
+      home: Kategori(),
     );
   }
 }

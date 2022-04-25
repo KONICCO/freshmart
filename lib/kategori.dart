@@ -111,16 +111,13 @@ class _KategoriState extends State<Kategori> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Icon(Icons.message),
+            // onPressed: () {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (context) => HomeScreen()),
+            //     );
+            //   }
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
-                  ));
-            },
-          )
         ],
         title: Container(
           width: 300,

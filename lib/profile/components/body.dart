@@ -14,26 +14,31 @@ class Body extends StatelessWidget {
           SizedBox(height: 20),
           ProfileMenu(
             text: "Akun saya",
+            //style: TextStyle(color: Colors.white),
             icon: "images/icon/User_Icon.svg",
             press: () => {},
           ),
           ProfileMenu(
             text: "Notifications",
+            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Bell.svg",
             press: () {},
           ),
           ProfileMenu(
             text: "Settings",
+            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Settings.svg",
             press: () {},
           ),
           ProfileMenu(
             text: "Help Center",
+            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Question_mark.svg",
             press: () {},
           ),
           ProfileMenu(
             text: "Log Out",
+            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Log_out.svg",
             press: () {},
           ),

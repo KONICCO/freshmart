@@ -14,6 +14,8 @@ class ProfileMenu extends StatelessWidget {
 
   get kPrimaryColor => null;
 
+  get fillColor => null;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +26,7 @@ class ProfileMenu extends StatelessWidget {
           padding: EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          backgroundColor: Colors.lightGreen,
+          backgroundColor: Color(0xFFE8F5E9),
         ),
         onPressed: press,
         child: Row(
