@@ -20,13 +20,19 @@ class _ProfilePicState extends State<ProfilePic> {
   Future openCamera() async {
     final pickedImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
-    image = File(pickedImage!.path);
+    setState(() {
+      image = File(pickedImage!.path);
+    });
+    
   }
 
   Future openGallery() async {
     final imageGallery =
         await ImagePicker().pickImage(source: ImageSource.gallery);
-    image = File(imageGallery!.path);
+    setState(() {
+      image = File(imageGallery!.path);
+    });
+    
   }
     return Center(
       child: Stack(
@@ -34,7 +40,7 @@ class _ProfilePicState extends State<ProfilePic> {
           Container(
             child: Column(children: [
               image != null
-                  ?ClipOval(
+                  ? ClipOval(
                       child: Image.file(
                       image!,
                       width: 100,
