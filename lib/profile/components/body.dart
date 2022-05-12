@@ -1,3 +1,4 @@
+import 'package:bisa/map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'profile_menu.dart';
@@ -13,29 +14,33 @@ class Body extends StatelessWidget {
           ProfilePic(),
           SizedBox(height: 20),
           ProfileMenu(
-            text: "Akun saya",
+            text: "Ubah Profil",
             //style: TextStyle(color: Colors.white),
             icon: "images/icon/User_Icon.svg",
             press: () => {},
           ),
           ProfileMenu(
-            text: "Notifications",
+            text: "Syarat dan Ketentuan",
             //style: TextStyle(color: Colors.white),
             icon: "images/icon/Bell.svg",
             press: () {},
           ),
           ProfileMenu(
-            text: "Settings",
+            text: "Kebijakan Privasi",
             //style: TextStyle(color: Colors.white),
             icon: "images/icon/Settings.svg",
             press: () {},
           ),
           ProfileMenu(
-            text: "Help Center",
-            //style: TextStyle(color: Colors.white),
-            icon: "images/icon/Question_mark.svg",
-            press: () {},
-          ),
+              text: "Lokasi Toko",
+              //style: TextStyle(color: Colors.white),
+              icon: "images/icon/Question_mark.svg",
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext ctx) {
+                  return MapController();
+                }));
+              }),
           ProfileMenu(
             text: "Log Out",
             //style: TextStyle(color: Colors.white),

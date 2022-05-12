@@ -1,6 +1,6 @@
 import 'package:bisa/buah.dart';
+import 'package:bisa/map.dart';
 import 'package:flutter/material.dart';
-
 import 'splash_screen.dart';
 import 'kategori.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFF01afbd),
       ),
-      home: Kategori(),
+      home: SplashScreen(),
     );
   }
 }
