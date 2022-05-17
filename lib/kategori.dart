@@ -13,7 +13,7 @@ class Kategori extends StatefulWidget {
 }
 
 class _KategoriState extends State<Kategori> {
-  final List<Map<String, dynamic>> _allUsers = [
+  final List<Map<String, dynamic>> _allItem = [
     {
       "id": 1,
       "name": "buah",
@@ -35,13 +35,13 @@ class _KategoriState extends State<Kategori> {
     },
   ];
 
-  List<Map<String, dynamic>> _foundUsers = [];
+  List<Map<String, dynamic>> _foundItem = [];
 
   int _selectedIndex = 0;
 
   @override
   initState() {
-    _foundUsers = _allUsers;
+    _foundItem = _allItem;
     super.initState();
   }
 
@@ -49,9 +49,9 @@ class _KategoriState extends State<Kategori> {
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> results = [];
     if (enteredKeyword.isEmpty) {
-      results = _allUsers;
+      results = _allItem;
     } else {
-      results = _allUsers
+      results = _allItem
           .where((user) =>
               user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
@@ -59,7 +59,7 @@ class _KategoriState extends State<Kategori> {
     }
 
     setState(() {
-      _foundUsers = results;
+      _foundItem = results;
     });
   }
 
@@ -121,11 +121,11 @@ class _KategoriState extends State<Kategori> {
               height: 20,
             ),
             Expanded(
-              child: _foundUsers.isNotEmpty
+              child: _foundItem.isNotEmpty
                   ? GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2),
-                      itemCount: _foundUsers.length,
+                      itemCount: _foundItem.length,
                       itemBuilder: (context, index) => Container(
                         child: Padding(
                           padding: const EdgeInsets.all(10),
@@ -141,7 +141,7 @@ class _KategoriState extends State<Kategori> {
                                         child: InkWell(
                                           onTap: () {
                                             Navigator.pushNamed(context,
-                                                _foundUsers[index]['page']);
+                                                _foundItem[index]['page']);
                                           },
                                           child: Container(
                                             // margin: EdgeInsets.only(left: 2.5),
@@ -163,7 +163,7 @@ class _KategoriState extends State<Kategori> {
                                                       image: DecorationImage(
                                                           fit: BoxFit.cover,
                                                           image: NetworkImage(
-                                                              _foundUsers[index]
+                                                              _foundItem[index]
                                                                   ['img']))),
                                                 ),
                                                 Container(
@@ -183,8 +183,7 @@ class _KategoriState extends State<Kategori> {
                                                       )),
                                                   child: Center(
                                                     child: Text(
-                                                      _foundUsers[index]
-                                                          ['name'],
+                                                      _foundItem[index]['name'],
                                                       style: TextStyle(
                                                         fontSize: 20,
                                                         color: Colors.white,
