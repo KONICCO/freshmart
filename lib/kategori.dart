@@ -239,6 +239,7 @@ class _KategoriState extends State<Kategori> {
           );
                 }),
               label: 'Home',
+              
               backgroundColor: Colors.lightGreen),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
