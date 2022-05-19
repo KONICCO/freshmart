@@ -1,4 +1,5 @@
 import 'package:bisa/map.dart';
+import 'package:bisa/ubahProfil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'profile_menu.dart';
@@ -12,28 +13,28 @@ class Body extends StatelessWidget {
       child: Column(
         children: [
           ProfilePic(),
-          // SizedBox(height: 20),
           ProfileMenu(
             text: "Akun saya",
-            //style: TextStyle(color: Colors.white),
             icon: "images/icon/User_Icon.svg",
-            press: () => {},
+            press: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext ctx) {
+                return UbahProfil();
+              }))
+            },
           ),
           ProfileMenu(
             text: "Notifications",
-            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Bell.svg",
             press: () {},
           ),
           ProfileMenu(
             text: "Settings",
-            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Settings.svg",
             press: () {},
           ),
           ProfileMenu(
             text: "Lokasi Toko",
-            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Question_mark.svg",
             press: () {
               Navigator.push(context,
@@ -44,7 +45,6 @@ class Body extends StatelessWidget {
           ),
           ProfileMenu(
             text: "Log Out",
-            //style: TextStyle(color: Colors.white),
             icon: "images/icon/Log_out.svg",
             press: () {},
           ),

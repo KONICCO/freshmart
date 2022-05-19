@@ -1,6 +1,11 @@
+import 'package:bisa/notifikasi.dart';
 import 'package:flutter/material.dart';
 import 'buah.dart';
+
 import 'cart.dart';
+
+import 'sayur.dart';
+
 import 'profile/profile_screen.dart';
 import 'main.dart';
 import 'profile/profile_screen.dart';
@@ -25,8 +30,9 @@ class _KategoriState extends State<Kategori> {
     {
       "id": 2,
       "name": "sayur",
-      "img": 'https://oretzz.com/wp-content/uploads/2020/10/sayur-sayuran.jpg',
-      "page": '/buah',
+      "img":
+          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.popbela.com%2Fcareer%2Finspiration%2Faisyah-banowati%2Faplikasi-belanja-sayur-dan-buah-online&psig=AOvVaw30BylohjLLNhKxFQycn5OG&ust=1653037297041000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLjW5IKa6_cCFQAAAAAdAAAAABAD',
+      "page": '/sayur',
     },
     {
       "id": 3,
@@ -232,7 +238,14 @@ class _KategoriState extends State<Kategori> {
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_sharp),
+            icon: IconButton(
+                icon: Icon(Icons.notifications_sharp),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return Notifikasi();
+                  }));
+                }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,
           ),

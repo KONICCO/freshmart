@@ -35,6 +35,7 @@ class ProfileMenu extends StatelessWidget {
               icon,
               color: kPrimaryColor,
               width: 22,
+              height: 50,
             ),
             SizedBox(width: 20),
             Expanded(child: Text(text)),
