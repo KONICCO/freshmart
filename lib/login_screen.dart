@@ -129,11 +129,11 @@ class StartState extends State<LoginScreen> {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (BuildContext ctx) {
-              return Kategori();
-              // Write Click Listener Code Here
-            }));
+            Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => Kategori()),
+            (Route<dynamic> route) => false,
+          );
             // Write Click Listener Code Here.
           },
           child: Container(

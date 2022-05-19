@@ -241,10 +241,11 @@ class _KategoriState extends State<Kategori> {
             icon: IconButton(
                 icon: Icon(Icons.notifications_sharp),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return Notifikasi();
-                  }));
+                  Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => Notifikasi()),
+            (Route<dynamic> route) => false,
+          );
                 }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,
