@@ -40,17 +40,8 @@ class StartState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // Container(
-          //   decoration: BoxDecoration(
-          //       color: new Color(0xffF5591F),
-          //       gradient: LinearGradient(
-          //           colors: [(new Color(0xffF5591F)), new Color(0xffF2861E)],
-          //           begin: Alignment.topCenter,
-          //           end: Alignment.bottomCenter)),
-          // ),
           Center(
             child: Container(
-              //child: Image.asset("images/app_logo.png"),
               child: Container(
                 child: Image.asset("images/app_logo.png"),
                 //color: ,

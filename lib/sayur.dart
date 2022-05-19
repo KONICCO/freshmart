@@ -2,49 +2,43 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 import 'kategori.dart';
-import 'pagebuah1.dart';
+import 'sayur1.dart';
 
-class Buah extends StatefulWidget {
-  const Buah({Key? key}) : super(key: key);
+class Sayur extends StatefulWidget {
+  const Sayur({Key? key}) : super(key: key);
 
   @override
-  _BuahState createState() => _BuahState();
+  _SayurState createState() => _SayurState();
 }
 
-class _BuahState extends State<Buah> {
+class _SayurState extends State<Sayur> {
   // This holds a list of fiction users
   // You can use data fetched from a database or a server as well
   final List<Map<String, dynamic>> _allUsers = [
     {
       "id": 1,
-      "name": "buah naga 1Kg ",
-      "harga": "Rp15.000",
-      "img":
-          'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5095900/kedaisayur_kedaisayur-buah-naga-buah-buahan--1-kg-_full07.jpg',
-      // "page": '/Buah',
+      "name": "Tomat 1Kg ",
+      "harga": "Rp16.000",
+      "img": 'https://unsplash.com/photos/TvQ4QnIcj1w',
     },
     {
       "id": 2,
-      "name": "buah kiwi 1Kg",
+      "name": "Selada 1Kg",
       "harga": "Rp15.000",
-      "img":
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLUCCJb0f_aLATYUaXOCPbUqsQ9n8YcU9C_w&usqp=CAU',
-      // "page": '/buah',
+      "img": 'https://unsplash.com/photos/6_SGrUywWOQ',
     },
     {
       "id": 3,
-      "name": "Apel 1 KG",
+      "name": "Timun 1 KG",
       "harga": "Rp15.000",
-      "img":
-          'https://id.sharp/sites/default/files/uploads/image-artikel/Jenis%20Buah-Buahan%20Ini%20Efektif%20Membantu%20Menurunkan%20Berat%20Badan%201.jpg',
-      // "page": '/buah',
+      "img": 'https://unsplash.com/photos/hCJZwPFlk4E',
     },
     {
       "id": 4,
-      "name": "Manggis",
+      "name": "Kubis",
       "harga": "Rp15.000",
       "img":
-          'https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2022/01/12085334/Apa-Saja-Manfaat-Mengonsumsi-Buah-Manggis_-01.jpg',
+          'https://www.istockphoto.com/photo/fresh-green-pointed-cabbage-wooden-background-top-view-gm1295926406-389496442?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_bottom&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcabbage&utm_term=cabbage%3A%3Asearch-explore-top-affiliate-outside-feed-x-v2%3Ab',
     },
   ];
 
@@ -206,7 +200,7 @@ class _BuahState extends State<Buah> {
                                                             builder:
                                                                 (BuildContext
                                                                     ctx) {
-                                                      return pagebuah1();
+                                                      return sayur1();
                                                     }));
                                                   },
                                                   //color: Colors.white,
