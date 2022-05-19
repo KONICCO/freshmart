@@ -8,6 +8,20 @@ class detailcart extends StatefulWidget {
 }
 
 class _detailcartState extends State<detailcart> {
+      int i = 1;
+    void _minus(){
+    if(i > 1){
+    setState(() {
+      i--;
+     
+    });
+    }
+  }
+  void _plus(){
+    setState(() {
+      i++;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,7 +75,7 @@ class _detailcartState extends State<detailcart> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: _minus,
                                     child: Icon(
                                       Icons.remove,
                                       color: Colors.green,
@@ -69,12 +83,12 @@ class _detailcartState extends State<detailcart> {
                                     ),
                                   ),
                                   Text(
-                                    '1',
+                                    '$i',
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 14.0),
                                   ),
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: _plus,
                                     child: Icon(
                                       Icons.add,
                                       color: Colors.green,
