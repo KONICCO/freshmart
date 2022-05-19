@@ -1,7 +1,11 @@
 import 'package:bisa/notifikasi.dart';
 import 'package:flutter/material.dart';
 import 'buah.dart';
+
+import 'cart.dart';
+
 import 'sayur.dart';
+
 import 'profile/profile_screen.dart';
 import 'main.dart';
 import 'profile/profile_screen.dart';
@@ -79,7 +83,15 @@ class _KategoriState extends State<Kategori> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.shopping_cart),
+            child:
+             IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return cart();
+                  }));
+                }),
           ),
           Padding(
               padding: const EdgeInsets.all(10.0),
