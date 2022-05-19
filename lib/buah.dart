@@ -12,9 +12,9 @@ class Buah extends StatefulWidget {
 }
 
 class _BuahState extends State<Buah> {
-  // This holds a list of fiction users
+  // This holds a list of fiction Item
   // You can use data fetched from a database or a server as well
-  final List<Map<String, dynamic>> _allUsers = [
+  final List<Map<String, dynamic>> _allItem = [
     {
       "id": 1,
       "name": "buah naga 1Kg ",
@@ -49,14 +49,14 @@ class _BuahState extends State<Buah> {
   ];
 
   // This list holds the data for the list view
-  List<Map<String, dynamic>> _foundUsers = [];
+  List<Map<String, dynamic>> _foundItem = [];
 
   int _selectedIndex = 0;
 
   @override
   initState() {
-    // at the beginning, all users are shown
-    _foundUsers = _allUsers;
+    // at the beginning, all Item are shown
+    _foundItem = _allItem;
     super.initState();
   }
 
@@ -64,10 +64,10 @@ class _BuahState extends State<Buah> {
   void _runFilter(String enteredKeyword) {
     List<Map<String, dynamic>> results = [];
     if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
-      results = _allUsers;
+      // if the search field is empty or only contains white-space, we'll display all Item
+      results = _allItem;
     } else {
-      results = _allUsers
+      results = _allItem
           .where((user) =>
               user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
@@ -76,7 +76,7 @@ class _BuahState extends State<Buah> {
 
     // Refresh the UI
     setState(() {
-      _foundUsers = results;
+      _foundItem = results;
     });
   }
 
@@ -132,13 +132,13 @@ class _BuahState extends State<Buah> {
               height: 20,
             ),
             Expanded(
-              child: _foundUsers.isNotEmpty
+              child: _foundItem.isNotEmpty
                   ? GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 20),
-                      itemCount: _foundUsers.length,
+                      itemCount: _foundItem.length,
                       itemBuilder: (context, index) => Container(
                         child: Row(
                           children: [
@@ -162,7 +162,7 @@ class _BuahState extends State<Buah> {
                                               image: DecorationImage(
                                                   fit: BoxFit.cover,
                                                   image: NetworkImage(
-                                                      _foundUsers[index]
+                                                      _foundItem[index]
                                                           ['img']))),
                                         ),
                                         Container(
@@ -189,13 +189,13 @@ class _BuahState extends State<Buah> {
                                                   margin: const EdgeInsets.only(
                                                       bottom: 8, top: 8),
                                                   child: Text(
-                                                    _foundUsers[index]['name'],
+                                                    _foundItem[index]['name'],
                                                     style: TextStyle(
                                                         color: Colors.white),
                                                   ),
                                                 ),
                                                 Text(
-                                                  _foundUsers[index]['harga'],
+                                                  _foundItem[index]['harga'],
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
