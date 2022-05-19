@@ -1,4 +1,5 @@
 import 'package:bisa/map.dart';
+import 'package:bisa/notifikasi.dart';
 import 'package:bisa/ubahProfil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +27,13 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "Notifications",
             icon: "images/icon/Bell.svg",
-            press: () {},
+            press: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Notifikasi()),
+                (Route<dynamic> route) => false,
+              );
+            },
           ),
           ProfileMenu(
             text: "Settings",

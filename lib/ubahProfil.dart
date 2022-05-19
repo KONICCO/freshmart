@@ -63,13 +63,13 @@ class _UbahProfilState extends State<UbahProfil> {
                         ? ClipOval(
                             child: Image.file(
                             image!,
-                            width: 81,
-                            height: 81,
+                            width: 61,
+                            height: 61,
                             fit: BoxFit.cover,
                           ))
                         : SizedBox(
-                            width: 100,
-                            height: 100,
+                            width: 81,
+                            height: 81,
                             child: CircleAvatar(
                               radius: 50,
                               backgroundImage: AssetImage(
@@ -99,7 +99,8 @@ class _UbahProfilState extends State<UbahProfil> {
                                       height: 20,
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         // ignore: deprecated_member_use
                                         FlatButton.icon(

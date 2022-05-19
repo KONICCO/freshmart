@@ -31,7 +31,7 @@ class _NotifikasiState extends State<Notifikasi> {
       // "page": '/buah',
     },
   ];
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -70,10 +70,10 @@ class _NotifikasiState extends State<Notifikasi> {
                 icon: Icon(Icons.home),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => Kategori()),
-            (Route<dynamic> route) => false,
-          );
+                    context,
+                    MaterialPageRoute(builder: (context) => Kategori()),
+                    (Route<dynamic> route) => false,
+                  );
                 },
               ),
               label: 'Home',
@@ -88,10 +88,10 @@ class _NotifikasiState extends State<Notifikasi> {
                 icon: Icon(Icons.notifications_sharp),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => Notifikasi()),
-            (Route<dynamic> route) => false,
-          );
+                    context,
+                    MaterialPageRoute(builder: (context) => Notifikasi()),
+                    (Route<dynamic> route) => false,
+                  );
                 }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,

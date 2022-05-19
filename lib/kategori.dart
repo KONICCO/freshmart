@@ -83,8 +83,7 @@ class _KategoriState extends State<Kategori> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child:
-             IconButton(
+            child: IconButton(
                 icon: Icon(Icons.shopping_cart),
                 onPressed: () {
                   Navigator.push(context,
@@ -230,16 +229,15 @@ class _KategoriState extends State<Kategori> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: IconButton(
-                icon: Icon(Icons.home),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => Kategori()),
-            (Route<dynamic> route) => false,
-          );
-                }),
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Kategori()),
+                      (Route<dynamic> route) => false,
+                    );
+                  }),
               label: 'Home',
-              
               backgroundColor: Colors.lightGreen),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
@@ -251,10 +249,10 @@ class _KategoriState extends State<Kategori> {
                 icon: Icon(Icons.notifications_sharp),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => Notifikasi()),
-            (Route<dynamic> route) => false,
-          );
+                    context,
+                    MaterialPageRoute(builder: (context) => Notifikasi()),
+                    (Route<dynamic> route) => false,
+                  );
                 }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,
@@ -272,6 +270,7 @@ class _KategoriState extends State<Kategori> {
             backgroundColor: Colors.lightGreen,
           ),
         ],
+        // type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
         onTap: _onItemTapped,
