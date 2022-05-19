@@ -31,7 +31,7 @@ class _KategoriState extends State<Kategori> {
       "id": 2,
       "name": "sayur",
       "img":
-          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.popbela.com%2Fcareer%2Finspiration%2Faisyah-banowati%2Faplikasi-belanja-sayur-dan-buah-online&psig=AOvVaw30BylohjLLNhKxFQycn5OG&ust=1653037297041000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLjW5IKa6_cCFQAAAAAdAAAAABAD',
+          'https://cdn.popbela.com/content-images/post/20211102/28967ee7844b90ea7bd3a48f7aa08158_750x500.jpg',
       "page": '/sayur',
     },
     {
