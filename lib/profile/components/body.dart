@@ -1,4 +1,5 @@
 import 'package:bisa/map.dart';
+import 'package:bisa/ubahProfil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'profile_menu.dart';
@@ -17,7 +18,12 @@ class Body extends StatelessWidget {
             text: "Akun saya",
             //style: TextStyle(color: Colors.white),
             icon: "images/icon/User_Icon.svg",
-            press: () => {},
+            press: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext ctx) {
+                return UbahProfil();
+              }))
+            },
           ),
           ProfileMenu(
             text: "Notifications",

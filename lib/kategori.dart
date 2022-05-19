@@ -1,3 +1,4 @@
+import 'package:bisa/notifikasi.dart';
 import 'package:flutter/material.dart';
 import 'buah.dart';
 import 'profile/profile_screen.dart';
@@ -223,7 +224,14 @@ class _KategoriState extends State<Kategori> {
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_sharp),
+            icon: IconButton(
+                icon: Icon(Icons.notifications_sharp),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return Notifikasi();
+                  }));
+                }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,
           ),
