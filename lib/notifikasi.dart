@@ -69,10 +69,11 @@ class _NotifikasiState extends State<Notifikasi> {
               icon: IconButton(
                 icon: Icon(Icons.home),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return Kategori();
-                  }));
+                  Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => Kategori()),
+            (Route<dynamic> route) => false,
+          );
                 },
               ),
               label: 'Home',
@@ -86,10 +87,11 @@ class _NotifikasiState extends State<Notifikasi> {
             icon: IconButton(
                 icon: Icon(Icons.notifications_sharp),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return Notifikasi();
-                  }));
+                  Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => Notifikasi()),
+            (Route<dynamic> route) => false,
+          );
                 }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,

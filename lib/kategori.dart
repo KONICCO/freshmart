@@ -229,7 +229,15 @@ class _KategoriState extends State<Kategori> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: IconButton(
+                icon: Icon(Icons.home),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => Kategori()),
+            (Route<dynamic> route) => false,
+          );
+                }),
               label: 'Home',
               backgroundColor: Colors.lightGreen),
           BottomNavigationBarItem(
