@@ -9,13 +9,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'splash_screen.dart';
 import 'kategori.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
+DatabaseReference UsersRef = FirebaseDatabase.instance.ref().child("users");
 class MyApp extends StatelessWidget {
   final authC = Get.put(AuthController(), permanent: true);
   @override

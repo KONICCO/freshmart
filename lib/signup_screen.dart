@@ -1,20 +1,20 @@
 import 'package:bisa/kategori.dart';
 import 'package:bisa/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'main.dart';
 import 'buah.dart';
 import 'kategori.dart';
-
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends StatelessWidget {
+  TextEditingController nameTextEditingController = TextEditingController();
+  TextEditingController emailTextEditingController = TextEditingController();
+  TextEditingController nomorTextEditingController = TextEditingController();
+  TextEditingController passwordTextEditingController = TextEditingController();
   @override
-  State<StatefulWidget> createState() => InitState();
-}
-
-class InitState extends State<SignUpScreen> {
-  @override
-  Widget build(BuildContext context) => initWidget();
-
-  Widget initWidget() {
+  Widget build(BuildContext context){
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(
@@ -70,6 +70,8 @@ class InitState extends State<SignUpScreen> {
             ],
           ),
           child: TextField(
+            controller: nameTextEditingController,
+            keyboardType: TextInputType.text,
             cursorColor: Colors.lightGreen,
             decoration: InputDecoration(
               icon: Icon(
@@ -98,6 +100,8 @@ class InitState extends State<SignUpScreen> {
             ],
           ),
           child: TextField(
+            controller: emailTextEditingController,
+            keyboardType: TextInputType.text,
             cursorColor: Colors.lightGreen,
             decoration: InputDecoration(
               icon: Icon(
@@ -126,6 +130,8 @@ class InitState extends State<SignUpScreen> {
             ],
           ),
           child: TextField(
+            controller: nomorTextEditingController,
+            keyboardType: TextInputType.text,
             cursorColor: Colors.lightGreen,
             decoration: InputDecoration(
               focusColor: Colors.lightGreen,
@@ -155,6 +161,8 @@ class InitState extends State<SignUpScreen> {
             ],
           ),
           child: TextField(
+            controller: passwordTextEditingController,
+            keyboardType: TextInputType.text,
             cursorColor: Colors.lightGreen,
             decoration: InputDecoration(
               focusColor: Colors.lightGreen,
@@ -199,11 +207,29 @@ class InitState extends State<SignUpScreen> {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => LoginScreen()),
-            (Route<dynamic> route) => false,
-          );
+            if (nameTextEditingController.text.length < 4)
+            {
+              displayToastMessage("Name must be atleast 3 character", context);
+              
+            }
+            else if(!emailTextEditingController.text.contains("@"))
+            {
+              displayToastMessage("email is not valid", context);
+            }
+            else if(nomorTextEditingController.text.isEmpty)
+            {
+              displayToastMessage("Nomor is not valid", context);
+            }
+            else if(passwordTextEditingController.text.length < 6)
+            {
+              displayToastMessage("Password must be atleast 5 character", context);
+            }
+            else
+            {
+              registerNewUser(context);
+            }
+            
+          
           },
           child: Container(
             alignment: Alignment.center,
@@ -250,5 +276,49 @@ class InitState extends State<SignUpScreen> {
         )
       ],
     )));
+  }
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  void registerNewUser(BuildContext context) async
+  {
+    final User? firebaseUser = (await _firebaseAuth
+    .createUserWithEmailAndPassword(
+      email: emailTextEditingController.text, 
+      password: passwordTextEditingController.text
+      ).catchError((errMsg){
+        displayToastMessage("error: " + errMsg.toString(), context);
+        print(errMsg);
+      })).user;
+
+      if(firebaseUser != null)//info
+      {
+        //savedatabase
+        
+        Map userDataMap = 
+        {
+          "nama": nameTextEditingController.text.trim(),
+          "email": emailTextEditingController.text.trim(),
+          "nomor": nomorTextEditingController.text.trim()
+        };
+        UsersRef.child(firebaseUser.uid).set(userDataMap);
+        displayToastMessage("Success", context);
+        // Navigator.pushAndRemoveUntil(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => LoginScreen()),
+        //   (Route<dynamic> route) => false,
+        // );
+      }
+      else
+      {
+        //erorr
+        displayToastMessage("New user has not been created", context);
+        
+      }
+  }
+  displayToastMessage(String message, BuildContext context)
+  {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("${message}"),
+    ));
+    
   }
 }
