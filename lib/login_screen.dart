@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:bisa/controllers/auth_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'signup_screen.dart';
 import 'buah.dart';
@@ -13,6 +16,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class StartState extends State<LoginScreen> {
+  final emailC = TextEditingController(text: "test@mail.com");
+  final passC = TextEditingController(text: "12345");
+
+  final authC = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return initWidget();
@@ -77,6 +84,7 @@ class StartState extends State<LoginScreen> {
             ],
           ),
           child: TextField(
+            controller: emailC,
             cursorColor: Colors.lightGreen,
             decoration: InputDecoration(
               icon: Icon(
@@ -105,6 +113,7 @@ class StartState extends State<LoginScreen> {
             ],
           ),
           child: TextField(
+            controller: passC,
             cursorColor: Colors.lightGreen,
             decoration: InputDecoration(
               focusColor: Colors.lightGreen,
@@ -129,14 +138,14 @@ class StartState extends State<LoginScreen> {
           ),
         ),
         GestureDetector(
-          onTap: () {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => Kategori()),
-              (Route<dynamic> route) => false,
-            );
-            // Write Click Listener Code Here.
-          },
+          onTap: () => authC.login(emailC.text, passC.text)
+          // Navigator.pushAndRemoveUntil(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => Kategori()),
+          //   (Route<dynamic> route) => false,
+          // );
+          // Write Click Listener Code Here.
+          ,
           child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(left: 20, right: 20, top: 70),
