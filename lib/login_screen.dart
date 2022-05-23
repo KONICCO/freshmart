@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'signup_screen.dart';
@@ -130,10 +131,10 @@ class StartState extends State<LoginScreen> {
         GestureDetector(
           onTap: () {
             Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => Kategori()),
-            (Route<dynamic> route) => false,
-          );
+              context,
+              MaterialPageRoute(builder: (context) => Kategori()),
+              (Route<dynamic> route) => false,
+            );
             // Write Click Listener Code Here.
           },
           child: Container(

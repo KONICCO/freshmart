@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "594485295373",
+    "project_id": "freshmart-6c2c2",
+    "storage_bucket": "freshmart-6c2c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594485295373:android:62b6a49e3da188d9515844",
+        "android_client_info": {
+          "package_name": "com.example.bisa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594485295373-cl4bdchop9jtpgqq5g9f8n29lfgihucf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2_YN1swgOhctJaybrDMx9QL0fu5cxDwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594485295373-cl4bdchop9jtpgqq5g9f8n29lfgihucf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
