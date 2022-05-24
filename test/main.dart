@@ -1,17 +1,10 @@
+
 import 'package:bisa/notifikasi.dart';
+import 'package:bisa/pagebuah1.dart';
 import 'package:flutter/material.dart';
-import 'buah.dart';
-
-import 'cart.dart';
-
-import 'sayur.dart';
-
-import 'profile/profile_screen.dart';
-import 'main.dart';
-import 'profile/profile_screen.dart';
-import 'chat/screens/chatscreen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -79,7 +72,7 @@ class _KategoriState extends State<Kategori> {
         stream: (name != "" && name != null)
           ? FirebaseFirestore.instance
               .collection("seacrhItems")
-              .where("search".toLowerCase(), arrayContains: name.toLowerCase())
+              .where("search", arrayContains: name)
               .snapshots()
           : FirebaseFirestore.instance.collection("seacrhItems").snapshots(),
         builder: (context, snapshot){
@@ -106,7 +99,6 @@ class _KategoriState extends State<Kategori> {
                                       Container(
                                         child: InkWell(
                                           onTap: () {
-                                            
                                             Navigator.pushNamed(context,
                                                 data['page']);
                                           },
