@@ -1,21 +1,24 @@
+import 'package:bisa/cardkategori.dart';
 import 'package:bisa/notifikasi.dart';
 import 'package:flutter/material.dart';
 import 'buah.dart';
 
 import 'cart.dart';
-
+import 'package:bisa/modul/menu.dart';
 import 'sayur.dart';
-
+import 'cardkategori.dart';
 import 'profile/profile_screen.dart';
 import 'main.dart';
 import 'profile/profile_screen.dart';
 import 'chat/screens/chatscreen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-void main() async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 }
+
 class Kategori extends StatefulWidget {
   const Kategori({Key? key}) : super(key: key);
 
@@ -25,6 +28,12 @@ class Kategori extends StatefulWidget {
 
 class _KategoriState extends State<Kategori> {
   String name = '';
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +42,12 @@ class _KategoriState extends State<Kategori> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () {
-                  
-                }),
+            child:
+                IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
           ),
           Padding(
               padding: const EdgeInsets.all(10.0),
-              child: IconButton(
-                  onPressed: () {
-                   
-                  },
-                  icon: Icon(Icons.message))),
+              child: IconButton(onPressed: () {}, icon: Icon(Icons.message))),
         ],
         title: Container(
           width: 300,
@@ -76,104 +78,54 @@ class _KategoriState extends State<Kategori> {
         backgroundColor: Colors.lightGreen,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: (name != "" && name != null)
-          ? FirebaseFirestore.instance
-              .collection("seacrhItems")
-              .where("search".toLowerCase(), arrayContains: name.toLowerCase())
-              .snapshots()
-          : FirebaseFirestore.instance.collection("seacrhItems").snapshots(),
-        builder: (context, snapshot){
-          return (snapshot.connectionState == ConnectionState.waiting)
-            ? Center(child: CircularProgressIndicator())
-            : 
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context,index) {
-                DocumentSnapshot data = snapshot.data!.docs[index];
-                return Container(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 0.0),
-                            child: Row(
-                              children: [
-                                Wrap(
-                                    spacing: 10.0,
-                                    runSpacing: 20.0,
-                                    children: [
-                                      Container(
-                                        child: InkWell(
-                                          onTap: () {
-                                            
-                                            Navigator.pushNamed(context,
-                                                data['page']);
-                                          },
-                                          child: Container(
-                                            // margin: EdgeInsets.only(left: 2.5),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  width: 153,
-                                                  height: 115,
-                                                  margin:
-                                                      EdgeInsets.only(left: 15),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          new BorderRadius.only(
-                                                        topLeft: const Radius
-                                                            .circular(10.0),
-                                                        topRight: const Radius
-                                                            .circular(10.0),
-                                                      ),
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: NetworkImage(
-                                                              data['img']))),
-                                                ),
-                                                Container(
-                                                  margin: EdgeInsets.only(
-                                                      left: 15.0),
-                                                  width: 153,
-                                                  height: 58,
-                                                  decoration: new BoxDecoration(
-                                                      color: Colors.lightGreen,
-                                                      borderRadius:
-                                                          new BorderRadius.only(
-                                                        bottomLeft: const Radius
-                                                            .circular(10.0),
-                                                        bottomRight:
-                                                            const Radius
-                                                                .circular(10.0),
-                                                      )),
-                                                  child: Center(
-                                                    child: Text(
-                                                      data['name'],
-                                                      style: TextStyle(
-                                                        fontSize: 20,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-              }
-              );
-      
-        }
+          stream: (name != "" && name != null)
+              ? FirebaseFirestore.instance
+                  .collection("seacrhItems")
+                  .where("search".toLowerCase(),
+                      arrayContains: name.toLowerCase())
+                  .snapshots()
+              : FirebaseFirestore.instance
+                  .collection("seacrhItems")
+                  .snapshots(),
+          builder: (context, snapshot) {
+            return (snapshot.connectionState == ConnectionState.waiting)
+                ? Center(child: CircularProgressIndicator())
+                : GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot data = snapshot.data!.docs[index];
+                      return cardkategori(
+                          Menu(img: data["img"], name: data["name"]));
+                    });
+          }),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.lightGreen),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Pesanan',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_sharp),
+            label: 'Notifikasi',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+            backgroundColor: Colors.lightGreen,
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        onTap: _onItemTapped,
       ),
-      
     );
   }
 }

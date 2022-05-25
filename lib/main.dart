@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
             return GetMaterialApp(
               debugShowCheckedModeBanner: false,
               initialRoute: '/',
-              routes: <String, WidgetBuilder>{
-                '/buah': (BuildContext context) => Buah(),
-              },
+              // routes: <String, WidgetBuilder>{
+              //   '/buah': (BuildContext context) => Buah(),
+              // },
               theme: ThemeData(
                 primaryColor: Color(0xFF01afbd),
               ),
