@@ -1,4 +1,5 @@
 import 'package:bisa/buah.dart';
+import 'package:bisa/cart.dart';
 import 'package:bisa/controllers/auth_controller.dart';
 import 'package:bisa/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +12,8 @@ import 'splash_screen.dart';
 import 'kategori.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'CheckOutPage.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -18,6 +21,7 @@ void main() async {
 }
 
 DatabaseReference UsersRef = FirebaseDatabase.instance.ref().child("users");
+
 class MyApp extends StatelessWidget {
   final authC = Get.put(AuthController(), permanent: true);
   @override
