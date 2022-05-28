@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
-import 'kategori.dart';
+
 import 'pagebuah1.dart';
 // void main() {
 //   runApp(new MyApp());
@@ -96,10 +96,10 @@ class buah extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext ctx) {
-                            return pagebuah1();
-                          }));
+                          //   Navigator.push(context,
+                          //   MaterialPageRoute(builder: (BuildContext ctx) {
+                          //   return pagebuah1();
+                          // }));
                           },
                           
                           child: Container(

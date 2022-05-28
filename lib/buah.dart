@@ -38,11 +38,11 @@ class _BuahState extends State<Buah> {
       appBar: AppBar(
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(8.0),
             child: Icon(Icons.shopping_cart),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding:  EdgeInsets.all(10.0),
             child: Icon(Icons.message),
           ),
         ],
@@ -91,7 +91,7 @@ class _BuahState extends State<Buah> {
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (context, index) { 
             DocumentSnapshot data = snapshot.data!.docs[index];
-            return cardbuah(Menubuah(id: data['id'],img: data['img'],name: data['name'],price: data['price'],stock: data['stock']));
+            return cardbuah(Menubuah(id: data['id'],img: data['img'],name: data['name'],price: data['price'],stock: data['stock'], deskripsi: data['deskripsi']));
           }
         );
         }
@@ -100,7 +100,7 @@ class _BuahState extends State<Buah> {
       
       
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

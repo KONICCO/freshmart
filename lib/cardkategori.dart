@@ -10,9 +10,9 @@ class cardkategori extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding:  EdgeInsets.all(10),
         child: Padding(
-          padding: const EdgeInsets.only(top: 0.0),
+          padding:  EdgeInsets.only(top: 0.0),
           child: Row(
             children: [
               Wrap(spacing: 10.0, runSpacing: 20.0, children: [
@@ -32,8 +32,8 @@ class cardkategori extends StatelessWidget {
                             margin: EdgeInsets.only(left: 15),
                             decoration: BoxDecoration(
                                 borderRadius: new BorderRadius.only(
-                                  topLeft: const Radius.circular(10.0),
-                                  topRight: const Radius.circular(10.0),
+                                  topLeft:  Radius.circular(10.0),
+                                  topRight:  Radius.circular(10.0),
                                 ),
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
@@ -46,8 +46,8 @@ class cardkategori extends StatelessWidget {
                             decoration: new BoxDecoration(
                                 color: Colors.lightGreen,
                                 borderRadius: new BorderRadius.only(
-                                  bottomLeft: const Radius.circular(10.0),
-                                  bottomRight: const Radius.circular(10.0),
+                                  bottomLeft:  Radius.circular(10.0),
+                                  bottomRight:  Radius.circular(10.0),
                                 )),
                             child: Center(
                               child: Text(

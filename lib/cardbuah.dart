@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bisa/modul/menuhbuah.dart';
-
+import 'pagebuah1.dart';
+import 'package:intl/intl.dart';
 class cardbuah extends StatelessWidget {
   final Menubuah menu;
   cardbuah(this.menu);
@@ -8,7 +9,7 @@ class cardbuah extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: EdgeInsets.only(top: 10),
       child: Container(
               child: Row(
                 children: [
@@ -37,7 +38,7 @@ class cardbuah extends StatelessWidget {
                               Container(
                                   // color: Colors.lightGreen,
                                   width: 153,
-                                  margin: const EdgeInsets.only(
+                                  margin: EdgeInsets.only(
                                     left: 15.0,
                                     bottom: 90.0,
                                   ),
@@ -46,16 +47,16 @@ class cardbuah extends StatelessWidget {
                                       borderRadius:
                                           new BorderRadius.only(
                                         bottomLeft:
-                                            const Radius.circular(
+                                            Radius.circular(
                                                 10.0),
                                         bottomRight:
-                                            const Radius.circular(
+                                            Radius.circular(
                                                 10.0),
                                       )),
                                   child: Column(
                                     children: [
                                       Container(
-                                        margin: const EdgeInsets.only(
+                                        margin: EdgeInsets.only(
                                             bottom: 8, top: 8),
                                         child: Text(
                                           '${menu.name}',
@@ -64,26 +65,31 @@ class cardbuah extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Rp. ${menu.price}',
+                                        NumberFormat.currency(
+                                   locale: 'id', 
+                                   symbol: 'Rp ',
+                                   decimalDigits:0)
+                                   .format(menu.price,
+                                   ),
                                         style: TextStyle(
                                             color: Colors.white),
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          // Navigator.push(context,
-                                          //     MaterialPageRoute(
-                                          //         builder:
-                                          //             (BuildContext
-                                          //                 ctx) {
-                                          //   return pagebuah1();
-                                          // }));
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext
+                                                          ctx) {
+                                            return pagebuah1(menu.id,menu.img,menu.name,menu.price,menu.stock,menu.deskripsi);
+                                          }));
                                         },
                                         //color: Colors.white,
                                         child: Container(
                                           color: Colors.white,
-                                          margin: const EdgeInsets
+                                          margin: EdgeInsets
                                               .symmetric(vertical: 8),
-                                          padding: const EdgeInsets
+                                          padding: EdgeInsets
                                                   .symmetric(
                                               horizontal: 25,
                                               vertical: 3),

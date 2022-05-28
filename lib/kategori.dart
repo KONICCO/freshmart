@@ -20,7 +20,7 @@ void main() async {
 }
 
 class Kategori extends StatefulWidget {
-  const Kategori({Key? key}) : super(key: key);
+  Kategori({Key? key}) : super(key: key);
 
   @override
   _KategoriState createState() => _KategoriState();
@@ -41,12 +41,18 @@ class _KategoriState extends State<Kategori> {
       appBar: AppBar(
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child:
-                IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
+            padding: EdgeInsets.all(8.0),
+            child: IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return cart();
+                  }));
+                }),
           ),
           Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
               child: IconButton(onPressed: () {}, icon: Icon(Icons.message))),
         ],
         title: Container(
@@ -101,7 +107,7 @@ class _KategoriState extends State<Kategori> {
                     });
           }),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
