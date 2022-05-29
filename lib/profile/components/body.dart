@@ -1,4 +1,5 @@
 import 'package:bisa/controllers/auth_controller.dart';
+import 'package:bisa/login_screen.dart';
 import 'package:bisa/map.dart';
 import 'package:bisa/notifikasi.dart';
 import 'package:bisa/ubahProfil.dart';
@@ -11,6 +12,9 @@ import 'profile_pic.dart';
 
 class Body extends StatelessWidget {
   final authC = Get.find<AuthController>();
+  logout(){
+    authC.logout();
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -57,7 +61,14 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "Log Out",
             icon: "images/icon/Log_out.svg",
-            press: () => authC.logout(),
+            press: () {
+              logout();
+              Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+            (Route<dynamic> route) => false,
+          );
+            } ,
           ),
         ],
       ),

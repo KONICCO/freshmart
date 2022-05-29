@@ -1,4 +1,8 @@
 import 'package:bisa/cardbuah.dart';
+import 'package:bisa/cart.dart';
+import 'package:bisa/chat/screens/chatscreen.dart';
+import 'package:bisa/notifikasi.dart';
+import 'package:bisa/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
@@ -39,11 +43,23 @@ class _BuahState extends State<Buah> {
         actions: [
           Padding(
             padding:  EdgeInsets.all(8.0),
-            child: Icon(Icons.shopping_cart),
+            child: IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return cart();
+                  }));
+                }),
           ),
           Padding(
             padding:  EdgeInsets.all(10.0),
-            child: Icon(Icons.message),
+            child: IconButton(onPressed: () {
+                Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return chatscreen();
+                  }));
+              }, icon: Icon(Icons.message))
           ),
         ],
         title: Container(
@@ -102,7 +118,15 @@ class _BuahState extends State<Buah> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Kategori()),
+                      (Route<dynamic> route) => false,
+                    );
+                  }),
               label: 'Home',
               backgroundColor: Colors.lightGreen),
           BottomNavigationBarItem(
@@ -111,16 +135,32 @@ class _BuahState extends State<Buah> {
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_sharp),
+            icon: IconButton(
+                icon: Icon(Icons.notifications_sharp),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Notifikasi()),
+                    (Route<dynamic> route) => false,
+                  );
+                }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return ProfileScreen();
+                  }));
+                }),
             label: 'Profile',
             backgroundColor: Colors.lightGreen,
           ),
         ],
+        // type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
         onTap: _onItemTapped,

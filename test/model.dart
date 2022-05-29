@@ -1,4 +1,10 @@
 // The product class does nothing fancy
+import 'dart:async';
+import 'dart:collection';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+cl
 class Product {
   final String name;
   final double cost;

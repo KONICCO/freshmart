@@ -96,12 +96,7 @@ class _pagebuah1State extends State<pagebuah1> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
-            ),
-          ],
+
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {

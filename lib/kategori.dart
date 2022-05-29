@@ -53,7 +53,12 @@ class _KategoriState extends State<Kategori> {
           ),
           Padding(
               padding: EdgeInsets.all(10.0),
-              child: IconButton(onPressed: () {}, icon: Icon(Icons.message))),
+              child: IconButton(onPressed: () {
+                Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return chatscreen();
+                  }));
+              }, icon: Icon(Icons.message))),
         ],
         title: Container(
           width: 300,
@@ -109,7 +114,15 @@ class _KategoriState extends State<Kategori> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Kategori()),
+                      (Route<dynamic> route) => false,
+                    );
+                  }),
               label: 'Home',
               backgroundColor: Colors.lightGreen),
           BottomNavigationBarItem(
@@ -118,16 +131,32 @@ class _KategoriState extends State<Kategori> {
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_sharp),
+            icon: IconButton(
+                icon: Icon(Icons.notifications_sharp),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Notifikasi()),
+                    (Route<dynamic> route) => false,
+                  );
+                }),
             label: 'Notifikasi',
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return ProfileScreen();
+                  }));
+                }),
             label: 'Profile',
             backgroundColor: Colors.lightGreen,
           ),
         ],
+        // type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
         onTap: _onItemTapped,
