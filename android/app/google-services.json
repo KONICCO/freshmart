@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "594485295373",
-    "project_id": "freshmart-6c2c2",
-    "storage_bucket": "freshmart-6c2c2.appspot.com"
+    "project_number": "974722877307",
+    "firebase_url": "https://appfreshmart-default-rtdb.firebaseio.com",
+    "project_id": "appfreshmart",
+    "storage_bucket": "appfreshmart.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:594485295373:android:62b6a49e3da188d9515844",
+        "mobilesdk_app_id": "1:974722877307:android:dcde2ada45833bd5439fde",
         "android_client_info": {
           "package_name": "com.example.bisa"
         }
       },
       "oauth_client": [
         {
-          "client_id": "594485295373-cl4bdchop9jtpgqq5g9f8n29lfgihucf.apps.googleusercontent.com",
+          "client_id": "974722877307-dguajp60v60ji4p5jrj8drq60s5pu7o6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD2_YN1swgOhctJaybrDMx9QL0fu5cxDwM"
+          "current_key": "AIzaSyAkLIT6rR0LJExvKaCrXD1WOX0eAccyHsk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "594485295373-cl4bdchop9jtpgqq5g9f8n29lfgihucf.apps.googleusercontent.com",
+              "client_id": "974722877307-dguajp60v60ji4p5jrj8drq60s5pu7o6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

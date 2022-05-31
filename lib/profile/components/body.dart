@@ -63,11 +63,10 @@ class Body extends StatelessWidget {
             icon: "images/icon/Log_out.svg",
             press: () {
               logout();
-              Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => LoginScreen()),
-            (Route<dynamic> route) => false,
-          );
+            // Navigator.pushAndRemoveUntil(
+            // context,
+            // MaterialPageRoute(builder: (context) => LoginScreen()),
+            // (Route<dynamic> route) => false,);
             } ,
           ),
         ],

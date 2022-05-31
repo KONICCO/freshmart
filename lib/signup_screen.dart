@@ -277,6 +277,7 @@ class SignUpScreen extends StatelessWidget {
       ],
     )));
   }
+  
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   void registerNewUser(BuildContext context) async
   {
@@ -299,6 +300,7 @@ class SignUpScreen extends StatelessWidget {
           "email": emailTextEditingController.text.trim(),
           "nomor": nomorTextEditingController.text.trim()
         };
+        DatabaseReference UsersRef = FirebaseDatabase.instance.ref().child("users");
         UsersRef.child(firebaseUser.uid).set(userDataMap);
         displayToastMessage("Success", context);
         // Navigator.pushAndRemoveUntil(

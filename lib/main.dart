@@ -13,14 +13,14 @@ import 'kategori.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'CheckOutPage.dart';
-
+import 'profile/components/body.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-DatabaseReference UsersRef = FirebaseDatabase.instance.ref().child("users");
+
 
 class MyApp extends StatelessWidget {
   final authC = Get.put(AuthController(), permanent: true);
