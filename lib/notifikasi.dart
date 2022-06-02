@@ -31,12 +31,7 @@ class _NotifikasiState extends State<Notifikasi> {
       // "page": '/buah',
     },
   ];
-  int _selectedIndex = 2;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,56 +58,7 @@ class _NotifikasiState extends State<Notifikasi> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: IconButton(
-                icon: Icon(Icons.home),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => Kategori()),
-                    (Route<dynamic> route) => false,
-                  );
-                },
-              ),
-              label: 'Home',
-              backgroundColor: Colors.lightGreen),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            label: 'Pesanan',
-            backgroundColor: Colors.lightGreen,
-          ),
-          BottomNavigationBarItem(
-            icon: IconButton(
-                icon: Icon(Icons.notifications_sharp),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => Notifikasi()),
-                    (Route<dynamic> route) => false,
-                  );
-                }),
-            label: 'Notifikasi',
-            backgroundColor: Colors.lightGreen,
-          ),
-          BottomNavigationBarItem(
-            icon: IconButton(
-                icon: Icon(Icons.person),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return ProfileScreen();
-                  }));
-                }),
-            label: 'Profile',
-            backgroundColor: Colors.lightGreen,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        onTap: _onItemTapped,
-      ),
+      
     );
   }
 }

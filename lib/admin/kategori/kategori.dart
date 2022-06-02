@@ -1,29 +1,21 @@
-import 'package:bisa/cardkategori.dart';
-import 'package:bisa/notifikasi.dart';
+import 'package:bisa/admin/kategori/tambahkategori.dart';
 import 'package:flutter/material.dart';
-import 'buah.dart';
-import 'cart.dart';
-import 'package:bisa/modul/menu.dart';
-import 'sayur.dart';
-import 'cardkategori.dart';
-import 'profile/profile_screen.dart';
-import 'main.dart';
-import 'chat/screens/chatscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'login_screen.dart';
-import 'modul/model.dart';
+import 'cardkategori.dart';
+import 'package:bisa/modul/menu.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 }
 
-class Kategori extends StatefulWidget {
+class kategoriadmin extends StatefulWidget {
   @override
-  _KategoriState createState() => _KategoriState();
+  _kategoriadminState createState() => _kategoriadminState();
 }
-class _KategoriState extends State<Kategori> {
+
+class _kategoriadminState extends State<kategoriadmin> {
   String name = '';
   @override
   Widget build(BuildContext context) {
@@ -33,21 +25,21 @@ class _KategoriState extends State<Kategori> {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: IconButton(
-                icon: Icon(Icons.shopping_cart),
+                icon: Icon(Icons.add),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (BuildContext ctx) {
-                    return cart();
+                    return tambahkategori();
                   }));
                 }),
           ),
           Padding(
               padding: EdgeInsets.all(10.0),
               child: IconButton(onPressed: () {
-                Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return chatscreen();
-                  }));
+                // Navigator.push(context,
+                //       MaterialPageRoute(builder: (BuildContext ctx) {
+                //     return chatscreen();
+                //   }));
               }, icon: Icon(Icons.message))),
         ],
         title: Container(
@@ -97,7 +89,7 @@ class _KategoriState extends State<Kategori> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot data = snapshot.data!.docs[index];
-                      return cardkategori(
+                      return cardkategoriadmin(
                           Menu(img: data["img"], name: data["name"]));
                     });
           }),

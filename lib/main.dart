@@ -23,27 +23,13 @@ void main() async {
 
 
 class MyApp extends StatelessWidget {
-  final authC = Get.put(AuthController(), permanent: true);
+  
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-        stream: authC.streamAuthStatus,
-        builder: (context, snapshot) {
-          print(snapshot);
-          if (snapshot.connectionState == ConnectionState.active) {
-            return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              initialRoute: '/',
-              // routes: <String, WidgetBuilder>{
-              //   '/buah': (BuildContext context) => Buah(),
-              // },
-              theme: ThemeData(
-                primaryColor: Color(0xFF01afbd),
-              ),
-              home: snapshot.data != null ? Kategori() : LoginScreen(),
-            );
-          }
-          return SplashScreen();
-        });
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      
+      home: SplashScreen(),
+    );
   }
 }

@@ -6,8 +6,7 @@ import 'package:bisa/ubahProfil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'profile_menu.dart';
-import 'profile_pic.dart';
+import 'profilemenu.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -16,33 +15,33 @@ class Body extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          ProfileMenu(
+          Profilemenu(
             text: "Akun saya",
             icon: "images/icon/User_Icon.svg",
             press: () => {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext ctx) {
-                return UbahProfil();
-              }))
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (BuildContext ctx) {
+              //   return UbahProfil();
+              // }))
             },
           ),
-          ProfileMenu(
+          Profilemenu(
             text: "Notifications",
             icon: "images/icon/Bell.svg",
             press: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => Notifikasi()),
-                (Route<dynamic> route) => false,
-              );
+              // Navigator.pushAndRemoveUntil(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => Notifikasi()),
+              //   (Route<dynamic> route) => false,
+              // );
             },
           ),
-          ProfileMenu(
+          Profilemenu(
             text: "Settings",
             icon: "images/icon/Settings.svg",
             press: () {},
           ),
-          ProfileMenu(
+          Profilemenu(
             text: "Lokasi Toko",
             icon: "images/icon/Question_mark.svg",
             press: () {
@@ -52,7 +51,7 @@ class Body extends StatelessWidget {
               }));
             },
           ),
-          ProfileMenu(
+          Profilemenu(
             text: "Log Out",
             icon: "images/icon/Log_out.svg",
             press: () {
