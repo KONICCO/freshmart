@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:bisa/admin/database_services.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class tambahkategori extends StatefulWidget {
   tambahkategori({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class _tambahkategoriState extends State<tambahkategori> {
   final inputtName = new TextEditingController();
   final inputimg = new TextEditingController();
   List search = [];
+
   int _charHuruf = 0;
   
   _onChangedHuruf(String value) {
@@ -21,13 +25,33 @@ class _tambahkategoriState extends State<tambahkategori> {
 }
   @override
   void itungan( String name ){
-    for (int i=0 ; 1 < _charHuruf; i++){
+    for (int i=1 ; i <= _charHuruf; i++){
           var result = name.substring(0, i);
           search.add(result);
           //name[0:i+1];
+          
+    
     }
   }
-  
+  //kamra dan file
+  File? image;
+  late TextEditingController _controller;
+
+  Future openCamera() async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    setState(() {
+      image = File(pickedImage!.path);
+    });
+  }
+
+  Future openGallery() async {
+    final imageGallery =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    setState(() {
+      image = File(imageGallery!.path);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +88,9 @@ class _tambahkategoriState extends State<tambahkategori> {
                         color: Colors.blue.shade50,
                         border: Border.all(width: 5, color: Colors.blue),
                         borderRadius: BorderRadius.circular(10),
+                        
                       ),
+                      
                     ),
                     Text("Kategori Name",
                         style: TextStyle(
@@ -85,8 +111,12 @@ class _tambahkategoriState extends State<tambahkategori> {
                 child: Text('add data'),
                 onPressed: () {
                   itungan( inputtName.text.toLowerCase());
+                  
                   DatabaseServices.createOrUpdateProduct(
-                      name: "beras", img: "https://images.tokopedia.net/img/cache/500-square/product-1/2018/10/30/32915789/32915789_a13371f1-32d0-4b8a-bd1e-b37b7726799c_2048_1828.jpg", search: search);
+                      name: inputtName.text.toLowerCase(), 
+                      img: "https://images.tokopedia.net/img/cache/500-square/product-1/2018/10/30/32915789/32915789_a13371f1-32d0-4b8a-bd1e-b37b7726799c_2048_1828.jpg", 
+                      search: search);
+                  search.clear();
                 })
                   ]),
             ),
