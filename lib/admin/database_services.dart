@@ -9,7 +9,14 @@ import 'package:path/path.dart';
 class DatabaseServices{
   static CollectionReference kategori = FirebaseFirestore.instance.collection("seacrhItems");
   
-  static Future<void> createOrUpdateProduct({String? name, String? img, search}) async {
+  static Future<void> createOrUpdateKategori({String? name, String? img, search}) async {
+    await  kategori.doc().set({
+      'name': name,
+      'img': img,
+      'search': search
+    });
+  }
+  static Future<void> createOrUpdateProduk({String? name, String? img, search}) async {
     await  kategori.doc().set({
       'name': name,
       'img': img,

@@ -129,7 +129,7 @@ class _tambahkategoriState extends State<tambahkategori> {
                 onPressed: () async {
                   itungan( inputtName.text.toLowerCase());
                   //print(imageUrl);
-                  DatabaseServices.createOrUpdateProduct(
+                  DatabaseServices.createOrUpdateKategori(
                       name: inputtName.text.toLowerCase(), 
                       img: imagePath, 
                       search: search);
