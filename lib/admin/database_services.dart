@@ -16,11 +16,17 @@ class DatabaseServices{
       'search': search
     });
   }
-  static Future<void> createOrUpdateProduk({String? name, String? img, search}) async {
-    await  kategori.doc().set({
+
+  static Future<void> createOrUpdateProduk( String kolek, {int? id, String? name, String? img,int? price,int? stock, String? deskripsi, search}) async {
+    CollectionReference produk = FirebaseFirestore.instance.collection(kolek);
+    await  produk.doc().set({
+      'id': id,
       'name': name,
       'img': img,
-      'search': search
+      'price': price,
+      'stock': stock,
+      'deskripsi': deskripsi,
+      'search': search,
     });
   }
   // DatabaseServices.createOrUpdateProduct(
@@ -44,5 +50,5 @@ class addproduk{
   addproduk({
     required this.nama,
   });
-  get json => addproduk( nama: this.nama);
+  
 }
