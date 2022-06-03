@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:bisa/admin/database_services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:path/path.dart';
 class tambahkategori extends StatefulWidget {
   tambahkategori({Key? key}) : super(key: key);
 
@@ -33,25 +34,8 @@ class _tambahkategoriState extends State<tambahkategori> {
     
     }
   }
-  //kamra dan file
-  File? image;
-  late TextEditingController _controller;
-
-  Future openCamera() async {
-    final pickedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    setState(() {
-      image = File(pickedImage!.path);
-    });
-  }
-
-  Future openGallery() async {
-    final imageGallery =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      image = File(imageGallery!.path);
-    });
-  }
+ 
+  String? imagePath;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,20 +61,53 @@ class _tambahkategoriState extends State<tambahkategori> {
                     Text("Kategori Image",
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold)),
-                    Container(
-                      margin: EdgeInsets.only(top: 10, bottom: 20),
-                      height: 200,
-                      child: Center(
-                        child: Icon(Icons.add, size: 50, color: Colors.blue),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                       child: GestureDetector(
+              onTap: () {
+                myAlert(context);
+                
+              },
+              child: CircleAvatar(
+                radius: 55,
+                backgroundColor: Color.fromARGB(255, 9, 168, 253),
+                child: imagePath != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.network(
+                          imagePath!,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(50)),
+                        width: 100,
+                        height: 100,
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.grey[800],
+                        ),
                       ),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade50,
-                        border: Border.all(width: 5, color: Colors.blue),
-                        borderRadius: BorderRadius.circular(10),
-                        
-                      ),
-                      
+              ),
+            ),
+                      // Container(
+                      //   margin: EdgeInsets.only(top: 10, bottom: 20),
+                      //   height: 200,
+                      //   child: Center(
+                      //     child: Icon(Icons.add, size: 50, color: Colors.blue),
+                      //   ),
+
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.blue.shade50,
+                      //     border: Border.all(width: 5, color: Colors.blue),
+                      //     borderRadius: BorderRadius.circular(10),
+                      //   ),
+                      // ),
                     ),
                     Text("Kategori Name",
                         style: TextStyle(
@@ -109,12 +126,12 @@ class _tambahkategoriState extends State<tambahkategori> {
                     ),
                     ElevatedButton(
                 child: Text('add data'),
-                onPressed: () {
+                onPressed: () async {
                   itungan( inputtName.text.toLowerCase());
-                  
+                  //print(imageUrl);
                   DatabaseServices.createOrUpdateProduct(
                       name: inputtName.text.toLowerCase(), 
-                      img: "https://images.tokopedia.net/img/cache/500-square/product-1/2018/10/30/32915789/32915789_a13371f1-32d0-4b8a-bd1e-b37b7726799c_2048_1828.jpg", 
+                      img: imagePath, 
                       search: search);
                   search.clear();
                 })
@@ -125,5 +142,60 @@ class _tambahkategoriState extends State<tambahkategori> {
         ));
   }
   
-   
+   void myAlert(BuildContext context) {
+    showDialog(
+        context: context, 
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            title: Text('Please choose media to select'),
+            content: Container(
+              height: MediaQuery.of(context).size.height / 6,
+              child: Column(
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () async {
+                      XFile? file = await getImage(ImageSource.gallery);
+                      File? imagefile = File(file!.path);
+                     imagePath = await DatabaseServices.uploadimage(imagefile);
+                      Navigator.pop(context);
+                      setState(() {
+                        
+                      });
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.image),
+                        Text('From Gallery'),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async{
+                     XFile? file = await getImage(ImageSource.camera);
+                     File? imagefile = File(file!.path);
+                     imagePath = await DatabaseServices.uploadimage(imagefile);
+                      Navigator.pop(context);
+                      setState(() {
+                        
+                      });
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.camera),
+                        Text('From Camera'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }, 
+       );
+  }
+}
+
+Future<XFile?> getImage(ImageSource source) async {
+  return await ImagePicker().pickImage(source: source);
 }

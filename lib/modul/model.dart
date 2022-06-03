@@ -2,14 +2,14 @@ class UserModel {
   String? email;
   String? wrool;
   String? uid;
-  String? nomor;
   String? nama;
+  String? nomor;
 
 // receiving data
-  UserModel({this.uid, this.email, this.wrool ,this.nomor, this.nama});
+  UserModel({ this.uid, this.email, this.wrool ,this.nomor, this.nama});
   factory UserModel.fromMap(map) {
     return UserModel(
-      uid: map['uid'],
+      uid: map['uid'] ,
       email: map['email'],
       wrool: map['wrool'],
       nomor: map['nomor'],

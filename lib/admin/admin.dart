@@ -20,7 +20,7 @@ class _AdminState extends State<Admin> {
   var emaill;
   UserModel loggedInUser = UserModel();
 
-  _AdminState({required this.id});
+  _AdminState({required this.id,});
   @override
   void initState() {
     super.initState();

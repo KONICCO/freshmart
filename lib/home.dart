@@ -23,14 +23,13 @@ class _HomePageState extends State<HomePage> {
 }
 
 class contro extends StatefulWidget {
-  contro();
 
   @override
   _controState createState() => _controState();
 }
 
 class _controState extends State<contro> {
-  _controState();
+  
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
   var rooll;

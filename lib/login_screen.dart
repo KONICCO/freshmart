@@ -152,9 +152,7 @@ class StartState extends State<LoginScreen> {
                 }
                 if (!regex.hasMatch(value)) {
                   return ("please enter valid password min. 6 character");
-                } else {
-                  return null;
-                }
+                } 
               },
               onSaved: (value) {
                 passC.text = value!;

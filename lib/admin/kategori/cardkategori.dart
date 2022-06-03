@@ -1,3 +1,4 @@
+import 'package:bisa/admin/produk/produk.dart';
 import 'package:bisa/modul/menu.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,8 @@ class cardkategoriadmin extends StatelessWidget {
                 Container(
                   child: InkWell(
                     onTap: () {
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (Context) => Buah(menu.img,menu.name)));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (Context) => produk(menu.img,menu.name)));
                     },
                     child: Container(
                       // margin: EdgeInsets.only(left: 2.5),
