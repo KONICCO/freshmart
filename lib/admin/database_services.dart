@@ -37,5 +37,5 @@ class addproduk{
   addproduk({
     required this.nama,
   });
-
+  get json => addproduk( nama: this.nama);
 }

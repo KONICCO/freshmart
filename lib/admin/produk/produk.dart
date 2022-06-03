@@ -39,7 +39,7 @@ class _produkState extends State<produk> {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (BuildContext ctx) {
-                    return tambahproduk(addproduk(nama: _name));
+                    return tambahproduk(addproduk(nama: _name).toString());
                   }));
                 }),
           ),

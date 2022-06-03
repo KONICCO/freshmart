@@ -10,16 +10,16 @@ class tambahproduk extends StatefulWidget {
   // tambahproduk(this.menu)
   String nama;
 
-  tambahproduk(this.nama,)
-
+  tambahproduk(this.nama, {Key? key})
+  : super(key: key);
   @override
-  State<tambahproduk> createState() => _tambahprodukState();
+  State<tambahproduk> createState() => _tambahprodukState(nama);
 }
 
 class _tambahprodukState extends State<tambahproduk> {
-  
+  String _nama;
   // final addproduk _menu;
-  // _tambahprodukState(this._menu)
+  _tambahprodukState(this._nama);
   @override
   Widget build(BuildContext context) {
     return Container();
