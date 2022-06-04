@@ -1,6 +1,6 @@
 import 'package:bisa/modul/menu.dart';
 import 'package:flutter/material.dart';
-import 'buah.dart';
+import '../produk/buah.dart';
 class cardkategori extends StatelessWidget {
   final Menu menu;
   

@@ -5,12 +5,7 @@ import 'package:bisa/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import 'signup_screen.dart';
-import 'buah.dart';
-import 'kategori.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 class StartState extends State<LoginScreen> {
   bool visible = false;
   final _formkey = GlobalKey<FormState>();
-  final emailC = new TextEditingController(text: "koko@gmail.com");
+  final emailC = new TextEditingController(text: "jojo@gmail.com");
   final passC = new TextEditingController(text: "123456");
   final _auth = FirebaseAuth.instance;
   @override
@@ -107,8 +102,6 @@ class StartState extends State<LoginScreen> {
                 if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                     .hasMatch(value)) {
                   return ("Please enter a valid email");
-                } else {
-                  return null;
                 }
               },
               onSaved: (value) {

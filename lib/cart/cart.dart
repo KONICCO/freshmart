@@ -1,4 +1,4 @@
-import 'package:bisa/detailcart.dart';
+import 'package:bisa/cart/detailcart.dart';
 import 'package:bisa/profile/components/body.dart';
 import 'package:flutter/material.dart';
 

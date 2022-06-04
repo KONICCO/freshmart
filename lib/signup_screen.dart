@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bisa/kategori.dart';
+import 'package:bisa/kategori/kategori.dart';
 import 'package:bisa/login_screen.dart';
 import 'package:bisa/modul/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,8 +10,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'main.dart';
-import 'buah.dart';
-import 'kategori.dart';
+import 'produk/buah.dart';
+import 'kategori/kategori.dart';
 class SignUpScreen extends StatelessWidget {
 
 

@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'cardbuah.dart';
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
-import 'signup_screen.dart';
-import 'kategori.dart';
+import '../login_screen.dart';
+import '../signup_screen.dart';
+import '../kategori/kategori.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';

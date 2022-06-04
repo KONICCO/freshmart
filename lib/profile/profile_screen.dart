@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
-import 'package:bisa/kategori.dart';
+import 'package:bisa/kategori/kategori.dart';
 
 class ProfileScreen extends StatelessWidget {
   static String routeName = "/profile";

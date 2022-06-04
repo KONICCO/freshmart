@@ -1,5 +1,5 @@
 import 'package:bisa/customer.dart';
-import 'package:bisa/kategori.dart';
+import 'package:bisa/kategori/kategori.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class _controState extends State<contro> {
   UserModel loggedInUser = UserModel();
   var rooll;
   var emaill;
-  var id;
+  var uid;
   @override
   void initState() {
     super.initState();
@@ -49,7 +49,8 @@ class _controState extends State<contro> {
       setState(() {
         emaill = loggedInUser.email.toString();
         rooll = loggedInUser.wrool.toString();
-        id = loggedInUser.uid.toString();
+        uid = loggedInUser.uid.toString();
+
       });
     });
   }
@@ -57,11 +58,11 @@ class _controState extends State<contro> {
   routing() {
     if (rooll == 'Customer') {
       return customer(
-        id: id,
+        id: uid,
       );
     } else {
       return Admin(
-        id: id,
+        id: uid,
       );
     }
   }

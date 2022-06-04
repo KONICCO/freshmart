@@ -1,4 +1,4 @@
-import 'package:bisa/kategori.dart';
+import 'package:bisa/kategori/kategori.dart';
 import 'package:bisa/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 

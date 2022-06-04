@@ -1,5 +1,5 @@
-import 'package:bisa/buah.dart';
-import 'package:bisa/cart.dart';
+import 'package:bisa/produk/buah.dart';
+import 'package:bisa/cart/cart.dart';
 import 'package:bisa/controllers/auth_controller.dart';
 import 'package:bisa/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'splash_screen.dart';
-import 'kategori.dart';
+import 'kategori/kategori.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'CheckOutPage.dart';

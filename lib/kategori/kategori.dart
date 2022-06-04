@@ -1,19 +1,19 @@
-import 'package:bisa/cardkategori.dart';
+import 'package:bisa/kategori/cardkategori.dart';
 import 'package:bisa/notifikasi.dart';
 import 'package:flutter/material.dart';
-import 'buah.dart';
-import 'cart.dart';
+import '../produk/buah.dart';
+import '../cart/cart.dart';
 import 'package:bisa/modul/menu.dart';
-import 'sayur.dart';
+import '../sayur.dart';
 import 'cardkategori.dart';
-import 'profile/profile_screen.dart';
-import 'main.dart';
-import 'chat/screens/chatscreen.dart';
+import '../profile/profile_screen.dart';
+import '../main.dart';
+import '../chat/screens/chatscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'login_screen.dart';
-import 'modul/model.dart';
+import '../login_screen.dart';
+import '../modul/model.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

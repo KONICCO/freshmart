@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
-import 'kategori.dart';
+import 'kategori/kategori.dart';
 
 // void main() {
 //   runApp(new MyApp());

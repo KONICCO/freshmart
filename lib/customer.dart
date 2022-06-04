@@ -1,7 +1,7 @@
 import 'package:bisa/modul/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'kategori.dart';
+import 'kategori/kategori.dart';
 import 'package:bisa/profile/profile_screen.dart';
 import 'package:bisa/notifikasi.dart';
 
@@ -10,21 +10,21 @@ class customer extends StatefulWidget {
   customer({required this.id});
 
   @override
-  State<customer> createState() => _customerState(id:id);
+  State<customer> createState() => _customerState(uid:id);
 }
 
 class _customerState extends State<customer> {
-  String id;
+  String uid;
   var rooll;
   var emaill;
   UserModel loggedInUser = UserModel();
-  _customerState({required this.id});
+  _customerState({required this.uid});
   @override
   void initState() {
     super.initState();
     FirebaseFirestore.instance
         .collection("users") //.where('uid', isEqualTo: user!.uid)
-        .doc(id)
+        .doc(uid)
         .get()
         .then((value) {
       this.loggedInUser = UserModel.fromMap(value.data());
@@ -33,7 +33,7 @@ class _customerState extends State<customer> {
       setState(() {
         emaill = loggedInUser.email.toString();
         rooll = loggedInUser.wrool.toString();
-        id = loggedInUser.uid.toString();
+        uid = loggedInUser.uid.toString();
       });
     });
   }
