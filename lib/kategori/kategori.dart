@@ -14,6 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../login_screen.dart';
 import '../modul/model.dart';
+import 'cartuser.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,6 +26,7 @@ class Kategori extends StatefulWidget {
 }
 class _KategoriState extends State<Kategori> {
   String name = '';
+  User? _auth = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,7 @@ class _KategoriState extends State<Kategori> {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (BuildContext ctx) {
-                    return cart();
+                    return cart(Usercart(userid: _auth!.uid));
                   }));
                 }),
           ),

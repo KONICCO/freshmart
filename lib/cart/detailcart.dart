@@ -1,27 +1,37 @@
+import 'package:bisa/cart/cart.dart';
+import 'package:bisa/cart/cartmodel.dart';
+import 'package:bisa/kategori/cartuser.dart';
 import 'package:flutter/material.dart';
+import 'databasecart.dart';
 
 class detailcart extends StatefulWidget {
-  detailcart({Key? key}) : super(key: key);
+  final Cart cart;
+  detailcart(this.cart);
 
   @override
-  State<detailcart> createState() => _detailcartState();
+  State<detailcart> createState() => _detailcartState(cart);
 }
 
 class _detailcartState extends State<detailcart> {
-      int i = 1;
-    void _minus(){
-    if(i > 1){
-    setState(() {
-      i--;
-     
-    });
+  final Cart _cart;
+  _detailcartState(this._cart);
+
+  late int jumlahbeli2;
+  void _minus() {
+    if (jumlahbeli2 > 1) {
+      setState(() async {
+        jumlahbeli2--;
+      });
     }
   }
-  void _plus(){
-    setState(() {
-      i++;
+
+  void _plus() {
+    setState(() async {
+     jumlahbeli2++;
+      
     });
   }
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,18 +59,20 @@ class _detailcartState extends State<detailcart> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image(
-                    image: NetworkImage(
-                        'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/MTA-5095900/kedaisayur_kedaisayur-buah-naga-buah-buahan--1-kg-_full07.jpg')),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image(image: NetworkImage('${_cart.img}')),
+                ),
                 Expanded(
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Buah naga', style: TextStyle(fontSize: 16.0)),
+                        Text('${_cart.name}', style: TextStyle(fontSize: 16.0)),
                         SizedBox(height: 3),
-                        Text('10.000', style: TextStyle(fontSize: 16.0)),
+                        Text('${_cart.price}',
+                            style: TextStyle(fontSize: 16.0)),
                         Row(
                           children: [
                             Container(
@@ -75,7 +87,20 @@ class _detailcartState extends State<detailcart> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   InkWell(
-                                    onTap: _minus,
+                                    onTap: () async{
+                                      
+                                      jumlahbeli2 = _cart.jumlahbeli;
+                                      _minus();
+                                      databasecart.updatecart(
+                                        _cart.userid,
+                                        _cart.id,
+                                        name: _cart.name,
+                                        img: _cart.img,
+                                        price: _cart.price,
+                                        jumlahbeli: jumlahbeli2,
+                                      );
+
+                                    },
                                     child: Icon(
                                       Icons.remove,
                                       color: Colors.green,
@@ -83,12 +108,23 @@ class _detailcartState extends State<detailcart> {
                                     ),
                                   ),
                                   Text(
-                                    '$i',
+                                    '${jumlahbeli2}',
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 14.0),
                                   ),
                                   InkWell(
-                                    onTap: _plus,
+                                    onTap: () async{
+                                        jumlahbeli2 = _cart.jumlahbeli;
+                                        _plus();
+                                        databasecart.updatecart(
+                                        _cart.userid,
+                                        _cart.id,
+                                        name: _cart.name,
+                                        img: _cart.img,
+                                        price: _cart.price,
+                                        jumlahbeli: jumlahbeli2,
+                                      );
+                                    },
                                     child: Icon(
                                       Icons.add,
                                       color: Colors.green,
@@ -102,7 +138,7 @@ class _detailcartState extends State<detailcart> {
                                 child: Container(
                               margin: EdgeInsets.only(top: 10.0),
                               padding: EdgeInsets.only(
-                                  left: 130, right: 10.0, top: 7.0, bottom: 5.0),
+                                  left: 70, right: 10.0, top: 7.0, bottom: 5.0),
                               child: InkWell(
                                 onTap: () {},
                                 child: Container(

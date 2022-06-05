@@ -9,6 +9,7 @@ import '../kategori/kategori.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'database.dart';
 class pagebuah1 extends StatefulWidget {
   int id;
   String img;
@@ -35,37 +36,38 @@ class _pagebuah1State extends State<pagebuah1> {
   String _deskripsi;
   _pagebuah1State(this._id, this._img, this._name, this._price, this._stock,
       this._deskripsi);
-  final databaseReference = FirebaseDatabase.instance.ref();
-  // final firebaseUser = FirebaseAuth.instance.currentUser;
-  void createData(){
-  databaseReference.child("flutterDevsTeam1").set({
-    'name': 'Deepak Nishad',
-    'description': 'Team Lead'
-  });
-  databaseReference.child("flutterDevsTeam2").set({
-    'name': 'Yashwant Kumar',
-    'description': 'Senior Software Engineer'
-  });
-  databaseReference.child("flutterDevsTeam3").set({
-    'name': 'Akshay',
-    'description': 'Software Engineer'
-  });
-  databaseReference.child("flutterDevsTeam4").set({
-    'name': 'Aditya',
-    'description': 'Software Engineer'
-  });
-  databaseReference.child("flutterDevsTeam5").set({
-    'name': 'Shaiq',
-    'description': 'Associate Software Engineer'
-  });
-  databaseReference.child("flutterDevsTeam6").set({
-    'name': 'Mohit',
-    'description': 'Associate Software Engineer'
-  });
-  databaseReference.child("flutterDevsTeam7").set({
-    'name': 'Naveen',
-    'description': 'Associate Software Engineer'
-  });}
+  // final databaseReference = FirebaseDatabase.instance.ref();
+  
+  // // final firebaseUser = FirebaseAuth.instance.currentUser;
+  // void createData(){
+  // databaseReference.child("flutterDevsTeam1").set({
+  //   'name': 'Deepak Nishad',
+  //   'description': 'Team Lead'
+  // });
+  // databaseReference.child("flutterDevsTeam2").set({
+  //   'name': 'Yashwant Kumar',
+  //   'description': 'Senior Software Engineer'
+  // });
+  // databaseReference.child("flutterDevsTeam3").set({
+  //   'name': 'Akshay',
+  //   'description': 'Software Engineer'
+  // });
+  // databaseReference.child("flutterDevsTeam4").set({
+  //   'name': 'Aditya',
+  //   'description': 'Software Engineer'
+  // });
+  // databaseReference.child("flutterDevsTeam5").set({
+  //   'name': 'Shaiq',
+  //   'description': 'Associate Software Engineer'
+  // });
+  // databaseReference.child("flutterDevsTeam6").set({
+  //   'name': 'Mohit',
+  //   'description': 'Associate Software Engineer'
+  // });
+  // databaseReference.child("flutterDevsTeam7").set({
+  //   'name': 'Naveen',
+  //   'description': 'Associate Software Engineer'
+  // });}
   // void createData() {
   //   databaseReference.child(firebaseUser!.uid).
   //   set({
@@ -90,7 +92,7 @@ class _pagebuah1State extends State<pagebuah1> {
       i++;
     });
   }
-
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -252,7 +254,17 @@ class _pagebuah1State extends State<pagebuah1> {
                       ),
                       // minimumSize: Size(50, 40), //////// HERE
                     ),
-                    onPressed: () {createData();},
+                    onPressed: () async{
+                      User? user = _auth.currentUser;
+                      database.createOrUpdatecart(
+                        user!.uid,
+                        _id,
+                        name: _name,
+                        img: _img,
+                        price: _price,
+                        jumlahbeli: i,
+                      );
+                    },
                     child: Text('+ Keranjang'),
                   ),
                 )

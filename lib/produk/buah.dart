@@ -41,10 +41,10 @@ class _BuahState extends State<Buah> {
             child: IconButton(
                 icon: Icon(Icons.shopping_cart),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return cart();
-                  }));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (BuildContext ctx) {
+                  //   return cart();
+                  // }));
                 }),
           ),
           Padding(
