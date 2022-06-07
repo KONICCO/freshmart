@@ -9,16 +9,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Pesanan extends StatefulWidget {
-  final pesananUser pesanan;
-  Pesanan(this.pesanan, {Key? key}) : super(key: key);
+  
 
   @override
-  State<Pesanan> createState() => _PesananState(pesanan);
+  State<Pesanan> createState() => _PesananState();
 }
 
 class _PesananState extends State<Pesanan> {
-  final pesananUser _pesanan;
-  _PesananState(this._pesanan);
+  User? _auth = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,7 @@ class _PesananState extends State<Pesanan> {
         body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("users")
-              .doc()
+              .doc(_auth!.uid)
               .collection("cart")
               .snapshots(),
           builder: (context, snapshot) {

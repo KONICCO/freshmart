@@ -47,7 +47,7 @@ class _customerState extends State<customer> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     Kategori(),
-    Pesanan(pesananUser(userid: _auth!.uid)),
+    Pesanan(),
     Notifikasi(),
     ProfileScreen()
   ];
