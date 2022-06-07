@@ -7,11 +7,9 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart';
 class tambahkategori extends StatefulWidget {
   tambahkategori({Key? key}) : super(key: key);
-
   @override
   State<tambahkategori> createState() => _tambahkategoriState();
 }
-
 class _tambahkategoriState extends State<tambahkategori> {
   final inputtName = new TextEditingController();
   final inputimg = new TextEditingController();
@@ -30,8 +28,6 @@ class _tambahkategoriState extends State<tambahkategori> {
           var result = name.substring(0, i);
           search.add(result);
           //name[0:i+1];
-          
-    
     }
   }
  
