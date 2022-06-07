@@ -1,5 +1,8 @@
 import 'package:bisa/modul/model.dart';
+import 'package:bisa/pesanan/pesanan.dart';
+import 'package:bisa/pesanan/pesananUser.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'kategori/kategori.dart';
 import 'package:bisa/profile/profile_screen.dart';
@@ -10,7 +13,7 @@ class customer extends StatefulWidget {
   customer({required this.id});
 
   @override
-  State<customer> createState() => _customerState(uid:id);
+  State<customer> createState() => _customerState(uid: id);
 }
 
 class _customerState extends State<customer> {
@@ -19,6 +22,7 @@ class _customerState extends State<customer> {
   var emaill;
   UserModel loggedInUser = UserModel();
   _customerState({required this.uid});
+  User? _auth = FirebaseAuth.instance.currentUser;
   @override
   void initState() {
     super.initState();
@@ -37,14 +41,15 @@ class _customerState extends State<customer> {
       });
     });
   }
+
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static  final List<Widget> _widgetOptions = <Widget>[
-  Kategori(),
-  Notifikasi(),
-  Notifikasi(),
-  ProfileScreen()
+  static final List<Widget> _widgetOptions = <Widget>[
+    Kategori(),
+    Pesanan(pesananUser(userid: _auth!.uid)),
+    Notifikasi(),
+    ProfileScreen()
   ];
 
   void _onItemTapped(int index) {
