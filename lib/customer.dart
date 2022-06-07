@@ -18,6 +18,7 @@ class _customerState extends State<customer> {
   var rooll;
   var emaill;
   UserModel loggedInUser = UserModel();
+ 
   _customerState({required this.uid});
   @override
   void initState() {
@@ -38,8 +39,10 @@ class _customerState extends State<customer> {
     });
   }
   int _selectedIndex = 0;
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  
   static  final List<Widget> _widgetOptions = <Widget>[
   Kategori(),
   Notifikasi(),
