@@ -1,10 +1,33 @@
+import 'package:bisa/kategori/kategori.dart';
+import 'package:bisa/pesanan/pesananUser.dart';
 import 'package:flutter/material.dart';
 
 class cardPesanan extends StatelessWidget {
-  const cardPesanan({Key? key}) : super(key: key);
+  final pesananUser pesanan;
+
+  cardPesanan(this.pesanan);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (Context) => Kategori()));
+        },
+        child: Container(
+          height: 70,
+          width: 336,
+          color: Colors.lightGreen,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text("${pesanan.namakantong}",
+                style: TextStyle(color: Colors.white, fontSize: 20)),
+          ),
+        ),
+      )),
+    );
   }
 }
