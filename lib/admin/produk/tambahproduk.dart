@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart';
+import 'package:bisa/admin/kategori/kategori.dart';
+import 'package:bisa/profile/profile_screen.dart';
 
 class tambahproduk extends StatefulWidget {
   final addproduk menu;
@@ -13,7 +15,7 @@ class tambahproduk extends StatefulWidget {
 
   // final addproduk menu;
   // tambahproduk(this.menu)
-  
+
   //String nama;
 
   //tambahproduk(this.nama, {Key? key}) : super(key: key);
@@ -25,7 +27,7 @@ class _tambahprodukState extends State<tambahproduk> {
   //String _nama;
   // final addproduk _menu;
   //_tambahprodukState(this._nama);
-  
+
   final inputid = new TextEditingController();
   final inputtName = new TextEditingController();
   final inputimg = new TextEditingController();
@@ -35,7 +37,7 @@ class _tambahprodukState extends State<tambahproduk> {
   List search = [];
 
   int _charHuruf = 0;
-    final addproduk _menu;
+  final addproduk _menu;
   _tambahprodukState(this._menu);
 
   _onChangedHuruf(String value) {
@@ -54,173 +56,211 @@ class _tambahprodukState extends State<tambahproduk> {
     }
   }
 
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static final List<Widget> _widgetOptions = <Widget>[
+    kategoriadmin(),
+    ProfileScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   String? imagePath;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text('Add Produk'),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
+      appBar: AppBar(
+          title: Text('Add Produk'),
+          backgroundColor: Colors.lightGreen,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back))),
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: SingleChildScrollView(
+          child: Container(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                "Produk Information",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text("Produk Image",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    myAlert(context);
+                  },
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundColor: Colors.lightGreen,
+                    child: imagePath != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.network(
+                              imagePath!,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(50)),
+                            width: 100,
+                            height: 100,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                  ),
+                ),
+                // Container(
+                //   margin: EdgeInsets.only(top: 10, bottom: 20),
+                //   height: 200,
+                //   child: Center(
+                //     child: Icon(Icons.add, size: 50, color: Colors.blue),
+                //   ),
+
+                //   width: double.infinity,
+                //   decoration: BoxDecoration(
+                //     color: Colors.blue.shade50,
+                //     border: Border.all(width: 5, color: Colors.blue),
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                // ),
+              ),
+              Text("Produk Name",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: TextField(
+                  controller: inputtName,
+                  onChanged: _onChangedHuruf,
+                  decoration: InputDecoration(
+                    counterText: '${_charHuruf}',
+                    border: OutlineInputBorder(),
+                    hintText: "Buah, Sayur",
+                  ),
+                ),
+              ),
+              Text("Produk Price",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: TextField(
+                  controller: inputprice,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "5",
+                  ),
+                ),
+              ),
+              Text("Produk Stock",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: TextField(
+                  controller: inputstock,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "5",
+                  ),
+                ),
+              ),
+              Text("Produk Deskripsi",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: TextField(
+                  controller: inputdeskripsi,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "lorem",
+                  ),
+                ),
+              ),
+              Text("Produk id",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: TextField(
+                  controller: inputid,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "5",
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                child: Text('add data'),
+                onPressed: () async {
+                  itungan(inputtName.text.toLowerCase());
+                  //print(imageUrl);
+
+                  DatabaseServices.createOrUpdateProduk(
+                    _menu.nama,
+                    id: int.parse(inputid.text),
+                    name: inputtName.text.toLowerCase(),
+                    img: imagePath,
+                    price: int.parse(inputprice.text),
+                    stock: int.parse(inputstock.text),
+                    deskripsi: inputdeskripsi.text.toLowerCase(),
+                    search: search,
+                  );
+                  search.clear();
                 },
-                icon: Icon(Icons.arrow_back))),
-        body: Padding(
-          padding: EdgeInsets.all(10),
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Produk Information",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text("Produk Image",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          myAlert(context);
-                        },
-                        child: CircleAvatar(
-                          radius: 55,
-                          backgroundColor: Color.fromARGB(255, 9, 168, 253),
-                          child: imagePath != null
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    imagePath!,
-                                    width: 100,
-                                    height: 100,
-                                    fit: BoxFit.fill,
-                                  ),
-                                )
-                              : Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      borderRadius: BorderRadius.circular(50)),
-                                  width: 100,
-                                  height: 100,
-                                  child: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.grey[800],
-                                  ),
-                                ),
-                        ),
-                      ),
-                      // Container(
-                      //   margin: EdgeInsets.only(top: 10, bottom: 20),
-                      //   height: 200,
-                      //   child: Center(
-                      //     child: Icon(Icons.add, size: 50, color: Colors.blue),
-                      //   ),
-
-                      //   width: double.infinity,
-                      //   decoration: BoxDecoration(
-                      //     color: Colors.blue.shade50,
-                      //     border: Border.all(width: 5, color: Colors.blue),
-                      //     borderRadius: BorderRadius.circular(10),
-                      //   ),
-                      // ),
-                    ),
-                    Text("Produk Name",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: TextField(
-                        controller: inputtName,
-                        onChanged: _onChangedHuruf,
-                        decoration: InputDecoration(
-                          counterText: '${_charHuruf}',
-                          border: OutlineInputBorder(),
-                          hintText: "Buah, Sayur",
-                        ),
-                      ),
-                    ),
-                    Text("Produk Price",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: TextField(
-                        controller: inputprice,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "5",
-                        ),
-                      ),
-                    ),
-                    Text("Produk Stock",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: TextField(
-                        controller: inputstock,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "5",
-                        ),
-                      ),
-                    ),
-                    Text("Produk Deskripsi",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: TextField(
-                        controller: inputdeskripsi,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "lorem",
-                        ),
-                      ),
-                    ),
-                    Text("Produk id",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                      child: TextField(
-                        controller: inputid,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "5",
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                        child: Text('add data'),
-                        onPressed: () async {
-                          itungan(inputtName.text.toLowerCase());
-                          //print(imageUrl);
-
-                          DatabaseServices.createOrUpdateProduk(
-                              _menu.nama,
-                              id: int.parse(inputid.text),
-                              name: inputtName.text.toLowerCase(),
-                              img: imagePath,
-                              price: int.parse(inputprice.text),
-                              stock: int.parse(inputstock.text),
-                              deskripsi:inputdeskripsi.text.toLowerCase(),
-                              search: search,
-                              
-                              );
-                          search.clear();
-                        })
-                  ]),
-            ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.lightGreen,
+                ),
+              )
+            ]),
           ),
-        ));
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Pesanan',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_sharp),
+            label: 'Notif',
+            backgroundColor: Colors.lightGreen,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+            backgroundColor: Colors.lightGreen,
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color.fromARGB(255, 255, 255, 255),
+        onTap: _onItemTapped,
+      ),
+    );
   }
 
   void myAlert(BuildContext context) {
@@ -239,7 +279,7 @@ class _tambahprodukState extends State<tambahproduk> {
                     XFile? file = await getImage(ImageSource.gallery);
                     File? imagefile = File(file!.path);
                     imagePath = await DatabaseServices.uploadimage(imagefile);
-                    
+
                     setState(() {});
                     Navigator.pop(context);
                   },
@@ -255,7 +295,7 @@ class _tambahprodukState extends State<tambahproduk> {
                     XFile? file = await getImage(ImageSource.camera);
                     File? imagefile = File(file!.path);
                     imagePath = await DatabaseServices.uploadimage(imagefile);
-                    
+
                     setState(() {});
                     Navigator.pop(context);
                   },
