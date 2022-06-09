@@ -3,7 +3,6 @@ import 'package:bisa/cart/cartmodel.dart';
 import 'package:bisa/kategori/cartuser.dart';
 import 'package:flutter/material.dart';
 import 'databasecart.dart';
-import 'package:auto_reload/auto_reload.dart';
 import 'package:intl/intl.dart';
 class detailcart extends StatefulWidget {
   final Cart cart;
