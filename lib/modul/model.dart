@@ -22,7 +22,8 @@ class UserModel {
       'email': email,
       'wrool': wrool,
       'nama': nama,
-      'nomor': nomor
+      'nomor': nomor,
+      'alamat': '',
     };
   }
 }

@@ -3,7 +3,8 @@ import 'package:bisa/cart/cartmodel.dart';
 import 'package:bisa/kategori/cartuser.dart';
 import 'package:flutter/material.dart';
 import 'databasecart.dart';
-
+import 'package:auto_reload/auto_reload.dart';
+import 'package:intl/intl.dart';
 class detailcart extends StatefulWidget {
   final Cart cart;
   detailcart(this.cart);
@@ -14,25 +15,31 @@ class detailcart extends StatefulWidget {
 
 class _detailcartState extends State<detailcart> {
   final Cart _cart;
+  
   _detailcartState(this._cart);
 
-  late int jumlahbeli2;
+  var i;
   void _minus() {
-    if (jumlahbeli2 > 1) {
-      setState(() async {
-        jumlahbeli2--;
-      });
+    if (i > 1) {
+      int i = _cart.jumlahbeli--;
     }
   }
 
   void _plus() {
     setState(() async {
-     jumlahbeli2++;
-      
+      int i = _cart.jumlahbeli++;
     });
   }
-  
+
+  // void tampil(String name) {
+  //   var text = name;
+  // }
+  int text = 1;
+  final inputtJumlah = new TextEditingController();
+  // int text = _cart.jumlahbeli;
+
   @override
+  
   Widget build(BuildContext context) {
     return SafeArea(
         child: Container(
@@ -71,7 +78,11 @@ class _detailcartState extends State<detailcart> {
                       children: [
                         Text('${_cart.name}', style: TextStyle(fontSize: 16.0)),
                         SizedBox(height: 3),
-                        Text('${_cart.price}',
+                        Text(NumberFormat.currency(
+                              locale: 'id', symbol: 'Rp ', decimalDigits: 0)
+                          .format(
+                        _cart.price,
+                      ),
                             style: TextStyle(fontSize: 16.0)),
                         Row(
                           children: [
@@ -86,44 +97,24 @@ class _detailcartState extends State<detailcart> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  InkWell(
-                                    onTap: () async{
-                                      
-                                      jumlahbeli2 = _cart.jumlahbeli;
-                                      _minus();
-                                      databasecart.updatecart(
-                                        _cart.userid,
-                                        _cart.id,
-                                        name: _cart.name,
-                                        img: _cart.img,
-                                        price: _cart.price,
-                                        jumlahbeli: jumlahbeli2,
-                                      );
+                                  // InkWell(
+                                  //   onTap: ()  async {
 
-                                    },
-                                    child: Icon(
-                                      Icons.remove,
-                                      color: Colors.green,
-                                      size: 22,
-                                    ),
-                                  ),
+                                  //   },
+                                  //   child: Icon(
+                                  //     Icons.remove,
+                                  //     color: Colors.green,
+                                  //     size: 22,
+                                  //   ),
+                                  // ),
                                   Text(
-                                    '${jumlahbeli2}',
+                                   '${_cart.jumlahbeli}',
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 14.0),
                                   ),
                                   InkWell(
-                                    onTap: () async{
-                                        jumlahbeli2 = _cart.jumlahbeli;
-                                        _plus();
-                                        databasecart.updatecart(
-                                        _cart.userid,
-                                        _cart.id,
-                                        name: _cart.name,
-                                        img: _cart.img,
-                                        price: _cart.price,
-                                        jumlahbeli: jumlahbeli2,
-                                      );
+                                    onTap: () {
+                                     myAlert(context);
                                     },
                                     child: Icon(
                                       Icons.add,
@@ -172,4 +163,48 @@ class _detailcartState extends State<detailcart> {
       ),
     ));
   }
+
+  void myAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          title: Text('Masukan Jumlah Beli'),
+          content: Container(
+            height: MediaQuery.of(context).size.height / 6,
+            child: Column(
+              children: <Widget>[
+                TextField(
+                  controller: inputtJumlah,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    databasecart.updatecart(
+                      _cart.userid,
+                      _cart.id,
+                      name: _cart.name,
+                      img: _cart.img,
+                      price: _cart.price,
+                      jumlahbeli: int.parse(inputtJumlah.text),
+                    );
+                    setState(() {});
+                    Navigator.pop(context);
+                    super.initState();
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      
+                      Text('Ubah jumlah'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+  
 }
