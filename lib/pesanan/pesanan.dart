@@ -34,7 +34,6 @@ class _PesananState extends State<Pesanan> {
             .collection("users")
             .doc(_auth!.uid)
             .collection("pesanan")
-            .orderBy('id')
             .snapshots(),
         builder: (context, snapshot) {
           return (snapshot.connectionState == ConnectionState.waiting)

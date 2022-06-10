@@ -2,8 +2,8 @@ class UserModel {
   String? email;
   String? wrool;
   String? uid;
-  String? nama;
-  String? nomor;
+  var nama;
+  var nomor;
 
 // receiving data
   UserModel({ this.uid, this.email, this.wrool });
@@ -21,8 +21,8 @@ class UserModel {
       'uid': uid,
       'email': email,
       'wrool': wrool,
-      'nama': nama,
-      'nomor': nomor,
+      'nama': nama.toString(),
+      'nomor': nomor.toString(),
       'alamat': '',
     };
   }
