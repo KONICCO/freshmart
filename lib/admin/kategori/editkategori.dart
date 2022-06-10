@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bisa/admin/database_services.dart';
+import 'package:bisa/produk/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,20 +9,28 @@ import 'package:path/path.dart';
 import 'package:bisa/admin/kategori/kategori.dart';
 import 'package:bisa/profile/profile_screen.dart';
 
-class tambahkategori extends StatefulWidget {
-  tambahkategori({Key? key}) : super(key: key);
+class editkategori extends StatefulWidget {
+  String img;
+  String name;
+  int id;
+  editkategori(this.id,this.img, this.name, {Key? key}) : super(key: key);
 
   @override
-  State<tambahkategori> createState() => _tambahkategoriState();
+  State<editkategori> createState() => _editkategoriState(id,img,name);
 }
 
-class _tambahkategoriState extends State<tambahkategori> {
+class _editkategoriState extends State<editkategori> {
+  String _img;
+  String _name;
+  int _id;
+  
   final inputtName = new TextEditingController();
   final inputimg = new TextEditingController();
-  final inputtid = new TextEditingController();
   List search = [];
 
   int _charHuruf = 0;
+  _editkategoriState(this._id,this._img, this._name);
+  
 
   _onChangedHuruf(String value) {
     setState(() {
@@ -58,8 +67,15 @@ class _tambahkategoriState extends State<tambahkategori> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Add Kategori'),
+          title: Text('Edit Kategori'),
           backgroundColor: Colors.lightGreen,
+          actions: [
+              IconButton(
+              onPressed: () {
+                DatabaseServices.hapuskategori(_id);
+              },
+              icon: Icon(Icons.delete))
+          ],
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -96,15 +112,14 @@ class _tambahkategoriState extends State<tambahkategori> {
                               fit: BoxFit.fill,
                             ),
                           )
-                        : Container(
-                            decoration: BoxDecoration(
-                                color: Colors.grey[200],
-                                borderRadius: BorderRadius.circular(50)),
-                            width: 100,
-                            height: 100,
-                            child: Icon(
-                              Icons.camera_alt,
-                              color: Colors.grey[800],
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            
+                            child: Image.network(
+                              "${_img}",
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.fill,
                             ),
                           ),
                   ),
@@ -124,20 +139,7 @@ class _tambahkategoriState extends State<tambahkategori> {
                 //   ),
                 // ),
               ),
-              Text("Kategori ID",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
-                  controller: inputtid,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "4 digit ID",
-                  ),
-                ),
-              ),
-              Text("Kategori Name",
+              Text("Kategori Name: ${_name}",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -147,17 +149,17 @@ class _tambahkategoriState extends State<tambahkategori> {
                   decoration: InputDecoration(
                     counterText: '${_charHuruf}',
                     border: OutlineInputBorder(),
-                    hintText: "Buah, Sayur",
+                    hintText: "masukan nama untuk mengubah",
                   ),
                 ),
               ),
               ElevatedButton(
-                child: Text('add data'),
+                child: Text('Edit data'),
                 onPressed: () async {
                   itungan(inputtName.text.toLowerCase());
                   //print(imageUrl);
-                  DatabaseServices.createOrUpdateKategori(
-                      int.parse(inputtid.text),
+                  DatabaseServices.editKategori(
+                      _id,
                       name: inputtName.text.toLowerCase(),
                       img: imagePath,
                       search: search);

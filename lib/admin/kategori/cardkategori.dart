@@ -1,3 +1,4 @@
+import 'package:bisa/admin/kategori/editkategori.dart';
 import 'package:bisa/admin/produk/produk.dart';
 import 'package:bisa/modul/menu.dart';
 import 'package:flutter/material.dart';
@@ -50,16 +51,49 @@ class cardkategoriadmin extends StatelessWidget {
                                   bottomLeft:  Radius.circular(10.0),
                                   bottomRight:  Radius.circular(10.0),
                                 )),
-                            child: Center(
-                              child: Text(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                 Text(
                                 menu.name,
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
                                 ),
                               ),
+                              InkWell(
+                                        onTap: () {
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext
+                                                          ctx) {
+                                            return editkategori(menu.id,menu.img, menu.name);
+                                          }));
+                                        },
+                                        //color: Colors.white,
+                                        child: Container(
+                                          color: Colors.white,
+                                          margin: EdgeInsets
+                                              .symmetric(vertical: 8),
+                                          padding: EdgeInsets
+                                                  .symmetric(
+                                              horizontal: 20,
+                                              vertical: 3),
+                                          child: Text(
+                                            'ubah',
+                                            style: TextStyle(
+                                                color:
+                                                    Colors.redAccent),
+                                          ),
+                                        ),
+                                      ),
+                              ],
+                              
+                              
                             ),
                           ),
+                          
                         ],
                       ),
                     ),

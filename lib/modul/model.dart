@@ -21,8 +21,8 @@ class UserModel {
       'uid': uid,
       'email': email,
       'wrool': wrool,
-      'nama': nama.toString(),
-      'nomor': nomor.toString(),
+      'nama': nama,
+      'nomor': nomor,
       'alamat': '',
     };
   }

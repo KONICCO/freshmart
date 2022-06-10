@@ -100,7 +100,7 @@ class _KategoriState extends State<Kategori> {
                     itemBuilder: (context, index) {
                       DocumentSnapshot data = snapshot.data!.docs[index];
                       return cardkategori(
-                          Menu(img: data["img"], name: data["name"]));
+                          Menu(id: data['id'],img: data["img"], name: data["name"]));
                     });
           }),
       

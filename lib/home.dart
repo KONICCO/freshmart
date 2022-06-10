@@ -32,9 +32,9 @@ class _controState extends State<contro> {
   
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
-  var rooll;
-  var emaill;
-  var uid;
+  String? rooll;
+  String? emaill;
+  String? uid;
   @override
   void initState() {
     super.initState();
@@ -58,11 +58,11 @@ class _controState extends State<contro> {
   routing() {
     if (rooll == 'Customer') {
       return customer(
-        id: uid,
+        id: uid.toString(),
       );
     } else {
       return Admin(
-        id: uid,
+        id: uid.toString(),
       );
     }
   }
