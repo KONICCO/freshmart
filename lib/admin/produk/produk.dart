@@ -114,13 +114,15 @@ class _produkState extends State<produk> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot data = snapshot.data!.docs[index];
-                      return cardproduk(Menuproduk(
+                      return cardproduk(
+                        Menuproduk(
                           id: data['id'],
                           img: data['img'],
                           name: data['name'],
                           price: data['price'],
                           stock: data['stock'],
-                          deskripsi: data['deskripsi']));
+                          deskripsi: data['deskripsi'],
+                          kolek: _name));
                     });
           }),
       bottomNavigationBar: BottomNavigationBar(

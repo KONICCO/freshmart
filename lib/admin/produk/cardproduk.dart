@@ -1,3 +1,4 @@
+import 'package:bisa/admin/produk/editproduk.dart';
 import 'package:flutter/material.dart';
 import 'menuproduk.dart';
 import 'package:intl/intl.dart';
@@ -75,13 +76,13 @@ class cardproduk extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          // Navigator.push(context,
-                                          //     MaterialPageRoute(
-                                          //         builder:
-                                          //             (BuildContext
-                                          //                 ctx) {
-                                          //   return pageproduk1(menu.id,menu.img,menu.name,menu.price,menu.stock,menu.deskripsi);
-                                          // }));
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext
+                                                          ctx) {
+                                            return editproduk(menu.id,menu.img,menu.name,menu.price,menu.stock,menu.deskripsi,menu.kolek);
+                                          }));
                                         },
                                         //color: Colors.white,
                                         child: Container(
@@ -93,7 +94,7 @@ class cardproduk extends StatelessWidget {
                                               horizontal: 25,
                                               vertical: 3),
                                           child: Text(
-                                            'Beli',
+                                            'edit',
                                             style: TextStyle(
                                                 color:
                                                     Colors.redAccent),
