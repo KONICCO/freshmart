@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class profilUser extends StatefulWidget {
@@ -8,8 +9,10 @@ class profilUser extends StatefulWidget {
 }
 
 class _profilUserState extends State<profilUser> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    User user = _auth.currentUser!;
     return Scaffold(
       appBar: AppBar(
         title: Text("Profil"),
@@ -78,7 +81,7 @@ class _profilUserState extends State<profilUser> {
                         color: Color(0xFFBCE191),
                         child: Center(
                           child: Text(
-                            "Budi@gmail.com",
+                            user.email ?? "kosong",
                             style: TextStyle(fontSize: 18),
                           ),
                         ),

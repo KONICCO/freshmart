@@ -1,4 +1,5 @@
 import 'package:bisa/kategori/kategori.dart';
+import 'package:bisa/pesanan/detailPesanan.dart';
 import 'package:bisa/pesanan/pesananUser.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,9 @@ class cardPesanan extends StatelessWidget {
           child: InkWell(
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (Context) => Kategori()));
+              context,
+              MaterialPageRoute(
+                  builder: (Context) => detailPesanan(pesanan.namakantong)));
         },
         child: Container(
           height: 70,
