@@ -1,5 +1,8 @@
+import 'package:bisa/ChatDetail.dart';
+import 'package:bisa/chat_page.dart';
 import 'package:bisa/kategori/cardkategori.dart';
 import 'package:bisa/notifikasi.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../produk/buah.dart';
 import '../cart/cart.dart';
@@ -15,6 +18,7 @@ import 'package:firebase_core/firebase_core.dart';
 import '../login_screen.dart';
 import '../modul/model.dart';
 import 'cartuser.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -24,9 +28,32 @@ class Kategori extends StatefulWidget {
   @override
   _KategoriState createState() => _KategoriState();
 }
+
 class _KategoriState extends State<Kategori> {
-  String name = '';
+  List profil = [];
   User? _auth = FirebaseAuth.instance.currentUser;
+  CollectionReference _collectionRef =
+      FirebaseFirestore.instance.collection('users');
+  Future<void> getData() async {
+    DocumentReference<Object?> querySnapshot =
+        await _collectionRef.doc("${_auth!.uid}");
+    final allData = querySnapshot.get().then(
+      (value) {
+        setState(() {
+          profil.add(value.data());
+          print(profil[0]['uid']);
+        });
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  String name = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,12 +72,17 @@ class _KategoriState extends State<Kategori> {
           ),
           Padding(
               padding: EdgeInsets.all(10.0),
-              child: IconButton(onPressed: () {
-                Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return chatscreen();
-                  }));
-              }, icon: Icon(Icons.message))),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext ctx) {
+                      return ChatDetail(
+                        friendUid: 'pS5WlGn5wAVBErWhPH8hnD5bwr32',
+                        friendName: 'koko',
+                      );
+                    }));
+                  },
+                  icon: Icon(Icons.message))),
         ],
         title: Container(
           width: 300,
@@ -99,11 +131,12 @@ class _KategoriState extends State<Kategori> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot data = snapshot.data!.docs[index];
-                      return cardkategori(
-                          Menu(id: data['id'],img: data["img"], name: data["name"]));
+                      return cardkategori(Menu(
+                          id: data['id'],
+                          img: data["img"],
+                          name: data["name"]));
                     });
           }),
-      
     );
   }
 }
