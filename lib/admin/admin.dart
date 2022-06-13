@@ -1,3 +1,4 @@
+import 'package:bisa/admin/pesanan/pesanan.dart';
 import 'package:bisa/modul/model.dart';
 import 'package:bisa/profile/profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,6 +47,7 @@ class _AdminState extends State<Admin> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     kategoriadmin(),
+    Pesanan(),
     ProfileScreen(),
   ];
 

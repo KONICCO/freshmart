@@ -19,12 +19,7 @@ class _detailPesananState extends State<detailPesanan> {
 
   // final _auth = FirebaseAuth.instance;
   Future<void> _onPressed() async {
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(auth!.uid)
-        .collection(_namakantong)
-        .get()
-        .then(
+    FirebaseFirestore.instance.collection(_namakantong).get().then(
       (querySnapshot) {
         querySnapshot.docs.forEach((result) {
           setState(() {

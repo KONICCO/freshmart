@@ -29,10 +29,27 @@ class databasecart{
 
     }
     );
+  CollectionReference tambahkantong1 = FirebaseFirestore.instance.collection("kantong");
+  await  tambahkantong1.doc().set({
+  'namalengkap': name,
+  'namakantong': kantong,
+  'alamat': alamat,
+
+    }
+    );
   }
   static Future<void> kantongdetail( String userid, String namakantong, int produkid,{ String? name, String? img,int? price,int? jumlahbeli}) async {
     CollectionReference detailkantong = FirebaseFirestore.instance.collection("users").doc(userid).collection(namakantong);
     await  detailkantong.doc("${produkid}").set({
+  'id': produkid,
+  'name': name,
+  'img': img,
+  'price': price,
+  'jumlahbeli': jumlahbeli,
+    }
+    );
+    CollectionReference detailkantong1 = FirebaseFirestore.instance.collection(namakantong);
+    await  detailkantong1.doc("${produkid}").set({
   'id': produkid,
   'name': name,
   'img': img,
