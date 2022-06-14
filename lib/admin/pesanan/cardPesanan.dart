@@ -1,5 +1,4 @@
-import 'package:bisa/kategori/kategori.dart';
-import 'package:bisa/pesanan/detailPesanan.dart';
+import 'package:bisa/admin/pesanan/detailPesanan.dart';
 import 'package:bisa/pesanan/pesananUser.dart';
 import 'package:flutter/material.dart';
 
@@ -21,14 +20,27 @@ class cardPesanan extends StatelessWidget {
                   builder: (Context) => detailPesanan(pesanan.namakantong)));
         },
         child: Container(
-          height: 70,
+          height: 90,
           width: 336,
           color: Colors.lightGreen,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text("${pesanan.namakantong}",
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: 
+              [
+                Text("Kantong: ${pesanan.namakantong}",
                 style: TextStyle(color: Colors.white, fontSize: 20)),
+                Text("Alamat: ${pesanan.alamat}",
+                style: TextStyle(color: Colors.white, fontSize: 15)),
+                Text("Pemilik: ${pesanan.namalengkap}",
+                style: TextStyle(color: Colors.white, fontSize: 15)),
+              ]
+            )
+            
+            
           ),
+          
         ),
       )),
     );

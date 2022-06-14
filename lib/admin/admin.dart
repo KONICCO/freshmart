@@ -1,10 +1,10 @@
+import 'package:bisa/admin/pesanan/pesanan.dart';
 import 'package:bisa/modul/model.dart';
 import 'package:bisa/profile/profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bisa/admin/kategori/kategori.dart';
-
 
 class Admin extends StatefulWidget {
   String id;
@@ -20,7 +20,9 @@ class _AdminState extends State<Admin> {
   var emaill;
   UserModel loggedInUser = UserModel();
 
-  _AdminState({required this.id,});
+  _AdminState({
+    required this.id,
+  });
   @override
   void initState() {
     super.initState();
@@ -39,12 +41,14 @@ class _AdminState extends State<Admin> {
       });
     });
   }
+
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static  final List<Widget> _widgetOptions = <Widget>[
-  kategoriadmin(),
-  ProfileScreen(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    kategoriadmin(),
+    Pesanan(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -52,6 +56,7 @@ class _AdminState extends State<Admin> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -32,7 +32,7 @@ class DatabaseServices{
   }
   static Future<void> createOrUpdateProduk( String kolek, {int? id, String? name, String? img,int? price,int? stock, String? deskripsi, search}) async {
     CollectionReference produk = FirebaseFirestore.instance.collection(kolek);
-    await  produk.doc().set({
+    await  produk.doc("${id}").set({
       'id': id,
       'name': name,
       'img': img,
@@ -41,6 +41,22 @@ class DatabaseServices{
       'deskripsi': deskripsi,
       'search': search,
     });
+  }
+  static Future<void> UpdateProduk( String kolek, int id,{ String? name, String? img,int? price,int? stock, String? deskripsi, search}) async {
+    CollectionReference produk = FirebaseFirestore.instance.collection("${kolek}");
+    await  produk.doc("${id}").set({
+      'id': id,
+      'name': name,
+      'img': img,
+      'price': price,
+      'stock': stock,
+      'deskripsi': deskripsi,
+      'search': search,
+    });
+  }
+  static Future<void> hapusproduk( String kolek,int produkid,) async {
+    CollectionReference produkhapus = FirebaseFirestore.instance.collection("${kolek}");
+    await  produkhapus.doc("$produkid").delete();
   }
   // DatabaseServices.createOrUpdateProduct(
   //                 name: "sayur", 

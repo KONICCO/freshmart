@@ -276,7 +276,7 @@ class _cartState extends State<cart> {
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          title: Text('Masukan nama kantong belanjaan kamu'),
+          title: Text('Masukan nama kantong belanjaan kamu dan untuk biaya ongkir Rp 5.000'),
           content: Container(
             height: MediaQuery.of(context).size.height / 6,
             child: Column(
@@ -302,6 +302,8 @@ class _cartState extends State<cart> {
                     ],
                   ),
                 ),
+                Text('Maaf tidak ada refund setelah membeli',style: TextStyle(
+                              color: Colors.red),)
               ],
             ),
           ),
