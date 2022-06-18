@@ -1,6 +1,6 @@
 import 'dart:io';
-
-import 'package:bisa/admin/database_services.dart';
+import 'package:bisa/databaseservices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -45,6 +45,7 @@ class _UbahProfilState extends State<UbahProfil> {
   late TextEditingController emailTextEditingController;
   late TextEditingController nomorTextEditingController;
   late TextEditingController alamatTextEditingController;
+  TextEditingController passTextEditingController = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -53,9 +54,30 @@ class _UbahProfilState extends State<UbahProfil> {
     emailTextEditingController = new TextEditingController(text: _email);
     nomorTextEditingController = new TextEditingController(text: _nomor);
     alamatTextEditingController = new TextEditingController(text: _alamat);
+    
   }
+  User? firebase = FirebaseAuth.instance.currentUser;
+  Future<UserCredential> reauthenticate(currentPassword){
+  AuthCredential cred = EmailAuthProvider.credential(
+      email: _email, password: currentPassword,);
+  return firebase!.reauthenticateWithCredential(cred);
+  }
+   //FirebaseAuth firebase = FirebaseAuth.instance;
+  void changeEmail (currentPassword, newEmail) {
+  reauthenticate(currentPassword).then((value) => {
+      firebase!.updateEmail(newEmail).then((value) => {
+        print('Update email')
+      }).catchError((Error)=>{print('Update email')})
+  }).catchError((error) => {print('Update email')});
+  // .then(() => {
+  //   var user = FirebaseAuth.instance.currentUser;
 
-   FirebaseAuth firebase = FirebaseAuth.instance;
+  //   user.updateEmail(newEmail).then(() => {
+  //     console.log("Email updated!");
+  //   }).catch((error) => { console.log(error); });
+  // })
+  // .catch((error) => { console.log(error); });
+}
   String? imagePath;
   @override
   Widget build(BuildContext context) {
@@ -137,11 +159,7 @@ class _UbahProfilState extends State<UbahProfil> {
                           onChanged: (value) {},
                         ),
                       ),
-                      Container(
-                        child: TextFormField(
-                          decoration: InputDecoration(labelText: "Password"),
-                        ),
-                      ),
+                      
                       Container(
                         child: TextFormField(
                           controller: nomorTextEditingController,
@@ -197,7 +215,8 @@ class _UbahProfilState extends State<UbahProfil> {
                           },
                           onChanged: (value) {},
                         ),
-                      )
+                      ),
+                      
                     ]),
                   ),
                 ),
@@ -224,17 +243,19 @@ class _UbahProfilState extends State<UbahProfil> {
     );
   }
 
-  void signUp(String uid, String nama, String email, String nomor,
+  void signUp(String uid, String nama, String email, String password, String nomor,
       String alamat, String wrool) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
-      //_auth!.updateEmail(email);
-      firebase.signInWithEmailAndPassword(
-        email: email,
-        password: 'password',)
-      .then((userCredential) {
-        userCredential.user!.updateEmail(email);
-    });
+      changeEmail (password, email);
+      DatabaseServices.Updateprofil(
+        uid,
+      name: nama,
+      img: imagePath ?? _img,
+      wrool: wrool,
+      email: email,
+      alamat: alamat,
+      );
     }
   }
 
@@ -295,9 +316,24 @@ class _UbahProfilState extends State<UbahProfil> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           title: Center(child: Text('Ingin merubah profile anda?')),
           content: Container(
-            height: MediaQuery.of(context).size.height / 10,
+            height: MediaQuery.of(context).size.height / 6,
             child: Column(
               children: <Widget>[
+                Container(
+                        child: TextFormField(
+                          controller: passTextEditingController,
+                          decoration: InputDecoration(labelText: "Password"),
+                          validator: (value) {
+                RegExp regex = new RegExp(r'^.{6,}$');
+                if (value!.isEmpty) {
+                  return "Password cannot be empty";
+                }
+                if (!regex.hasMatch(value)) {
+                  return ("please enter valid password min. 6 character");
+                } 
+              },
+                        ),
+                      ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -320,6 +356,7 @@ class _UbahProfilState extends State<UbahProfil> {
                             _uid,
                             nameTextEditingController.text,
                             emailTextEditingController.text,
+                            passTextEditingController.text,
                             nomorTextEditingController.text,
                             alamatTextEditingController.text,
                             _wrool,
