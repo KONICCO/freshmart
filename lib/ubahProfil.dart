@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:bisa/databaseservices.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bisa/login_screen.dart';
+import 'package:bisa/profile/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,8 +68,8 @@ class _UbahProfilState extends State<UbahProfil> {
   reauthenticate(currentPassword).then((value) => {
       firebase!.updateEmail(newEmail).then((value) => {
         print('Update email')
-      }).catchError((Error)=>{print('Update email')})
-  }).catchError((error) => {print('Update email')});
+      }).catchError((Error)=>{print(Error)})
+  }).catchError((error) => {print(error)});
   // .then(() => {
   //   var user = FirebaseAuth.instance.currentUser;
 
@@ -254,9 +255,28 @@ class _UbahProfilState extends State<UbahProfil> {
       img: imagePath ?? _img,
       wrool: wrool,
       email: email,
+      nomor: nomor,
       alamat: alamat,
       );
+      Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(),
+      ),
+    );
+      // .then((value) => {
+      //   logout()
+      // });
+    
     }
+  }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    );
   }
 
   void myAlert(BuildContext context) {

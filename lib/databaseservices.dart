@@ -9,7 +9,7 @@ import 'package:path/path.dart';
 class DatabaseServices{
 
 
-    static Future<void> Updateprofil( String id,{ String? name, String? img, String? wrool,String? email, String? alamat}) async {
+    static Future<void> Updateprofil( String id,{ String? name, String? img, String? wrool,String? email, String? nomor ,String? alamat}) async {
     CollectionReference profil = FirebaseFirestore.instance.collection("users");
     await  profil.doc("${id}").set({
       'uid': id,
@@ -17,6 +17,7 @@ class DatabaseServices{
       'img': img,
       'wrool': wrool,
       'email': email,
+      'nomor': nomor,
       'alamat': alamat,
     });
   }
