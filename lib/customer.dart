@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'kategori/kategori.dart';
 import 'package:bisa/profile/profile_screen.dart';
-import 'package:bisa/notifikasi.dart';
+import 'package:bisa/notofikasi/notifikasi.dart';
 
 class customer extends StatefulWidget {
   String id;
