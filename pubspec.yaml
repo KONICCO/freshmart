@@ -54,6 +54,8 @@ dependencies:
   path: ^1.8.0
   auto_reload: ^1.1.0
   flutter_firebase_chat_core: ^1.5.4
+  firebase_messaging: ^11.4.2
+  flutter_local_notifications: ^9.6.1
 
 dev_dependencies:
   flutter_test:

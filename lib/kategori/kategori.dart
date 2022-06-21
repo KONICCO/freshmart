@@ -1,5 +1,5 @@
 import 'package:bisa/kategori/cardkategori.dart';
-import 'package:bisa/notifikasi.dart';
+import 'package:bisa/notofikasi/notifikasi.dart';
 import 'package:flutter/material.dart';
 import '../produk/buah.dart';
 import '../cart/cart.dart';
@@ -15,6 +15,7 @@ import 'package:firebase_core/firebase_core.dart';
 import '../login_screen.dart';
 import '../modul/model.dart';
 import 'cartuser.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -24,6 +25,7 @@ class Kategori extends StatefulWidget {
   @override
   _KategoriState createState() => _KategoriState();
 }
+
 class _KategoriState extends State<Kategori> {
   String name = '';
   User? _auth = FirebaseAuth.instance.currentUser;
@@ -45,12 +47,14 @@ class _KategoriState extends State<Kategori> {
           ),
           Padding(
               padding: EdgeInsets.all(10.0),
-              child: IconButton(onPressed: () {
-                Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext ctx) {
-                    return chatscreen();
-                  }));
-              }, icon: Icon(Icons.message))),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext ctx) {
+                      return chatscreen();
+                    }));
+                  },
+                  icon: Icon(Icons.message))),
         ],
         title: Container(
           width: 300,
@@ -99,11 +103,12 @@ class _KategoriState extends State<Kategori> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot data = snapshot.data!.docs[index];
-                      return cardkategori(
-                          Menu(id: data['id'],img: data["img"], name: data["name"]));
+                      return cardkategori(Menu(
+                          id: data['id'],
+                          img: data["img"],
+                          name: data["name"]));
                     });
           }),
-      
     );
   }
 }
