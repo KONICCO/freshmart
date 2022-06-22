@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'database.dart';
+
 class pagebuah1 extends StatefulWidget {
   int id;
   String img;
@@ -37,7 +38,7 @@ class _pagebuah1State extends State<pagebuah1> {
   _pagebuah1State(this._id, this._img, this._name, this._price, this._stock,
       this._deskripsi);
   // final databaseReference = FirebaseDatabase.instance.ref();
-  
+
   // // final firebaseUser = FirebaseAuth.instance.currentUser;
   // void createData(){
   // databaseReference.child("flutterDevsTeam1").set({
@@ -92,13 +93,13 @@ class _pagebuah1State extends State<pagebuah1> {
       i++;
     });
   }
+
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
@@ -254,7 +255,7 @@ class _pagebuah1State extends State<pagebuah1> {
                       ),
                       // minimumSize: Size(50, 40), //////// HERE
                     ),
-                    onPressed: () async{
+                    onPressed: () async {
                       User? user = _auth.currentUser;
                       database.createOrUpdatecart(
                         user!.uid,

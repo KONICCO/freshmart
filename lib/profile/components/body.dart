@@ -28,17 +28,6 @@ class Body extends StatelessWidget {
             },
           ),
           ProfileMenu(
-            text: "Notifications",
-            icon: "images/icon/Bell.svg",
-            press: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => Notifikasi()),
-                (Route<dynamic> route) => false,
-              );
-            },
-          ),
-          ProfileMenu(
             text: "Settings",
             icon: "images/icon/Settings.svg",
             press: () {},

@@ -300,7 +300,6 @@ class SignUpScreen extends StatelessWidget {
                   nomorTextEditingController.text,
                   passwordTextEditingController.text,
                   rool);
-              Navigator.pop(context);
             },
             child: Container(
               alignment: Alignment.center,

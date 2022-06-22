@@ -141,24 +141,6 @@ class _profilUserState extends State<profilUser> {
                             ),
                           ),
                         ),
-                        Text("Password"),
-                        Center(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                            child: Container(
-                              width: 277,
-                              height: 40,
-                              color: Color(0xFFBCE191),
-                              child: Center(
-                                child: Text(
-                                  "budiganteng44",
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 30.0),
                           child: SizedBox(
@@ -170,7 +152,15 @@ class _profilUserState extends State<profilUser> {
                                   onPressed: () {
                                     Navigator.push(context, MaterialPageRoute(
                                         builder: (BuildContext ctx) {
-                                      return UbahProfil(uid: profil[index]['uid'], email: profil[index]['email'], nama: profil[index]['nama'], img: profil[index]['img'],alamat:profil[index]['alamat'],nomor: profil[index]['nomor'],wrool: profil[index]['wrool'], );
+                                      return UbahProfil(
+                                        uid: profil[index]['uid'],
+                                        email: profil[index]['email'],
+                                        nama: profil[index]['nama'],
+                                        img: profil[index]['img'],
+                                        alamat: profil[index]['alamat'],
+                                        nomor: profil[index]['nomor'],
+                                        wrool: profil[index]['wrool'],
+                                      );
                                     }));
                                   },
                                   child: Text("Edit Profil"))),

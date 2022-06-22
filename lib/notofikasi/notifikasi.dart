@@ -24,22 +24,6 @@ class _NotifikasiState extends State<Notifikasi> {
   CollectionReference _notifRef =
       FirebaseFirestore.instance.collection('users');
 
-  Future<void> getData() async {
-    // Get docs from collection reference
-    DocumentReference<Object?> querySnapshot =
-        await _collectionRef.doc("${_auth!.uid}");
-    // Get data from docs and convert map to List
-    final coba = querySnapshot.snapshots().toList();
-    //pesanan.add(coba);
-    final allData = querySnapshot.get().then(
-      (value) {
-        setState(() {
-          profil.add(value.data());
-        });
-      },
-    );
-  }
-
   Future<void> _onPressed() async {
     FirebaseFirestore.instance
         .collection("users")
@@ -63,7 +47,6 @@ class _NotifikasiState extends State<Notifikasi> {
   void initState() {
     super.initState();
     //initialize();
-    getData();
     //getproduk();
     _onPressed();
     //print(snap);
