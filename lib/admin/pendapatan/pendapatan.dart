@@ -1,7 +1,10 @@
+import 'package:bisa/admin/pendapatan/cardpendapatan.dart';
+import 'package:bisa/admin/pendapatan/modulPendapatan.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
+
 class pendapatan extends StatefulWidget {
   pendapatan({Key? key}) : super(key: key);
 
@@ -10,24 +13,21 @@ class pendapatan extends StatefulWidget {
 }
 
 class _pendapatanState extends State<pendapatan> {
-
-   DateTime selectedDate = DateTime(2022,1,1);
+  DateTime selectedDate = DateTime(2022, 1, 1);
   List _dropdownMenuItems = ['One', 'Two', 'Free', 'Four'];
- 
- @override
- void initState() {
-   super.initState();
-  
-  
- }
-_selectMonth(BuildContext context) async {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  _selectMonth(BuildContext context) async {
     showMonthPicker(
       context: context,
       firstDate: DateTime(DateTime.now().year - 1, 5),
       lastDate: DateTime(DateTime.now().year + 1, 9),
       initialDate: selectedDate,
       locale: Locale("id"),
-      
     ).then((date) {
       if (date != null) {
         setState(() {
@@ -37,6 +37,7 @@ _selectMonth(BuildContext context) async {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,30 +56,32 @@ _selectMonth(BuildContext context) async {
       //  ],
       //     ),
       //     backgroundColor: Colors.lightGreen,
-          
+
       //     ),
       appBar: AppBar(
         title: Row(
           children: [
             Text("Pendapatan"),
-            SizedBox(width: 30,),
-            ElevatedButton(onPressed: () => {
-                 _selectMonth(context),
-                print(selectedDate.day + selectedDate.month + selectedDate.year )
+            SizedBox(
+              width: 30,
+            ),
+            ElevatedButton(
+              onPressed: () => {
+                _selectMonth(context),
+                print(selectedDate.day + selectedDate.month + selectedDate.year)
               },
-              
-              child: Text('Pilih Tanggal'),)
+              child: Text('Pilih Tanggal'),
+            )
           ],
         ),
         backgroundColor: Colors.lightGreen,
       ),
-      body: 
-      StreamBuilder<QuerySnapshot>(
+      body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-                  .collection("seacrhItems")
-                  .where("search".toLowerCase(),
-                      isEqualTo: "${selectedDate}".split(' ')[0])
-                  .snapshots(),
+              .collection("kantong")
+              .where("search".toLowerCase(),
+                  isEqualTo: "${selectedDate}".split(' ')[0])
+              .snapshots(),
           builder: (context, snapshot) {
             return (snapshot.connectionState == ConnectionState.waiting)
                 ? Center(child: CircularProgressIndicator())
@@ -88,8 +91,10 @@ _selectMonth(BuildContext context) async {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot data = snapshot.data!.docs[index];
-                      // return cardkategoriadmin(
-                      //     Menu(id: data['id'],img: data["img"], name: data["name"]));
+                      return cardPendapatan(modulPendapatan(
+                          namakantong: data['namakantong'],
+                          namalengkap: data["namalengkap"],
+                          alamat: data["alamat"]));
                     });
           }),
       // Center(
@@ -104,7 +109,7 @@ _selectMonth(BuildContext context) async {
       //            _selectMonth(context),
       //           print(selectedDate.day + selectedDate.month + selectedDate.year )
       //         },
-              
+
       //         child: Text('Pilih Tanggal'),
       //       ),
       //     ],
