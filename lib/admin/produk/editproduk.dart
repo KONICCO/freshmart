@@ -45,7 +45,7 @@ class _editprodukState extends State<editproduk> {
 
   int _charHuruf = 0;
   _editprodukState(this._id, this._img,this._name,this._price,this._stock,this._deskripsi,this._kolek);
-
+  final _formkey = GlobalKey<FormState>();
   _onChangedHuruf(String value) {
     setState(() {
       _charHuruf = value.length;
@@ -98,7 +98,8 @@ class _editprodukState extends State<editproduk> {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
-          child: Container(
+          child: Form(
+            key: _formkey,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
@@ -143,72 +144,104 @@ class _editprodukState extends State<editproduk> {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
+                child: TextFormField(
                   controller: inputtName,
-                  onChanged: _onChangedHuruf,
+                  //onChanged: _onChangedHuruf,
                   decoration: InputDecoration(
                     counterText: '${_charHuruf}',
                     border: OutlineInputBorder(),
                     hintText: "${_name}",
                   ),
+                  validator: (value) {
+                    if (value!.length == 0) {
+                      return "Nama tidak bisa kosong";
+                    }
+                    if (!RegExp("^[a-zA-Z].[a-z]").hasMatch(value)) {
+                      return ("Masukan nama dengan benar");
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {
+                    _onChangedHuruf(inputtName.text);
+                  },
                 ),
               ),
               Text("Produk Price",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
+                child: TextFormField(
                   controller: inputprice,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "${_price}",
                   ),
+                  validator: (value) {
+                    if (value!.length == 0) {
+                      return "Harap isi harga";
+                    }
+                    if (!RegExp("^[0-9]").hasMatch(value)) {
+                      return ("Harap isi harga dengan benar");
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {},
                 ),
               ),
               Text("Produk Stock",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
+                child: TextFormField(
                   controller: inputstock,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "${_stock}",
                   ),
+                  validator: (value) {
+                    if (value!.length == 0) {
+                      return "Harap isi stock";
+                    }
+                    if (!RegExp("^[0-9]").hasMatch(value)) {
+                      return ("Harap isi stock dengan benar");
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {},
                 ),
               ),
               Text("Produk Deskripsi",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
+                child: TextFormField(
                   controller: inputdeskripsi,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "${_deskripsi}",
                   ),
+                  validator: (value) {
+                    if (value!.length == 0) {
+                      return "tidak bisa kosong";
+                    }
+                    else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {
+                  },
                 ),
               ),
               ElevatedButton(
                 child: Text('edit data'),
                 onPressed: () async {
-                  itungan(inputtName.text.toLowerCase());
-                  //print(imageUrl);
-
-                  DatabaseServices.UpdateProduk(
-                    _kolek,
-                    _id,
-                    name: inputtName.text.toLowerCase(),
-                    img: imagePath,
-                    price: int.parse(inputprice.text),
-                    stock: int.parse(inputstock.text),
-                    deskripsi: inputdeskripsi.text.toLowerCase(),
-                    search: search,
-                  );
-                  search.clear();
+                  editData();
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreen,
@@ -218,34 +251,55 @@ class _editprodukState extends State<editproduk> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.lightGreen,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            label: 'Pesanan',
-            backgroundColor: Colors.lightGreen,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_sharp),
-            label: 'Notif',
-            backgroundColor: Colors.lightGreen,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-            backgroundColor: Colors.lightGreen,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 255, 255, 255),
-        onTap: _onItemTapped,
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home',
+      //       backgroundColor: Colors.lightGreen,
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.assignment),
+      //       label: 'Pesanan',
+      //       backgroundColor: Colors.lightGreen,
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.notifications_sharp),
+      //       label: 'Notif',
+      //       backgroundColor: Colors.lightGreen,
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.person),
+      //       label: 'Profil',
+      //       backgroundColor: Colors.lightGreen,
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   selectedItemColor: Color.fromARGB(255, 255, 255, 255),
+      //   onTap: _onItemTapped,
+      // ),
     );
+  }
+
+  void editData() {
+    CircularProgressIndicator();
+    if (_formkey.currentState!.validate()){
+      itungan(inputtName.text.toLowerCase());
+    //print(imageUrl);
+    
+    DatabaseServices.UpdateProduk(
+      _kolek,
+      _id,
+      name: inputtName.text.toLowerCase(),
+      img: imagePath ?? "https://media.istockphoto.com/vectors/vegetables-on-shopping-cart-trolley-grocery-logo-icon-design-vector-vector-id1205419959?k=20&m=1205419959&s=612x612&w=0&h=F4gyp5wuFkCaZr00OQS8KPCSE1_4pHmFiOIM2TQlOPI=",
+      price: int.parse(inputprice.text),
+      stock: int.parse(inputstock.text),
+      deskripsi: inputdeskripsi.text.toLowerCase(),
+      search: search,
+    );
+    search.clear();
+    }
+    
   }
 
   void myAlert(BuildContext context) {

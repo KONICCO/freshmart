@@ -153,14 +153,7 @@ class _keranjangdetailState extends State<keranjangdetail> {
                           ),
                         ],
                       ),
-                      MaterialButton(
-                        height: 30,
-                        minWidth: 30,
-                        color: Colors.lightGreen,
-                        textColor: Colors.white,
-                        child: Text('Ubah'),
-                        onPressed: (() {}),
-                      ),
+                      
                     ],
                   ),
                 ),
