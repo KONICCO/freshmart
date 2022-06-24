@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bisa/admin/database_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart';
@@ -16,6 +17,7 @@ class tambahkategori extends StatefulWidget {
 }
 
 class _tambahkategoriState extends State<tambahkategori> {
+  final _formkey = GlobalKey<FormState>();
   final inputtName = new TextEditingController();
   final inputimg = new TextEditingController();
   final inputtid = new TextEditingController();
@@ -52,6 +54,30 @@ class _tambahkategoriState extends State<tambahkategori> {
       _selectedIndex = index;
     });
   }
+  List idkategori = [];
+  Future<void> _onPressed() async {
+    FirebaseFirestore.instance.collection("seacrhItems").get().then(
+      (querySnapshot) {
+        querySnapshot.docs.forEach((result) {
+          setState(() {
+            idkategori.add(result.data());
+            print(idkategori[0]['id']);
+          });
+
+          // print(result.data());
+        });
+      },
+    );
+  }
+
+
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _onPressed();
+  }
 
   String? imagePath;
   @override
@@ -68,7 +94,8 @@ class _tambahkategoriState extends State<tambahkategori> {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
-          child: Container(
+          child: Form(
+            key: _formkey,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
@@ -109,59 +136,66 @@ class _tambahkategoriState extends State<tambahkategori> {
                           ),
                   ),
                 ),
-                // Container(
-                //   margin: EdgeInsets.only(top: 10, bottom: 20),
-                //   height: 200,
-                //   child: Center(
-                //     child: Icon(Icons.add, size: 50, color: Colors.blue),
-                //   ),
-
-                //   width: double.infinity,
-                //   decoration: BoxDecoration(
-                //     color: Colors.blue.shade50,
-                //     border: Border.all(width: 5, color: Colors.blue),
-                //     borderRadius: BorderRadius.circular(10),
-                //   ),
-                // ),
               ),
               Text("Kategori ID",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
+                child: TextFormField(
                   controller: inputtid,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "4 digit ID",
                   ),
+                  validator: (value) {
+                      // if (int.parse(inputtid.text) == idkategori[i]['id']){
+                      //           return "Terdapat id yang sama";
+                                
+                      // }
+                    
+                    if(value!.isEmpty) {
+                      return "Harap isi ID kategori";
+                      }
+                     if (!RegExp("^[0-9]").hasMatch(value)) {
+                        return ("Masukan ID kategori");
+                      } else {
+                        return null;
+                      }
+                  },
+                  onChanged: (value) {},
                 ),
               ),
               Text("Kategori Name",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
+                child: TextFormField(
                   controller: inputtName,
-                  onChanged: _onChangedHuruf,
+                  onChanged: (value) {
+                    _onChangedHuruf(inputtName.text);
+                  },
                   decoration: InputDecoration(
                     counterText: '${_charHuruf}',
                     border: OutlineInputBorder(),
                     hintText: "Buah, Sayur",
                   ),
+                  validator: (value) {
+                    if (value!.length == 0) {
+                      return "Nama tidak bisa kosong";
+                    }
+                    if (!RegExp("^[a-zA-Z].[a-z]").hasMatch(value)) {
+                      return ("Masukan nama dengan benar");
+                    } else {
+                      return null;
+                    }
+                  },
                 ),
               ),
               ElevatedButton(
                 child: Text('add data'),
                 onPressed: () async {
-                  itungan(inputtName.text.toLowerCase());
-                  //print(imageUrl);
-                  DatabaseServices.createOrUpdateKategori(
-                      int.parse(inputtid.text),
-                      name: inputtName.text.toLowerCase(),
-                      img: imagePath,
-                      search: search);
-                  search.clear();
+                  addData();
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreen,
@@ -199,6 +233,20 @@ class _tambahkategoriState extends State<tambahkategori> {
       //   onTap: _onItemTapped,
       // ),
     );
+  }
+
+  void addData() async {
+    CircularProgressIndicator();
+    if (_formkey.currentState!.validate()) {
+         itungan(inputtName.text.toLowerCase());
+      DatabaseServices.createOrUpdateKategori(
+          int.parse(inputtid.text),
+          name: inputtName.text.toLowerCase(),
+          img: imagePath ?? "https://media.istockphoto.com/vectors/vegetables-on-shopping-cart-trolley-grocery-logo-icon-design-vector-vector-id1205419959?k=20&m=1205419959&s=612x612&w=0&h=F4gyp5wuFkCaZr00OQS8KPCSE1_4pHmFiOIM2TQlOPI=",
+          search: search);
+      search.clear();
+      
+    }
   }
 
   void myAlert(BuildContext context) {

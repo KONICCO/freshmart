@@ -31,7 +31,7 @@ class _editkategoriState extends State<editkategori> {
   int _charHuruf = 0;
   _editkategoriState(this._id,this._img, this._name);
   
-
+  final _formkey = GlobalKey<FormState>();
   _onChangedHuruf(String value) {
     setState(() {
       _charHuruf = value.length;
@@ -73,6 +73,7 @@ class _editkategoriState extends State<editkategori> {
               IconButton(
               onPressed: () {
                 DatabaseServices.hapuskategori(_id);
+                Navigator.pop(context);
               },
               icon: Icon(Icons.delete))
           ],
@@ -84,7 +85,8 @@ class _editkategoriState extends State<editkategori> {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
-          child: Container(
+          child: Form(
+            key: _formkey,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
@@ -124,46 +126,38 @@ class _editkategoriState extends State<editkategori> {
                           ),
                   ),
                 ),
-                // Container(
-                //   margin: EdgeInsets.only(top: 10, bottom: 20),
-                //   height: 200,
-                //   child: Center(
-                //     child: Icon(Icons.add, size: 50, color: Colors.blue),
-                //   ),
-
-                //   width: double.infinity,
-                //   decoration: BoxDecoration(
-                //     color: Colors.blue.shade50,
-                //     border: Border.all(width: 5, color: Colors.blue),
-                //     borderRadius: BorderRadius.circular(10),
-                //   ),
-                // ),
               ),
               Text("Kategori Name: ${_name}",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TextField(
+                child: TextFormField(
                   controller: inputtName,
-                  onChanged: _onChangedHuruf,
+                  //onChanged: _onChangedHuruf,
                   decoration: InputDecoration(
                     counterText: '${_charHuruf}',
                     border: OutlineInputBorder(),
                     hintText: "masukan nama untuk mengubah",
                   ),
+                  validator: (value) {
+                    if (value!.length == 0) {
+                      return "Nama tidak bisa kosong";
+                    }
+                    if (!RegExp("^[a-zA-Z].[a-z]").hasMatch(value)) {
+                      return ("Masukan nama dengan benar");
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {
+                    _onChangedHuruf(inputtName.text);
+                  },
                 ),
               ),
               ElevatedButton(
                 child: Text('Edit data'),
                 onPressed: () async {
-                  itungan(inputtName.text.toLowerCase());
-                  //print(imageUrl);
-                  DatabaseServices.editKategori(
-                      _id,
-                      name: inputtName.text.toLowerCase(),
-                      img: imagePath,
-                      search: search);
-                  search.clear();
+                  addData();
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreen,
@@ -201,6 +195,21 @@ class _editkategoriState extends State<editkategori> {
       //   onTap: _onItemTapped,
       // ),
     );
+  }
+
+  void addData() async {
+    CircularProgressIndicator();
+    if (_formkey.currentState!.validate()) {
+      itungan(inputtName.text.toLowerCase());
+    //print(imageUrl);
+    DatabaseServices.editKategori(
+        _id,
+        name: inputtName.text.toLowerCase(),
+        img: imagePath ?? "https://media.istockphoto.com/vectors/vegetables-on-shopping-cart-trolley-grocery-logo-icon-design-vector-vector-id1205419959?k=20&m=1205419959&s=612x612&w=0&h=F4gyp5wuFkCaZr00OQS8KPCSE1_4pHmFiOIM2TQlOPI=",
+        search: search);
+    search.clear();
+    }
+    
   }
 
   void myAlert(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:bisa/controllers/auth_controller.dart';
 import 'package:bisa/login_screen.dart';
 import 'package:bisa/map.dart';
-import 'package:bisa/notifikasi.dart';
+import 'package:bisa/notofikasi/notifikasi.dart';
 import 'package:bisa/profilUser.dart';
 import 'package:bisa/ubahProfil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,17 +25,6 @@ class Body extends StatelessWidget {
                   MaterialPageRoute(builder: (BuildContext ctx) {
                 return profilUser();
               }))
-            },
-          ),
-          ProfileMenu(
-            text: "Notifications",
-            icon: "images/icon/Bell.svg",
-            press: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => Notifikasi()),
-                (Route<dynamic> route) => false,
-              );
             },
           ),
           ProfileMenu(

@@ -1,8 +1,8 @@
 import 'package:bisa/ChatDetail.dart';
 import 'package:bisa/chat_page.dart';
 import 'package:bisa/kategori/cardkategori.dart';
-import 'package:bisa/notifikasi.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:bisa/notofikasi/notifikasi.dart';
 import 'package:flutter/material.dart';
 import '../produk/buah.dart';
 import '../cart/cart.dart';
@@ -75,7 +75,7 @@ class _KategoriState extends State<Kategori> {
               child: IconButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext ctx) {
+                        MaterialPageRoute(builder: (BuildContext ctx) 
                       return ChatDetail(
                         friendUid: 'pS5WlGn5wAVBErWhPH8hnD5bwr32',
                         friendName: 'koko',
