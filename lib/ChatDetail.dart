@@ -112,13 +112,13 @@ class _ChatDetailState extends State<ChatDetail> {
           return CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
               middle: Text(_friendName),
-              trailing: CupertinoButton(
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  print("iniadalah doc messages${chatDocId}");
-                },
-                child: Icon(CupertinoIcons.phone),
-              ),
+              // trailing: CupertinoButton(
+              //   padding: EdgeInsets.zero,
+              //   onPressed: () {
+              //     print("iniadalah doc messages${chatDocId}");
+              //   },
+              //   child: Icon(CupertinoIcons.phone),
+              // ),
               previousPageTitle: "Back",
             ),
             child: SafeArea(
@@ -162,6 +162,7 @@ class _ChatDetailState extends State<ChatDetail> {
                                         Text(data['msg'],
                                             style: TextStyle(
                                               fontSize: 15,
+                                              
                                                 color: isSender(
                                                         data['uid'].toString())
                                                     ? Colors.white

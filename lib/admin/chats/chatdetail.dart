@@ -111,11 +111,11 @@ class _ChatDetailState extends State<ChatDetail> {
           return CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
               middle: Text(_friendName),
-              trailing: CupertinoButton(
-                padding: EdgeInsets.zero,
-                onPressed: () {},
-                child: Icon(CupertinoIcons.phone),
-              ),
+              // trailing: CupertinoButton(
+              //   padding: EdgeInsets.zero,
+              //   onPressed: () {},
+              //   child: Icon(CupertinoIcons.phone),
+              // ),
               previousPageTitle: "Back",
             ),
             child: SafeArea(
