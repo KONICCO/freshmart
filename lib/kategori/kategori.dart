@@ -75,12 +75,13 @@ class _KategoriState extends State<Kategori> {
               child: IconButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext ctx) 
-                      return ChatDetail(
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return ChatDetail(
                         friendUid: 'pS5WlGn5wAVBErWhPH8hnD5bwr32',
                         friendName: 'koko',
-                      );
-                    }));
+                        );
+                  }));
+                   
                   },
                   icon: Icon(Icons.message))),
         ],
