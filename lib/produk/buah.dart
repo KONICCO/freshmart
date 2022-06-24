@@ -1,8 +1,11 @@
+import 'package:bisa/ChatDetail.dart';
+import 'package:bisa/kategori/cartuser.dart';
 import 'package:bisa/produk/cardbuah.dart';
 import 'package:bisa/cart/cart.dart';
 import 'package:bisa/chat/screens/chatscreen.dart';
 import 'package:bisa/notofikasi/notifikasi.dart';
 import 'package:bisa/profile/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../signup_screen.dart';
@@ -29,7 +32,7 @@ class _BuahState extends State<Buah> {
 
   _BuahState(this._img, this._name);
   String name = '';
-
+  User? _auth = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +43,10 @@ class _BuahState extends State<Buah> {
             child: IconButton(
                 icon: Icon(Icons.shopping_cart),
                 onPressed: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (BuildContext ctx) {
-                  //   return cart();
-                  // }));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return cart(Usercart(userid: _auth!.uid));
+                  }));
                 }),
           ),
           Padding(
@@ -51,9 +54,13 @@ class _BuahState extends State<Buah> {
               child: IconButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext ctx) {
-                      return chatscreen();
-                    }));
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return ChatDetail(
+                        friendUid: 'pS5WlGn5wAVBErWhPH8hnD5bwr32',
+                        friendName: 'koko',
+                        );
+                  }));
+                   
                   },
                   icon: Icon(Icons.message))),
         ],

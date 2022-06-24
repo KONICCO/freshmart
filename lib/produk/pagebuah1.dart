@@ -256,6 +256,7 @@ class _pagebuah1State extends State<pagebuah1> {
                       // minimumSize: Size(50, 40), //////// HERE
                     ),
                     onPressed: () async {
+                      
                       User? user = _auth.currentUser;
                       database.createOrUpdatecart(
                         user!.uid,
@@ -265,6 +266,18 @@ class _pagebuah1State extends State<pagebuah1> {
                         price: _price,
                         jumlahbeli: i,
                       );
+                      Navigator.pop(context);
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     content: const Text('Barang sudah ditambahkan'),
+                      //     action: SnackBarAction(
+                      //       label: 'Tutup',
+                      //       onPressed: () {
+                      //         // Code to execute.
+                      //       },
+                      //     ),
+                      //   ),
+                      // );
                     },
                     child: Text('+ Keranjang'),
                   ),

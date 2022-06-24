@@ -28,6 +28,7 @@ class _cartState extends State<cart> {
   final inputKantong = new TextEditingController();
   User? _auth = FirebaseAuth.instance.currentUser;
   //String myId = '';
+  final _formkey = GlobalKey<FormState>();
   CollectionReference _collectionRef =
       FirebaseFirestore.instance.collection('users');
   CollectionReference _produkRef =
@@ -295,44 +296,72 @@ class _cartState extends State<cart> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           title: Text(
               'Masukan nama kantong belanjaan kamu dan untuk biaya ongkir Rp 5.000'),
-          content: Container(
-            height: MediaQuery.of(context).size.height / 5,
-            child: Column(
-              children: <Widget>[
-                TextField(
-                  controller: inputKantong,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    databasecart.kantongcart(
-                      profil[0]['uid'],
-                      name: profil[0]['nama'],
-                      kantong: inputKantong.text.trim(),
-                      alamat: profil[0]['alamat'],
-                      tanggal: tanggal[0],
-                      total: '${setTotal(pesanan)}',
-                    );
-                    setDetail();
-                    setNotif();
-                    // tanggal.clear();
-                    setState(() {});
-                    Navigator.pop(context);
-                  },
-                  child: Row(
-                    children: <Widget>[
-                      Text('Beli sekarang'),
-                    ],
+          content: Form(
+            key: _formkey,
+            child: Container(
+              height: MediaQuery.of(context).size.height / 4.5,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    controller: inputKantong,
+                    onChanged: (value) {},
+                    decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Nama kantong belanjaan kamu",
                   ),
-                ),
-                Text(
-                  'Maaf tidak ada refund setelah membeli',
-                  style: TextStyle(color: Colors.red),
-                )
-              ],
+                    validator: (value) {
+                      if (value!.length == 0) {
+                        return "Nama tidak bisa kosong";
+                      }
+                      if (!RegExp("^[a-zA-Z].[a-z]").hasMatch(value)) {
+                        return ("Masukan nama dengan benar");
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  
+                  ElevatedButton(
+                    onPressed: () async {
+                      cekout(context);
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Text('Beli sekarang'),
+                      ],
+                    ),
+                  ),
+                  
+                  Text(
+                    'Maaf tidak ada refund setelah membeli',
+                    style: TextStyle(color: Colors.red),
+                  )
+                ],
+              ),
             ),
           ),
         );
       },
     );
+  }
+
+  void cekout(BuildContext context) {
+    CircularProgressIndicator();
+    if (_formkey.currentState!.validate()) {
+      databasecart.kantongcart(
+      profil[0]['uid'],
+      name: profil[0]['nama'],
+      kantong: inputKantong.text.trim(),
+      alamat: profil[0]['alamat'],
+      tanggal: tanggal[0],
+      total: '${setTotal(pesanan)}',
+    );
+    setDetail();
+    setNotif();
+    // tanggal.clear();
+    setState(() {});
+    Navigator.pop(context);
+    }
+     
   }
 }
