@@ -1,4 +1,7 @@
+import 'package:bisa/ChatDetail.dart';
+import 'package:bisa/chat_page.dart';
 import 'package:bisa/kategori/cardkategori.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:bisa/notofikasi/notifikasi.dart';
 import 'package:flutter/material.dart';
 import '../produk/buah.dart';
@@ -27,8 +30,30 @@ class Kategori extends StatefulWidget {
 }
 
 class _KategoriState extends State<Kategori> {
-  String name = '';
+  List profil = [];
   User? _auth = FirebaseAuth.instance.currentUser;
+  CollectionReference _collectionRef =
+      FirebaseFirestore.instance.collection('users');
+  Future<void> getData() async {
+    DocumentReference<Object?> querySnapshot =
+        await _collectionRef.doc("${_auth!.uid}");
+    final allData = querySnapshot.get().then(
+      (value) {
+        setState(() {
+          profil.add(value.data());
+          print(profil[0]['uid']);
+        });
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  String name = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,8 +75,11 @@ class _KategoriState extends State<Kategori> {
               child: IconButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext ctx) {
-                      return chatscreen();
+                        MaterialPageRoute(builder: (BuildContext ctx) 
+                      return ChatDetail(
+                        friendUid: 'pS5WlGn5wAVBErWhPH8hnD5bwr32',
+                        friendName: 'koko',
+                      );
                     }));
                   },
                   icon: Icon(Icons.message))),
