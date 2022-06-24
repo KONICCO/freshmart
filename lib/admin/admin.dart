@@ -1,3 +1,4 @@
+import 'package:bisa/admin/pendapatan/pendapatan.dart';
 import 'package:bisa/admin/pesanan/pesanan.dart';
 import 'package:bisa/modul/model.dart';
 import 'package:bisa/profile/profile_screen.dart';
@@ -48,6 +49,7 @@ class _AdminState extends State<Admin> {
   static final List<Widget> _widgetOptions = <Widget>[
     kategoriadmin(),
     Pesanan(),
+    pendapatan(),
     ProfileScreen(),
   ];
 

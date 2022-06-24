@@ -32,7 +32,11 @@ class databasecart {
   }
 
   static Future<void> kantongcart(String userid,
-      {String? name, String? kantong, String? alamat}) async {
+      {String? name,
+      String? kantong,
+      String? alamat,
+      String? tanggal,
+      String? total}) async {
     CollectionReference tambahkantong = FirebaseFirestore.instance
         .collection("users")
         .doc(userid)
@@ -41,6 +45,8 @@ class databasecart {
       'namalengkap': name,
       'namakantong': kantong,
       'alamat': alamat,
+      'tanggal': tanggal,
+      'total': total,
     });
     CollectionReference tambahkantong1 =
         FirebaseFirestore.instance.collection("kantong");
@@ -48,6 +54,8 @@ class databasecart {
       'namalengkap': name,
       'namakantong': kantong,
       'alamat': alamat,
+      'tanggal': tanggal,
+      'total': total,
     });
   }
 
