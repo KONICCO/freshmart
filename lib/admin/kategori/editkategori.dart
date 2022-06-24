@@ -205,7 +205,7 @@ class _editkategoriState extends State<editkategori> {
     DatabaseServices.editKategori(
         _id,
         name: inputtName.text.toLowerCase(),
-        img: imagePath ?? "https://media.istockphoto.com/vectors/vegetables-on-shopping-cart-trolley-grocery-logo-icon-design-vector-vector-id1205419959?k=20&m=1205419959&s=612x612&w=0&h=F4gyp5wuFkCaZr00OQS8KPCSE1_4pHmFiOIM2TQlOPI=",
+        img: imagePath ?? _img,
         search: search);
     search.clear();
     }
