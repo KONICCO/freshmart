@@ -257,7 +257,7 @@ class _tambahprodukState extends State<tambahproduk> {
               ElevatedButton(
                 child: Text('add data'),
                 onPressed: () async {
-                  addData();
+                  addData(context);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreen,
@@ -297,7 +297,7 @@ class _tambahprodukState extends State<tambahproduk> {
     );
   }
 
-  void addData() {
+  void addData(BuildContext context) {
     
     //print(imageUrl);
     CircularProgressIndicator();
@@ -314,6 +314,7 @@ class _tambahprodukState extends State<tambahproduk> {
       search: search,
     );
     search.clear();
+    Navigator.pop(context);
     }
     
   }

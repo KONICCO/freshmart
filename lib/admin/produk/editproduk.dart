@@ -87,6 +87,7 @@ class _editprodukState extends State<editproduk> {
               IconButton(
               onPressed: () {
                 DatabaseServices.hapusproduk(_kolek,_id);
+                Navigator.pop(context);
               },
               icon: Icon(Icons.delete))
           ],
@@ -241,7 +242,7 @@ class _editprodukState extends State<editproduk> {
               ElevatedButton(
                 child: Text('edit data'),
                 onPressed: () async {
-                  editData();
+                  editData(context);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreen,
@@ -281,7 +282,7 @@ class _editprodukState extends State<editproduk> {
     );
   }
 
-  void editData() {
+  void editData(BuildContext context) {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()){
       itungan(inputtName.text.toLowerCase());
@@ -298,6 +299,7 @@ class _editprodukState extends State<editproduk> {
       search: search,
     );
     search.clear();
+    Navigator.pop(context);
     }
     
   }

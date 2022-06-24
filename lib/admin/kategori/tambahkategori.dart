@@ -195,7 +195,7 @@ class _tambahkategoriState extends State<tambahkategori> {
               ElevatedButton(
                 child: Text('add data'),
                 onPressed: () async {
-                  addData();
+                  addData(context);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreen,
@@ -235,7 +235,7 @@ class _tambahkategoriState extends State<tambahkategori> {
     );
   }
 
-  void addData() async {
+  void addData(BuildContext context) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
          itungan(inputtName.text.toLowerCase());
@@ -245,7 +245,7 @@ class _tambahkategoriState extends State<tambahkategori> {
           img: imagePath ?? "https://media.istockphoto.com/vectors/vegetables-on-shopping-cart-trolley-grocery-logo-icon-design-vector-vector-id1205419959?k=20&m=1205419959&s=612x612&w=0&h=F4gyp5wuFkCaZr00OQS8KPCSE1_4pHmFiOIM2TQlOPI=",
           search: search);
       search.clear();
-      
+      Navigator.pop(context);
     }
   }
 

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bisa/admin/database_services.dart';
+import 'package:bisa/home.dart';
 import 'package:bisa/produk/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -157,7 +158,8 @@ class _editkategoriState extends State<editkategori> {
               ElevatedButton(
                 child: Text('Edit data'),
                 onPressed: () async {
-                  addData();
+                  addData(context);
+                   
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreen,
@@ -197,7 +199,7 @@ class _editkategoriState extends State<editkategori> {
     );
   }
 
-  void addData() async {
+  void addData(BuildContext context) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
       itungan(inputtName.text.toLowerCase());
@@ -208,6 +210,7 @@ class _editkategoriState extends State<editkategori> {
         img: imagePath ?? _img,
         search: search);
     search.clear();
+    Navigator.pop(context);
     }
     
   }
