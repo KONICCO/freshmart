@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -102,7 +103,7 @@ class _ChatDetailState extends State<ChatDetail> {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: Text("Loading"),
+            child: Text("Loading",style: TextStyle(fontSize: 15, color: Colors.lightGreen),),
           );
         }
 
@@ -160,6 +161,7 @@ class _ChatDetailState extends State<ChatDetail> {
                                       children: [
                                         Text(data['msg'],
                                             style: TextStyle(
+                                              fontSize: 15,
                                                 color: isSender(
                                                         data['uid'].toString())
                                                     ? Colors.white

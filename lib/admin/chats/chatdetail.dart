@@ -158,6 +158,7 @@ class _ChatDetailState extends State<ChatDetail> {
                                       children: [
                                         Text(data['msg'],
                                             style: TextStyle(
+                                              fontSize: 15,
                                                 color: isSender(
                                                         data['uid'].toString())
                                                     ? Colors.white
