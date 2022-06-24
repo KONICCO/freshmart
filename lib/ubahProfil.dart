@@ -58,37 +58,41 @@ class _UbahProfilState extends State<UbahProfil> {
   }
 
   User? firebase = FirebaseAuth.instance.currentUser;
-  Future<UserCredential> reauthenticate(currentPassword) {
+  Future<UserCredential> reauthenticate(
+      uid, nama, wrool, newEmail, nomor, alamat, currentPassword) {
     AuthCredential cred = EmailAuthProvider.credential(
       email: _email,
       password: currentPassword,
     );
-    return firebase!.reauthenticateWithCredential(cred);
+    return firebase!.reauthenticateWithCredential(cred).whenComplete(
+        () => {changeData(uid, nama, wrool, newEmail, nomor, alamat)});
+  }
+
+  void changeData(uid, nama, wrool, newEmail, nomor, alamat) {
+    DatabaseServices.Updateprofil(
+      uid,
+      name: nama,
+      img: imagePath ?? _img,
+      wrool: wrool,
+      email: newEmail,
+      nomor: nomor,
+      alamat: alamat,
+    );
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(),
+      ),
+    );
   }
 
   //FirebaseAuth firebase = FirebaseAuth.instance;
-  void changeEmail(
-      uid, nama, wrool, email, nomor, alamat, currentPassword, newEmail) {
-    reauthenticate(currentPassword)
+  void changeEmail(uid, nama, newEmail, wrool, nomor, alamat, currentPassword) {
+    reauthenticate(uid, nama, newEmail, wrool, nomor, alamat, currentPassword)
         .then((value) => {
               firebase!
                   .updateEmail(newEmail)
                   .then((value) => {
                         print('Update email'),
-                        DatabaseServices.Updateprofil(
-                          uid,
-                          name: nama,
-                          img: imagePath ?? _img,
-                          wrool: wrool,
-                          email: email,
-                          nomor: nomor,
-                          alamat: alamat,
-                        ),
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => ProfileScreen(),
-                          ),
-                        )
                       })
                   .catchError((Error) => {print(Error)})
             })
@@ -266,11 +270,11 @@ class _UbahProfilState extends State<UbahProfil> {
     );
   }
 
-  void signUp(String uid, String nama, String email, String password,
-      String nomor, String alamat, String wrool) async {
+  void signUp(String uid, String nama, String wrool, String password,
+      String nomor, String alamat, String email) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
-      changeEmail(uid, nama, email, wrool, nomor, alamat, password, email);
+      changeEmail(uid, nama, wrool, email, nomor, alamat, password);
 
       // .then((value) => {
       //   logout()
