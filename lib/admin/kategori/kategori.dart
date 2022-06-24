@@ -1,3 +1,5 @@
+import 'package:bisa/admin/chats/chat.dart';
+import 'package:bisa/admin/chats/chatdetail.dart';
 import 'package:bisa/admin/kategori/tambahkategori.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,10 +38,10 @@ class _kategoriadminState extends State<kategoriadmin> {
           Padding(
               padding: EdgeInsets.all(10.0),
               child: IconButton(onPressed: () {
-                // Navigator.push(context,
-                //       MaterialPageRoute(builder: (BuildContext ctx) {
-                //     return chatscreen();
-                //   }));
+                Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) {
+                    return chatlog();
+                  }));
               }, icon: Icon(Icons.message))),
         ],
         title: Container(
