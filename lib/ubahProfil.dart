@@ -55,30 +55,54 @@ class _UbahProfilState extends State<UbahProfil> {
     emailTextEditingController = new TextEditingController(text: _email);
     nomorTextEditingController = new TextEditingController(text: _nomor);
     alamatTextEditingController = new TextEditingController(text: _alamat);
-    
   }
-  User? firebase = FirebaseAuth.instance.currentUser;
-  Future<UserCredential> reauthenticate(currentPassword){
-  AuthCredential cred = EmailAuthProvider.credential(
-      email: _email, password: currentPassword,);
-  return firebase!.reauthenticateWithCredential(cred);
-  }
-   //FirebaseAuth firebase = FirebaseAuth.instance;
-  void changeEmail (currentPassword, newEmail) {
-  reauthenticate(currentPassword).then((value) => {
-      firebase!.updateEmail(newEmail).then((value) => {
-        print('Update email')
-      }).catchError((Error)=>{print(Error)})
-  }).catchError((error) => {print(error)});
-  // .then(() => {
-  //   var user = FirebaseAuth.instance.currentUser;
 
-  //   user.updateEmail(newEmail).then(() => {
-  //     console.log("Email updated!");
-  //   }).catch((error) => { console.log(error); });
-  // })
-  // .catch((error) => { console.log(error); });
-}
+  User? firebase = FirebaseAuth.instance.currentUser;
+  Future<UserCredential> reauthenticate(currentPassword) {
+    AuthCredential cred = EmailAuthProvider.credential(
+      email: _email,
+      password: currentPassword,
+    );
+    return firebase!.reauthenticateWithCredential(cred);
+  }
+
+  //FirebaseAuth firebase = FirebaseAuth.instance;
+  void changeEmail(
+      uid, nama, wrool, email, nomor, alamat, currentPassword, newEmail) {
+    reauthenticate(currentPassword)
+        .then((value) => {
+              firebase!
+                  .updateEmail(newEmail)
+                  .then((value) => {
+                        print('Update email'),
+                        DatabaseServices.Updateprofil(
+                          uid,
+                          name: nama,
+                          img: imagePath ?? _img,
+                          wrool: wrool,
+                          email: email,
+                          nomor: nomor,
+                          alamat: alamat,
+                        ),
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ),
+                        )
+                      })
+                  .catchError((Error) => {print(Error)})
+            })
+        .catchError((error) => {print(error)});
+    // .then(() => {
+    //   var user = FirebaseAuth.instance.currentUser;
+
+    //   user.updateEmail(newEmail).then(() => {
+    //     console.log("Email updated!");
+    //   }).catch((error) => { console.log(error); });
+    // })
+    // .catch((error) => { console.log(error); });
+  }
+
   String? imagePath;
   @override
   Widget build(BuildContext context) {
@@ -160,7 +184,6 @@ class _UbahProfilState extends State<UbahProfil> {
                           onChanged: (value) {},
                         ),
                       ),
-                      
                       Container(
                         child: TextFormField(
                           controller: nomorTextEditingController,
@@ -217,7 +240,6 @@ class _UbahProfilState extends State<UbahProfil> {
                           onChanged: (value) {},
                         ),
                       ),
-                      
                     ]),
                   ),
                 ),
@@ -230,7 +252,7 @@ class _UbahProfilState extends State<UbahProfil> {
                     child: ElevatedButton(
                         onPressed: () {
                           ubah(context);
-                          
+
                           //Navigator.pop(context);
                         },
                         child: Text("Simpan"),
@@ -244,29 +266,16 @@ class _UbahProfilState extends State<UbahProfil> {
     );
   }
 
-  void signUp(String uid, String nama, String email, String password, String nomor,
-      String alamat, String wrool) async {
+  void signUp(String uid, String nama, String email, String password,
+      String nomor, String alamat, String wrool) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
-      changeEmail (password, email);
-      DatabaseServices.Updateprofil(
-        uid,
-      name: nama,
-      img: imagePath ?? _img,
-      wrool: wrool,
-      email: email,
-      nomor: nomor,
-      alamat: alamat,
-      );
-      Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => ProfileScreen(),
-      ),
-    );
+      changeEmail(uid, nama, email, wrool, nomor, alamat, password, email);
+
       // .then((value) => {
       //   logout()
       // });
-    
+
     }
   }
 
@@ -335,44 +344,46 @@ class _UbahProfilState extends State<UbahProfil> {
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           title: Center(child: Text('Ingin merubah profile anda?')),
-          content: Container(
-            height: MediaQuery.of(context).size.height / 6,
-            child: Column(
-              children: <Widget>[
-                Container(
-                        child: TextFormField(
-                          controller: passTextEditingController,
-                          decoration: InputDecoration(labelText: "Password"),
-                          validator: (value) {
-                RegExp regex = new RegExp(r'^.{6,}$');
-                if (value!.isEmpty) {
-                  return "Password cannot be empty";
-                }
-                if (!regex.hasMatch(value)) {
-                  return ("please enter valid password min. 6 character");
-                } 
-              },
-                        ),
-                      ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () async {
-                        Navigator.pop(context);
+          content: Form(
+            key: _formkey,
+            child: Container(
+              height: MediaQuery.of(context).size.height / 4.5,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: TextFormField(
+                      controller: passTextEditingController,
+                      decoration: InputDecoration(labelText: "Password"),
+                      validator: (value) {
+                        RegExp regex = new RegExp(r'^.{6,}$');
+                        if (value!.isEmpty) {
+                          return "Password cannot be empty";
+                        }
+                        if (!regex.hasMatch(value)) {
+                          return ("please enter valid password min. 6 character");
+                        }
                       },
-                      child: Text('Batal'),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.red
-                          // padding: EdgeInsets.symmetric(
-                          //     horizontal: 50, vertical: 20),
-                          // textStyle: TextStyle(
-                          //     fontSize: 30, fontWeight: FontWeight.bold)
-                              ),
+                      onChanged: (value) {},
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        signUp(
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Batal'),
+                        style: ElevatedButton.styleFrom(primary: Colors.red
+                            // padding: EdgeInsets.symmetric(
+                            //     horizontal: 50, vertical: 20),
+                            // textStyle: TextStyle(
+                            //     fontSize: 30, fontWeight: FontWeight.bold)
+                            ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          signUp(
                             _uid,
                             nameTextEditingController.text,
                             emailTextEditingController.text,
@@ -381,24 +392,25 @@ class _UbahProfilState extends State<UbahProfil> {
                             alamatTextEditingController.text,
                             _wrool,
                           );
-                      },
-                      child: Text('Ok'),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.lightGreen
-                          // padding: EdgeInsets.symmetric(
-                          //     horizontal: 50, vertical: 20),
-                          // textStyle: TextStyle(
-                          //     fontSize: 30, fontWeight: FontWeight.bold)
-                              ),
-                    ),
-                  ],
-                )
+                        },
+                        child: Text('Ok'),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.lightGreen
+                            // padding: EdgeInsets.symmetric(
+                            //     horizontal: 50, vertical: 20),
+                            // textStyle: TextStyle(
+                            //     fontSize: 30, fontWeight: FontWeight.bold)
+                            ),
+                      ),
+                    ],
+                  )
 
-                // Text(
-                //   'Maaf tidak ada refund setelah membeli',
-                //   style: TextStyle(color: Colors.red),
-                // )
-              ],
+                  // Text(
+                  //   'Maaf tidak ada refund setelah membeli',
+                  //   style: TextStyle(color: Colors.red),
+                  // )
+                ],
+              ),
             ),
           ),
         );
