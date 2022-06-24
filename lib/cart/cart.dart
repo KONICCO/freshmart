@@ -105,6 +105,7 @@ class _cartState extends State<cart> {
     getData();
     //getproduk();
     _onPressed();
+    setTanggal();
     //print(snap);
     //print(pesanan);
   }
@@ -117,6 +118,16 @@ class _cartState extends State<cart> {
     }
     total = initTotal;
     return total;
+  }
+
+  List tanggal = [];
+  DateTime now = new DateTime.now();
+
+  setTanggal() {
+    DateTime lastDayOfMonth = new DateTime(now.year, now.month);
+    String x =
+        "${lastDayOfMonth.year}-0${lastDayOfMonth.month}-0${lastDayOfMonth.day}";
+    tanggal.add(x);
   }
 
   void setDetail() {
@@ -149,7 +160,7 @@ class _cartState extends State<cart> {
                 print(profil[0]['uid']);
                 //pesanan.clear();
                 setState(() {
-                  print(pesanan);
+                  print(tanggal[0]);
                 });
               }),
               icon: Icon(Icons.refresh))
@@ -298,9 +309,12 @@ class _cartState extends State<cart> {
                       name: profil[0]['nama'],
                       kantong: inputKantong.text.trim(),
                       alamat: profil[0]['alamat'],
+                      tanggal: tanggal[0],
+                      total: '${setTotal(pesanan)}',
                     );
                     setDetail();
                     setNotif();
+                    // tanggal.clear();
                     setState(() {});
                     Navigator.pop(context);
                   },

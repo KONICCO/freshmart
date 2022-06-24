@@ -28,7 +28,7 @@ class _cardPendapatanState extends State<cardPendapatan> {
         },
         child: Container(
           height: 90,
-          width: 336,
+          width: 200,
           color: Colors.lightGreen,
           child: Padding(
               padding: const EdgeInsets.all(15.0),

@@ -15,12 +15,25 @@ class pendapatan extends StatefulWidget {
 class _pendapatanState extends State<pendapatan> {
   DateTime selectedDate = DateTime(2022, 1, 1);
   List _dropdownMenuItems = ['One', 'Two', 'Free', 'Four'];
+  List kantong = [];
+
+  num total = 0;
+  setTotal(kantong) {
+    num initTotal = 0;
+    for (var i = 0; i < kantong.length; i++) {
+      initTotal = initTotal + (int.parse(kantong[i]['total']));
+    }
+    total = initTotal;
+    return total;
+  }
 
   @override
   void initState() {
     super.initState();
+    // _onPressed();
   }
 
+  // String selectedDate = '';
   _selectMonth(BuildContext context) async {
     showMonthPicker(
       context: context,
@@ -32,12 +45,32 @@ class _pendapatanState extends State<pendapatan> {
       if (date != null) {
         setState(() {
           selectedDate = date;
-          print(selectedDate);
+          kantong.clear();
+          _onPressed(selectedDate);
         });
       }
     });
   }
 
+  Future<void> _onPressed(tanggal) async {
+    FirebaseFirestore.instance
+        .collection("kantong")
+        .where("tanggal".toLowerCase(), isEqualTo: "${tanggal}".split(' ')[0])
+        .get()
+        .then(
+      (querySnapshot) {
+        querySnapshot.docs.forEach((result) {
+          setState(() {
+            kantong.add(result.data());
+          });
+
+          // print(result.data());
+        });
+      },
+    );
+  }
+
+  List totalPendapatan = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +92,13 @@ class _pendapatanState extends State<pendapatan> {
 
       //     ),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: (() {
+                print(kantong);
+              }),
+              icon: Icon(Icons.refresh))
+        ],
         title: Row(
           children: [
             Text("Pendapatan"),
@@ -79,24 +119,42 @@ class _pendapatanState extends State<pendapatan> {
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("kantong")
-              .where("search".toLowerCase(),
+              .where("tanggal".toLowerCase(),
                   isEqualTo: "${selectedDate}".split(' ')[0])
               .snapshots(),
           builder: (context, snapshot) {
             return (snapshot.connectionState == ConnectionState.waiting)
                 ? Center(child: CircularProgressIndicator())
-                : GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
+                : ListView.builder(
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot data = snapshot.data!.docs[index];
+                      totalPendapatan.add(data['total']);
                       return cardPendapatan(modulPendapatan(
                           namakantong: data['namakantong'],
                           namalengkap: data["namalengkap"],
                           alamat: data["alamat"]));
                     });
           }),
+      bottomNavigationBar: BottomAppBar(
+          child: Container(
+        height: 70,
+        width: double.infinity,
+        color: Color.fromARGB(255, 50, 104, 241),
+        padding: EdgeInsets.only(left: 20, right: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Total: Rp ${setTotal(kantong)}',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
+      )),
       // Center(
       //   child: Column(
       //     mainAxisSize: MainAxisSize.min,
