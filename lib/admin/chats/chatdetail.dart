@@ -89,7 +89,7 @@ class _ChatDetailState extends State<ChatDetail> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: chats
-          .doc(chatDocId)
+          .doc("${chatDocId}")
           .collection('messages')
           .orderBy('createdOn', descending: true)
           .snapshots(),
