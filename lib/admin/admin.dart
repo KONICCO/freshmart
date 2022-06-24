@@ -78,8 +78,8 @@ class _AdminState extends State<Admin> {
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_sharp),
-            label: 'Notif',
+            icon: Icon(Icons.book),
+            label: 'Pendapatan',
             backgroundColor: Colors.lightGreen,
           ),
           BottomNavigationBarItem(
