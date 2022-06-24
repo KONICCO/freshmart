@@ -44,7 +44,7 @@ class _ChatDetailState extends State<ChatDetail> {
             if (querySnapshot.docs.isNotEmpty) {
               setState(() {
                 chatDocId = querySnapshot.docs.single.id;
-                print(chatDocId);
+                print("iniadalah doc messages${chatDocId}");
               });
 
               print(chatDocId);
@@ -53,7 +53,7 @@ class _ChatDetailState extends State<ChatDetail> {
                 'users': {currentUserId: null, _friendUid: null},
                 'names': {
                   currentUserId: FirebaseAuth.instance.currentUser?.displayName,
-                  _friendUid: null
+                  _friendUid: _friendName
                 }
               }).then((value) => {chatDocId = value});
             }
@@ -89,7 +89,7 @@ class _ChatDetailState extends State<ChatDetail> {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: chats
-          .doc(chatDocId)
+          .doc("${chatDocId}")
           .collection('messages')
           .orderBy('createdOn', descending: true)
           .snapshots(),
@@ -113,7 +113,9 @@ class _ChatDetailState extends State<ChatDetail> {
               middle: Text(_friendName),
               trailing: CupertinoButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  print("iniadalah doc messages${chatDocId}");
+                },
                 child: Icon(CupertinoIcons.phone),
               ),
               previousPageTitle: "Back",
