@@ -105,6 +105,7 @@ class _UbahProfilState extends State<UbahProfil> {
     //   }).catch((error) => { console.log(error); });
     // })
     // .catch((error) => { console.log(error); });
+    
   }
 
   String? imagePath;
@@ -270,8 +271,8 @@ class _UbahProfilState extends State<UbahProfil> {
     );
   }
 
-  void signUp(String uid, String nama, String wrool, String password,
-      String nomor, String alamat, String email) async {
+  void signUp(String uid, String nama, String wrool, String email,
+      String nomor, String alamat, String password) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
       changeEmail(uid, nama, wrool, email, nomor, alamat, password);
@@ -390,11 +391,13 @@ class _UbahProfilState extends State<UbahProfil> {
                           signUp(
                             _uid,
                             nameTextEditingController.text,
+                            _wrool,
                             emailTextEditingController.text,
-                            passTextEditingController.text,
+                            
                             nomorTextEditingController.text,
                             alamatTextEditingController.text,
-                            _wrool,
+                            
+                            passTextEditingController.text,
                           );
                         },
                         child: Text('Ok'),
